@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "408218526847",
+    "firebase_url": "https://defyselfapp-default-rtdb.firebaseio.com",
+    "project_id": "defyselfapp",
+    "storage_bucket": "defyselfapp.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:408218526847:android:9ab573ac38edff80c8cb4a",
+        "android_client_info": {
+          "package_name": "com.rana76.defyselfapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdg3ViblFN1X9Q06oEIuxuMomlNid-aqs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

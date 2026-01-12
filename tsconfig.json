@@ -1,27 +1,39 @@
 {
-  "extends": "@react-native/typescript-config",
   "compilerOptions": {
     "target": "esnext",
-    "module": "Node16",
+    "module": "esnext",
+    "moduleResolution": "bundler",
     "jsx": "react-native",
     "strict": true,
     "noEmit": true,
     "isolatedModules": true,
-    "moduleResolution": "node16",
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
+    "noImplicitAny": false,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "lib": ["esnext", "dom"],
-    "customConditions": ["react-native"]
+    
+    /* هذا هو السطر الجديد الذي سيحل المشكلة */
+    "types": ["react", "react-native", "jest"] 
   },
-  "include": ["**/*.ts", "**/*.tsx"],
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "services/firebaseService.ts",
+    "config/firebaseConfig.ts",
+    "App.tsx",
+    "screens/DefySelfIcons.tsx",
+    ".expo/types/**/*.ts", 
+    "expo-env.d.ts"
+  ],
   "exclude": [
     "node_modules",
     "Pods",
     "babel.config.js",
     "metro.config.js",
     "jest.config.js"
-  ]
+  ],
+  "extends": "expo/tsconfig.base"
 }

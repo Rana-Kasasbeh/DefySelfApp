@@ -1,4 +1,59 @@
 {
-  "name": "DefySelfApp",
-  "displayName": "DefySelfApp"
+  "expo": {
+    "name": "DefySelf",
+    "slug": "defy-self-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/LOGO.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/New.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "jsEngine": "hermes",
+    "web": {
+      "bundler": "metro"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.rana76.defyselfapp",
+      "googleServicesFile": "./GoogleService-Info.plist" 
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.rana76.defyselfapp",
+      "googleServicesFile": "./google-services.json" 
+    },
+    "plugins": [
+      [
+        "react-native-google-mobile-ads",
+        {
+          "androidAppId": "ca-app-pub-4514668400858247~9874347942",
+          "iosAppId": "ca-app-pub-4514668400858247~9874347942"
+        }
+      ],
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "compileSdkVersion": 34,
+            "targetSdkVersion": 34,
+            "buildToolsVersion": "34.0.0"
+          },
+          "ios": {
+            "useFrameworks": "static"
+          }
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "47c669e1-8679-4b3b-af4c-e5d38ccdb1bc"
+      }
+    }
+  }
 }

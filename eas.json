@@ -1,0 +1,33 @@
+{
+  "cli": {
+    "version": ">= 16.11.0",
+    "appVersionSource": "remote"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal"
+    },
+    "preview": {
+      "android": {
+        "buildType": "apk"
+        
+      },
+      "env": {
+        "EXPO_PUBLIC_ADS_MODE": "test"
+      }
+    },
+    "production": {
+      "autoIncrement": true,
+      "android": {
+        "buildType": "app-bundle"
+      },
+      "env": {
+        "EXPO_PUBLIC_ADS_MODE": "production"
+      }
+    }
+  },
+  "submit": {
+    "production": {}
+  }
+}
