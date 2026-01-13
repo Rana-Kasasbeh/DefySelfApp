@@ -1,17 +1,36 @@
 // services/EmailService.js
+import {
+  EXPO_PUBLIC_BREVO_API_KEY,
+  EXPO_PUBLIC_SENDER_EMAIL,
+  EXPO_PUBLIC_SENDER_NAME
+} from '@env';
 
-const BREVO_API_KEY = process.env.EXPO_PUBLIC_BREVO_API_KEY || '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';
-const SENDER_EMAIL = process.env.EXPO_PUBLIC_SENDER_EMAIL || 'info@alberinvestment.com';
-const SENDER_NAME = process.env.EXPO_PUBLIC_SENDER_NAME || 'DefySelf Team';
+const BREVO_API_KEY = EXPO_PUBLIC_BREVO_API_KEY || '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';
+const SENDER_EMAIL = EXPO_PUBLIC_SENDER_EMAIL || 'info@alberinvestment.com';
+const SENDER_NAME = EXPO_PUBLIC_SENDER_NAME || 'DefySelf Team';
 
 /**
  * إرسال بريد إلكتروني للتحقق عبر Brevo API
  */
 export const sendVerificationEmail = async (userEmail, code) => {
+  console.log('📧 EmailService: Starting...', {
+    hasApiKey: !!BREVO_API_KEY,
+    email: userEmail,
+    code: code
+  });
+
   if (!userEmail || !code) {
     return {
       success: false,
       error: 'البريد الإلكتروني أو الكود مفقود'
+    };
+  }
+
+  if (!BREVO_API_KEY || BREVO_API_KEY === 'your_brevo_api_key_here') {
+    console.error('❌ Brevo API Key is missing or invalid');
+    return {
+      success: false,
+      error: 'خطأ في إعدادات البريد الإلكتروني'
     };
   }
 
@@ -75,6 +94,8 @@ export const sendVerificationEmail = async (userEmail, code) => {
   };
 
   try {
+    console.log('📤 Sending request to Brevo...');
+    
     const response = await fetch(url, {
       method: 'POST',
       headers: {
@@ -85,23 +106,35 @@ export const sendVerificationEmail = async (userEmail, code) => {
       body: JSON.stringify(emailBody)
     });
 
+    const responseData = await response.json().catch(() => ({}));
+    
+    console.log('📨 Brevo Response:', {
+      status: response.status,
+      ok: response.ok,
+      data: responseData
+    });
+
     if (response.ok) {
+      console.log('✅ Email sent successfully!');
       return { success: true };
     } else {
-      const errorData = await response.json().catch(() => ({}));
       let errorMessage = 'فشل إرسال البريد';
       
       if (response.status === 401) {
         errorMessage = 'خطأ في مفتاح API';
+        console.error('❌ 401: Invalid API Key');
       } else if (response.status === 403) {
         errorMessage = 'البريد المرسل غير مفعل';
-      } else if (errorData.message) {
-        errorMessage = errorData.message;
+        console.error('❌ 403: Sender email not verified');
+      } else if (responseData.message) {
+        errorMessage = responseData.message;
+        console.error('❌ Brevo Error:', responseData);
       }
       
       return { success: false, error: errorMessage };
     }
   } catch (error) {
+    console.error('❌ Network Error:', error);
     return { 
       success: false, 
       error: 'تأكد من اتصالك بالإنترنت'
