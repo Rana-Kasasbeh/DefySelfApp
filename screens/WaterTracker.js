@@ -7,7 +7,6 @@ import {
   StyleSheet,
   ScrollView,
   Animated,
-  Image,
   Alert,
   Platform,
   Dimensions,
@@ -80,6 +79,7 @@ const translations = {
     success: 'نجاح',
     ramadanGreeting: 'رمضان كريم',
     blessedMonth: 'اللهم بلغنا رمضان',
+    progress: 'الإنجاز',
   },
   en: {
     title: 'Water Tracker',
@@ -117,6 +117,7 @@ const translations = {
     success: 'Success',
     ramadanGreeting: 'Ramadan Kareem',
     blessedMonth: 'Blessed Month',
+    progress: 'Progress',
   },
 };
 
@@ -404,7 +405,7 @@ const FloatingRamadanButton = ({ isRamadanMode, onPress, isDark }) => {
 
 // ==================== MAIN COMPONENT ====================
 const WaterTracker = ({ navigation }) => {
-  const { isDark, language } = useGlobal();
+  const { isDark, language, toggleTheme, toggleLanguage } = useGlobal();
   
   const auth = getAuth();
   const database = getDatabase();
@@ -445,7 +446,6 @@ const WaterTracker = ({ navigation }) => {
 
   // ==================== ADS CONTROLLER ====================
   useEffect(() => {
-    // 🎯 تحميل الإعلان البيني عند فتح الشاشة
     AdsController.loadInterstitial();
   }, []);
 
@@ -620,36 +620,23 @@ const WaterTracker = ({ navigation }) => {
     setGoal(Math.round(waterNeed / 100) * 100);
   };
 
-  // ==================== 🎯 ADD WATER WITH ADS CONTROLLER ====================
+  // ==================== ADD WATER WITH ADS ====================
   const addWater = async () => {
     if (!goal) return;
     if (glassRef.current) glassRef.current.triggerBubbles();
 
-    // 1. حساب النسبة القديمة (قبل الإضافة)
     const oldPercentage = (intake / goal) * 100;
-    
-    // 2. القيمة الجديدة
     const newIntake = intake + 100;
-    
-    // 3. حساب النسبة الجديدة (بعد الإضافة)
     const newPercentage = (newIntake / goal) * 100;
 
-    // تحديث الواجهة والبيانات
     setIntake(newIntake);
     await saveDailyIntake(newIntake);
 
-    // ================================================================
-    // 🎯 عرض الإعلان عند تجاوز 40%
-    // ================================================================
     if (oldPercentage < 40 && newPercentage >= 40) {
-      console.log("🎉 Achievement Unlocked: Reached 40%!");
       AdsController.showInterstitial();
       Alert.alert(t.achievementUnlocked, t.achievement40);
     }
 
-    // ================================================================
-    // 🎯 عرض الإعلان عند الوصول للهدف 100%
-    // ================================================================
     if (newPercentage >= 100 && oldPercentage < 100) {
       await Notifications.scheduleNotificationAsync({
         content: { title: '🎉', body: t.congratsMessage, sound: true },
@@ -657,8 +644,6 @@ const WaterTracker = ({ navigation }) => {
       });
       Alert.alert(t.success, t.notificationsPaused);
       await Notifications.cancelAllScheduledNotificationsAsync();
-      
-      // عرض إعلان آخر عند إكمال الهدف
       AdsController.showInterstitial();
     }
   };
@@ -788,17 +773,36 @@ const WaterTracker = ({ navigation }) => {
           <TouchableOpacity
             onPress={() => navigation.goBack()}
             style={[styles.headerButton, { backgroundColor: isRamadanMode ? 'rgba(255,215,0,0.2)' : isDark ? '#1e293b' : '#e2e8f0' }]}
+            activeOpacity={0.7}
           >
             <MaterialCommunityIcons
-              name={isRTL ? 'arrow-right' : 'arrow-left'}
+              name={isRTL ? "arrow-right" : "arrow-left"}
               size={22}
               color={textColor}
             />
           </TouchableOpacity>
-          <Text style={[styles.headerText, { fontSize: 18, color: textColor }]}>
-            {t.title}
-          </Text>
-          <View style={{ width: 40 }} />
+
+          <View style={styles.languageThemeContainer}>
+            <TouchableOpacity 
+              style={[styles.headerButton, { backgroundColor: isRamadanMode ? 'rgba(255,215,0,0.2)' : isDark ? '#1e293b' : '#e2e8f0' }]} 
+              onPress={toggleLanguage}
+              activeOpacity={0.7}
+            >
+              <Text style={[styles.headerText, { color: textColor }]}>
+                {language === 'en' ? 'AR' : 'EN'}
+              </Text>
+            </TouchableOpacity>
+            
+            <TouchableOpacity 
+              style={[styles.headerButton, { backgroundColor: isRamadanMode ? 'rgba(255,215,0,0.2)' : isDark ? '#1e293b' : '#e2e8f0' }]} 
+              onPress={toggleTheme}
+              activeOpacity={0.7}
+            >
+              <Text style={[styles.headerText, { color: textColor }]}>
+                {isDark ? '☀️' : '🌙'}
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
 
@@ -894,7 +898,7 @@ const WaterTracker = ({ navigation }) => {
               <PremiumStatCard
                 icon="target"
                 value={`${Math.round(progressPercentage)}%`}
-                label={language === 'ar' ? 'الإنجاز' : 'Progress'}
+                label={t.progress}
                 color={COLORS.info}
                 isDarkTheme={isDark}
                 isRamadan={isRamadanMode}
@@ -949,8 +953,9 @@ const styles = StyleSheet.create({
   
   header: { paddingHorizontal: wp('4%'), paddingVertical: hp('1.5%'), paddingTop: hp('5%') },
   rowHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: '100%' },
-  headerButton: { width: 45, height: 45, borderRadius: 12, justifyContent: 'center', alignItems: 'center' },
-  headerText: { fontSize: 16, fontWeight: '700' },
+  languageThemeContainer: { flexDirection: 'row', gap: wp('2%') },
+  headerButton: { width: 45, height: 45, borderRadius: 12, justifyContent: 'center', alignItems: 'center', shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.1, shadowRadius: 4, elevation: 3 },
+  headerText: { fontSize: 16, fontWeight: '600' },
 
   topRamadanBanner: {
     flexDirection: 'row',

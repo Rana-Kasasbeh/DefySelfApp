@@ -1,3 +1,4 @@
+// screens/HabitsScreen.tsx
 import React, { useState, useEffect, useCallback } from 'react';
 import {
   View,
@@ -17,9 +18,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { MaterialCommunityIcons, Feather } from '@expo/vector-icons';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
-// ✅ إصلاح قاعدة البيانات
 import { auth, firestore as db } from '../services/firebaseConfig';
-
 import { 
   collection, 
   doc, 
@@ -31,10 +30,10 @@ import {
   serverTimestamp 
 } from 'firebase/firestore';
 
-// استيراد Global Context
 import { useGlobal } from '../contexts/GlobalContext';
 import { BannerAd, BannerAdSize } from 'react-native-google-mobile-ads';
 import { AdUnits } from '../ads/AdConfig';
+import AdsController from '../ads/AdsController';
 
 // ==================== TYPES ====================
 type Language = 'ar' | 'en';
@@ -214,7 +213,7 @@ const ChallengeSummaryCard = ({ challenge, onPress, isDark, t, isRTL }: any) => 
           </View>
           <View style={styles.progressBarBg}>
             <LinearGradient
-              colors={COLORS.primaryGradient as any}
+              colors={[...COLORS.primaryGradient]}
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 0 }}
               style={[styles.progressBarFill, { width: `${progressPercent}%` }]}
@@ -228,7 +227,7 @@ const ChallengeSummaryCard = ({ challenge, onPress, isDark, t, isRTL }: any) => 
 
 // ==================== MAIN SCREEN ====================
 export default function HabitsScreen({ navigation }: any) {
-  const { isDark, language, updateProgress } = useGlobal();
+  const { isDark, language, toggleTheme, toggleLanguage, updateProgress } = useGlobal();
   
   // View State
   const [viewMode, setViewMode] = useState<ViewMode>('list');
@@ -283,6 +282,11 @@ export default function HabitsScreen({ navigation }: any) {
     const backHandler = BackHandler.addEventListener('hardwareBackPress', backAction);
     return () => backHandler.remove();
   }, [viewMode]);
+
+  // Load Interstitial Ad
+  useEffect(() => {
+    AdsController.loadInterstitial();
+  }, []);
 
   // ==================== DATA FETCHING ====================
   const fetchChallenges = useCallback(async () => {
@@ -469,6 +473,8 @@ export default function HabitsScreen({ navigation }: any) {
              });
         }
 
+        // عرض إعلان عند تسجيل اليوم
+        AdsController.showInterstitial();
         Alert.alert(t.success, `${t.todayScore}: ${score}%`);
     } catch (error) {
         console.error(error);
@@ -479,18 +485,41 @@ export default function HabitsScreen({ navigation }: any) {
 
   // ==================== VIEWS RENDERERS ====================
   
-  // ✅ قمنا بوضع الإعلان هنا داخل العرض الخاص بالقائمة فقط
-  // هذا يمنع أي تضارب في الشروط ويحل مشكلة النص
   const renderListView = () => (
     <View style={{ flex: 1 }}>
         <ScrollView contentContainerStyle={{ paddingBottom: 100 }}>
+            {/* ✅ Header محسّن مثل الصفحة الرئيسية */}
             <View style={styles.header}>
                 <View style={styles.rowHeader}>
-                    <TouchableOpacity onPress={() => navigation.goBack()} style={[styles.headerButton, { backgroundColor: isDark ? '#1e293b' : '#e2e8f0' }]}>
+                    <TouchableOpacity 
+                      onPress={() => navigation.goBack()} 
+                      style={[styles.headerButton, { backgroundColor: isDark ? '#1e293b' : '#e2e8f0' }]}
+                      activeOpacity={0.7}
+                    >
                         <MaterialCommunityIcons name={isRTL ? "arrow-right" : "arrow-left"} size={22} color={textColor} />
                     </TouchableOpacity>
-                    <Text style={[styles.headerText, { fontSize: 18, color: textColor }]}>{t.myChallenges}</Text>
-                    <View style={{ width: 40 }} />
+
+                    <View style={styles.languageThemeContainer}>
+                        <TouchableOpacity 
+                          style={[styles.headerButton, { backgroundColor: isDark ? '#1e293b' : '#e2e8f0' }]} 
+                          onPress={toggleLanguage}
+                          activeOpacity={0.7}
+                        >
+                          <Text style={[styles.headerText, { color: textColor }]}>
+                            {language === 'en' ? 'AR' : 'EN'}
+                          </Text>
+                        </TouchableOpacity>
+                        
+                        <TouchableOpacity 
+                          style={[styles.headerButton, { backgroundColor: isDark ? '#1e293b' : '#e2e8f0' }]} 
+                          onPress={toggleTheme}
+                          activeOpacity={0.7}
+                        >
+                          <Text style={[styles.headerText, { color: textColor }]}>
+                            {isDark ? '☀️' : '🌙'}
+                          </Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </View>
 
@@ -517,7 +546,7 @@ export default function HabitsScreen({ navigation }: any) {
                 )}
 
                 <TouchableOpacity onPress={() => setViewMode('create')} style={{ marginTop: hp('2%') }}>
-                    <LinearGradient colors={COLORS.primaryGradient as any} style={styles.createButtonMain}>
+                    <LinearGradient colors={[...COLORS.primaryGradient]} style={styles.createButtonMain}>
                         <MaterialCommunityIcons name="plus" size={24} color={COLORS.white} />
                         <Text style={styles.createButtonText}>{t.createButton}</Text>
                     </LinearGradient>
@@ -525,26 +554,51 @@ export default function HabitsScreen({ navigation }: any) {
             </View>
         </ScrollView>
 
-        {/* ✅ مكان الإعلان الجديد: داخل الـ View الخاص بالقائمة */}
         <View style={{ alignItems: 'center', position: 'absolute', bottom: 0, width: '100%' }}>
-            <BannerAd
-                unitId={AdUnits.BANNER}
-                size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
-            />
+            <BannerAd unitId={AdUnits.BANNER} size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} />
         </View>
     </View>
   );
 
   const renderCreateView = () => (
     <ScrollView>
+        {/* ✅ Header محسّن */}
         <View style={styles.header}>
-            <TouchableOpacity onPress={() => setViewMode('list')} style={[styles.headerButton, { backgroundColor: isDark ? '#1e293b' : '#e2e8f0' }]}>
-                <MaterialCommunityIcons name="close" size={22} color={textColor} />
-            </TouchableOpacity>
+            <View style={styles.rowHeader}>
+                <TouchableOpacity 
+                  onPress={() => setViewMode('list')} 
+                  style={[styles.headerButton, { backgroundColor: isDark ? '#1e293b' : '#e2e8f0' }]}
+                  activeOpacity={0.7}
+                >
+                    <MaterialCommunityIcons name={isRTL ? "arrow-right" : "arrow-left"} size={22} color={textColor} />
+                </TouchableOpacity>
+
+                <View style={styles.languageThemeContainer}>
+                    <TouchableOpacity 
+                      style={[styles.headerButton, { backgroundColor: isDark ? '#1e293b' : '#e2e8f0' }]} 
+                      onPress={toggleLanguage}
+                      activeOpacity={0.7}
+                    >
+                      <Text style={[styles.headerText, { color: textColor }]}>
+                        {language === 'en' ? 'AR' : 'EN'}
+                      </Text>
+                    </TouchableOpacity>
+                    
+                    <TouchableOpacity 
+                      style={[styles.headerButton, { backgroundColor: isDark ? '#1e293b' : '#e2e8f0' }]} 
+                      onPress={toggleTheme}
+                      activeOpacity={0.7}
+                    >
+                      <Text style={[styles.headerText, { color: textColor }]}>
+                        {isDark ? '☀️' : '🌙'}
+                      </Text>
+                    </TouchableOpacity>
+                </View>
+            </View>
         </View>
 
         <View style={[styles.card, { backgroundColor: cardColor, marginTop: 10 }]}>
-            <LinearGradient colors={COLORS.primaryGradient as any} style={styles.cardHeader}>
+            <LinearGradient colors={[...COLORS.primaryGradient]} style={styles.cardHeader}>
                 <MaterialCommunityIcons name="flag-checkered" size={24} color={COLORS.white} />
                 <Text style={styles.cardHeaderText}>{t.newChallenge}</Text>
             </LinearGradient>
@@ -612,7 +666,7 @@ export default function HabitsScreen({ navigation }: any) {
                     disabled={loading || !challengeName || habits.length === 0}
                     style={{ marginTop: 30 }}
                 >
-                    <LinearGradient colors={COLORS.successGradient as any} style={styles.startButton}>
+                    <LinearGradient colors={[...COLORS.successGradient]} style={styles.startButton}>
                         {loading ? <ActivityIndicator color="#fff" /> : <Text style={styles.startButtonText}>{t.startChallenge}</Text>}
                     </LinearGradient>
                 </TouchableOpacity>
@@ -632,12 +686,19 @@ export default function HabitsScreen({ navigation }: any) {
 
     return (
         <ScrollView contentContainerStyle={{ paddingBottom: 100 }}>
+            {/* ✅ Header محسّن */}
             <View style={styles.header}>
                 <View style={[styles.rowHeader, { flexDirection: isRTL ? 'row-reverse' : 'row' }]}>
-                    <TouchableOpacity onPress={() => setViewMode('list')} style={[styles.headerButton, { backgroundColor: isDark ? '#1e293b' : '#e2e8f0' }]}>
+                    <TouchableOpacity 
+                      onPress={() => setViewMode('list')} 
+                      style={[styles.headerButton, { backgroundColor: isDark ? '#1e293b' : '#e2e8f0' }]}
+                      activeOpacity={0.7}
+                    >
                         <MaterialCommunityIcons name={isRTL ? "arrow-right" : "arrow-left"} size={22} color={textColor} />
                     </TouchableOpacity>
+                    
                     <Text style={[styles.headerText, { flex: 1, textAlign: 'center', color: textColor }]}>{selectedChallenge.name}</Text>
+                    
                     <TouchableOpacity onPress={handleDeleteChallenge} style={[styles.headerButton, { backgroundColor: COLORS.danger + '20' }]}>
                         <MaterialCommunityIcons name="delete-outline" size={22} color={COLORS.danger} />
                     </TouchableOpacity>
@@ -683,7 +744,7 @@ export default function HabitsScreen({ navigation }: any) {
                         style={{ marginTop: 20 }}
                     >
                         <LinearGradient 
-                            colors={isTodayMarked ? [COLORS.gray, COLORS.gray] : COLORS.primaryGradient as any}
+                            colors={isTodayMarked ? [COLORS.gray, COLORS.gray] : [...COLORS.primaryGradient]}
                             style={styles.markButton}
                         >
                             {loading ? <ActivityIndicator color="#fff" /> : (
@@ -720,7 +781,7 @@ export default function HabitsScreen({ navigation }: any) {
   // ==================== MAIN RENDER ====================
   if (initialLoading) {
     return (
-        <LinearGradient colors={isDark ? COLORS.darkGradient as any : [COLORS.light, COLORS.white]} style={styles.container}>
+        <LinearGradient colors={isDark ? [...COLORS.darkGradient] : [COLORS.light, COLORS.white]} style={styles.container}>
             <View style={styles.loadingContainer}>
                 <StaticLogo isDark={isDark} />
                 <ActivityIndicator size="large" color={COLORS.primary} style={{ marginTop: 20 }} />
@@ -730,21 +791,22 @@ export default function HabitsScreen({ navigation }: any) {
   }
 
   return (
-    <LinearGradient colors={isDark ? COLORS.darkGradient as any : [COLORS.light, COLORS.white]} style={styles.container}>
+    <LinearGradient colors={isDark ? [...COLORS.darkGradient] : [COLORS.light, COLORS.white]} style={styles.container}>
         <StatusBar barStyle={isDark ? 'light-content' : 'dark-content'} />
-        {/* ✅ استدعاء دالة المحتوى فقط (لا شروط ولا إعلانات في هذا المستوى) */}
         {renderContent()}
     </LinearGradient>
   );
 }
 
+// ==================== STYLES ====================
 const styles = StyleSheet.create({
   container: { flex: 1 },
   loadingContainer: { flex: 1, justifyContent: 'center', alignItems: 'center' },
   header: { paddingHorizontal: wp('4%'), paddingVertical: hp('1.5%'), paddingTop: hp('5%') },
   rowHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: '100%' },
-  headerButton: { width: 45, height: 45, borderRadius: 12, justifyContent: 'center', alignItems: 'center' },
-  headerText: { fontSize: 16, fontWeight: '700' },
+  languageThemeContainer: { flexDirection: 'row', gap: wp('2%') },
+  headerButton: { width: 45, height: 45, borderRadius: 12, justifyContent: 'center', alignItems: 'center', shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.1, shadowRadius: 4, elevation: 3 },
+  headerText: { fontSize: 16, fontWeight: '600' },
   logoSection: { alignItems: 'center', marginBottom: hp('2%') },
   
   card: { borderRadius: 16, overflow: 'hidden', elevation: 4, marginHorizontal: wp('4%'), marginBottom: 20 },
