@@ -24,7 +24,6 @@ export const STORAGE_KEYS = {
   THEME: '@app_theme',
   LANGUAGE: '@app_language',
   WATER_DATA: '@water_tracker_data',
-
   HABITS_DATA: '@habits_tracker_data',
   LANGUAGE_LEARNING_DATA: '@language_learning_data',
   CHALLENGES_DATA: '@challenges_data',
@@ -119,7 +118,10 @@ class FirebaseDataManager {
       };
 
       await setDoc(userRef, newUserData);
-      await AsyncStorage.setItem(`${STORAGE_KEYS.USER_DATA}_${uid}`, JSON.stringify(newUserData));
+      
+      // حفظ نسخة محلية (بدون serverTimestamp لأنه لا يعمل في AsyncStorage)
+      const localUserData = { ...newUserData, accountCreatedAt: new Date().toISOString(), lastLoginDate: new Date().toISOString() };
+      await AsyncStorage.setItem(`${STORAGE_KEYS.USER_DATA}_${uid}`, JSON.stringify(localUserData));
       
       // إنشاء بيانات أولية في Sub-collections
       await this.saveWaterData(uid, {
@@ -168,7 +170,12 @@ class FirebaseDataManager {
     try {
       const userRef = doc(db, 'users', uid);
       const userSnap = await getDoc(userRef);
-      if (userSnap.exists()) return userSnap.data();
+      if (userSnap.exists()) {
+        const data = userSnap.data();
+        // تحديث الكاش المحلي عند التحميل من السحابة
+        await AsyncStorage.setItem(`${STORAGE_KEYS.USER_DATA}_${uid}`, JSON.stringify(data));
+        return data;
+      }
       return null;
     } catch (error) {
       return null;
@@ -208,18 +215,27 @@ class FirebaseDataManager {
     };
 
     try {
+      // 1. محاولة الجلب من Firebase أولاً (Network First Strategy)
       const waterRef = doc(db, 'users', uid, 'water', 'tracker');
       const waterSnap = await getDoc(waterRef);
 
       if (waterSnap.exists()) {
-        return waterSnap.data() as WaterData;
+        const cloudData = waterSnap.data() as WaterData;
+        // ✅ هام: تحديث البيانات المحلية لتكون متزامنة مع السحابة
+        await AsyncStorage.setItem(`${STORAGE_KEYS.WATER_DATA}_${uid}`, JSON.stringify(cloudData));
+        return cloudData;
       }
 
+      // 2. إذا لم توجد بيانات سحابية أو فشل الاتصال، نستخدم المحلي
       const localData = await AsyncStorage.getItem(`${STORAGE_KEYS.WATER_DATA}_${uid}`);
       if (localData) return JSON.parse(localData);
 
       return defaultData;
     } catch (error) {
+      // في حالة عدم وجود انترنت، نعود للمحفوظ محلياً
+      const localData = await AsyncStorage.getItem(`${STORAGE_KEYS.WATER_DATA}_${uid}`);
+      if (localData) return JSON.parse(localData);
+      
       return defaultData;
     }
   }
@@ -264,7 +280,10 @@ class FirebaseDataManager {
       const langSnap = await getDoc(langRef);
 
       if (langSnap.exists()) {
-        return langSnap.data() as LanguageLearningData;
+        const cloudData = langSnap.data() as LanguageLearningData;
+        // ✅ مزامنة الكاش
+        await AsyncStorage.setItem(`${STORAGE_KEYS.LANGUAGE_LEARNING_DATA}_${uid}`, JSON.stringify(cloudData));
+        return cloudData;
       }
 
       const localData = await AsyncStorage.getItem(`${STORAGE_KEYS.LANGUAGE_LEARNING_DATA}_${uid}`);
@@ -272,6 +291,8 @@ class FirebaseDataManager {
 
       return defaultData;
     } catch (error) {
+      const localData = await AsyncStorage.getItem(`${STORAGE_KEYS.LANGUAGE_LEARNING_DATA}_${uid}`);
+      if (localData) return JSON.parse(localData);
       return defaultData;
     }
   }
@@ -287,13 +308,12 @@ class FirebaseDataManager {
       const batch = writeBatch(db);
       const habitsCollectionRef = collection(db, 'users', uid, 'habits');
 
-      // حذف العادات القديمة أولاً (optional - يمكنك تحسينه لاحقاً)
+      // (يمكن تحسين هذا الجزء لاحقاً لتحديث فقط ما تغير بدلاً من الحذف والإضافة)
       const oldHabitsSnapshot = await getDocs(habitsCollectionRef);
       oldHabitsSnapshot.docs.forEach(doc => {
         batch.delete(doc.ref);
       });
 
-      // إضافة العادات الجديدة
       data.habits.forEach(habit => {
         const habitRef = doc(habitsCollectionRef, habit.id);
         batch.set(habitRef, {
@@ -339,12 +359,16 @@ class FirebaseDataManager {
 
         const completedToday = habits.filter(h => h.completed).length;
 
-        return {
+        const cloudData = {
           habits,
           totalHabits: habits.length,
           completedToday,
           lastUpdate: new Date().toISOString()
         };
+
+        // ✅ مزامنة الكاش
+        await AsyncStorage.setItem(`${STORAGE_KEYS.HABITS_DATA}_${uid}`, JSON.stringify(cloudData));
+        return cloudData;
       }
 
       const localData = await AsyncStorage.getItem(`${STORAGE_KEYS.HABITS_DATA}_${uid}`);
@@ -353,6 +377,8 @@ class FirebaseDataManager {
       return defaultData;
     } catch (error) {
       console.error('❌ Error loading habits data:', error);
+      const localData = await AsyncStorage.getItem(`${STORAGE_KEYS.HABITS_DATA}_${uid}`);
+      if (localData) return JSON.parse(localData);
       return defaultData;
     }
   }

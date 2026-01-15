@@ -3,6 +3,7 @@ import { initializeApp, getApps, getApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 import { getDatabase } from 'firebase/database';
+import { Platform } from 'react-native'; // ✅ استيراد Platform لتحديد نوع الجهاز
 
 const firebaseConfig = {
   apiKey: process.env.EXPO_PUBLIC_FIREBASE_API_KEY,
@@ -10,7 +11,12 @@ const firebaseConfig = {
   projectId: process.env.EXPO_PUBLIC_FIREBASE_PROJECT_ID,
   storageBucket: process.env.EXPO_PUBLIC_FIREBASE_STORAGE_BUCKET,
   messagingSenderId: process.env.EXPO_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.EXPO_PUBLIC_FIREBASE_APP_ID,
+  
+  // ✅ اختيار App ID المناسب حسب نظام التشغيل
+  appId: Platform.OS === 'ios' 
+    ? process.env.EXPO_PUBLIC_FIREBASE_IOS_APP_ID 
+    : process.env.EXPO_PUBLIC_FIREBASE_ANDROID_APP_ID,
+
   databaseURL: process.env.EXPO_PUBLIC_FIREBASE_DATABASE_URL,
 };
 

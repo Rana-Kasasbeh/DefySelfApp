@@ -24,6 +24,7 @@ import { useGlobal } from '../contexts/GlobalContext';
 // ✅ استيراد نظام الإعلانات
 import { AdUnits } from '../ads/AdConfig';
 import { useInterstitialAd } from '../ads/useInterstitialAd';
+import AdsController from '../ads/AdsController'; // تأكد من استيراد المتحكم
 
 // ==================== ANIMATED LOGO COMPONENT ====================
 const AnimatedLogo = ({ isDarkTheme, size = 100 }) => {
@@ -504,6 +505,9 @@ const LanguageScreen = ({ navigation }) => {
 
   return (
     <View style={[styles.mainContainer, { backgroundColor }]}>
+      {/* ✅ ScrollView يأخذ المساحة المتبقية فقط (flex: 1)
+         الإعلان أصبح خارجه في الأسفل
+      */}
       <ScrollView 
         style={styles.scrollView}
         contentContainerStyle={styles.container}
@@ -688,9 +692,11 @@ const LanguageScreen = ({ navigation }) => {
             )
           )}
         </View>
+      </ScrollView>
 
-        {/* ✅ إعلان بانر في نهاية الصفحة */}
-        <View style={styles.bannerAdContainer}>
+      {/* ✅ إعلان بانر في نهاية الشاشة (ثابت) */}
+      {AdsController.shouldShowBannerOrNative() && (
+        <View style={[styles.bannerAdContainer, { backgroundColor: isDark ? '#0f172a' : '#f8fafc' }]}>
           <BannerAd
             unitId={AdUnits.BANNER}
             size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
@@ -699,7 +705,7 @@ const LanguageScreen = ({ navigation }) => {
             }}
           />
         </View>
-      </ScrollView>
+      )}
     </View>
   );
 };
@@ -920,12 +926,15 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   
-  // ✅ Banner Ad Container
+  // ✅ Banner Ad Container (تم تحديثه ليكون ثابتاً)
   bannerAdContainer: {
-    marginTop: hp('3%'),
-    marginBottom: hp('2%'),
+    width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
+    paddingTop: 5,
+    paddingBottom: Platform.OS === 'ios' ? 20 : 5, // مسافة إضافية للآيفون في الأسفل
+    borderTopWidth: 1,
+    borderTopColor: 'rgba(0,0,0,0.05)',
   },
 });
 

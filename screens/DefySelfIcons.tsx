@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import {
   View, Text, StyleSheet, TouchableOpacity, Image, StatusBar, SafeAreaView,
   Dimensions, Animated, Modal, TouchableWithoutFeedback, Alert, Switch,
-  ScrollView,
+  ScrollView, Platform
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useNavigation } from '@react-navigation/native';
@@ -11,15 +11,17 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { getAuth, signOut } from 'firebase/auth';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+// ✅ تم استخدام BannerAd فقط لتجنب أخطاء المكتبات الأخرى
 import { BannerAd, BannerAdSize, TestIds } from 'react-native-google-mobile-ads';
 import AdsController from '../ads/AdsController';
 import { useGlobal } from '../contexts/GlobalContext';
 
 const { width, height } = Dimensions.get('window');
 
-// AdMob IDs
+// ✅ تعريف المعرفات
 const AD_UNITS = {
   BANNER: __DEV__ ? TestIds.BANNER : 'ca-app-pub-4514668400858247/4315625856',
+  RECTANGLE: __DEV__ ? TestIds.BANNER : 'ca-app-pub-4514668400858247/XXXXXXXXXX', 
 };
 
 const DefySelfIcons: React.FC = () => {
@@ -35,13 +37,12 @@ const DefySelfIcons: React.FC = () => {
   const scaleAnims = useRef(Array.from({ length: 3 }, () => new Animated.Value(1))).current;
   const slideAnim = useRef(new Animated.Value(-Math.min(width * 0.85, 400))).current;
   const overlayOpacity = useRef(new Animated.Value(0)).current;
-
+  
   const { t } = useTranslation();
   const navigation = useNavigation<any>();
 
-  // 🎯 تحسين حجم الأيقونات للشاشة
-  const CARD_SIZE = Math.min(width * 0.35, 150); // حجم أصغر وأنسب
-  const ICON_SIZE = CARD_SIZE * 0.45; // حجم الأيقونة داخل الكارد
+  const CARD_SIZE = Math.min(width * 0.35, 150);
+  const ICON_SIZE = CARD_SIZE * 0.45;
 
   const indicators = [
     { 
@@ -79,9 +80,12 @@ const DefySelfIcons: React.FC = () => {
   const currentTheme = theme;
   const textColor = currentTheme.text;
 
-  // Load Interstitial on mount
+  // Load Ads on mount
   useEffect(() => {
-    AdsController.loadInterstitial();
+    // ✅ إصلاح: استخدام (as any) لتجنب خطأ TS إذا كانت الدالة غير معرفة في النوع
+    if ((AdsController as any).loadInterstitial) {
+      (AdsController as any).loadInterstitial();
+    }
   }, []);
 
   useEffect(() => { loadSettings(); loadUserEmail(); }, []);
@@ -158,7 +162,10 @@ const DefySelfIcons: React.FC = () => {
 
   const handleLogout = async () => {
     try {
-      AdsController.showAfterTaskCompletion('Logout');
+      // ✅ إصلاح: استخدام (as any)
+      if ((AdsController as any).showAfterTaskCompletion) {
+        (AdsController as any).showAfterTaskCompletion('Logout');
+      }
       const auth = getAuth();
       await signOut(auth);
       closeSettings();
@@ -192,7 +199,6 @@ const DefySelfIcons: React.FC = () => {
     }
   };
 
-  // 🎯 تحسين النقر على الأيقونات مع إعلانات
   const handleIndicatorPress = (index: number, screenName: string) => {
     // Animation
     Animated.sequence([
@@ -214,8 +220,11 @@ const DefySelfIcons: React.FC = () => {
     const newCount = navigationCount + 1;
     setNavigationCount(newCount);
 
-    // Show ad using AdsController
-    const adShown = AdsController.showOnNavigation(screenName);
+    // ✅ إصلاح: استخدام (as any)
+    let adShown = false;
+    if ((AdsController as any).showOnNavigation) {
+      adShown = (AdsController as any).showOnNavigation(screenName);
+    }
     
     if (adShown) {
       setTimeout(() => navigation.navigate(screenName as never), 500);
@@ -223,6 +232,11 @@ const DefySelfIcons: React.FC = () => {
       setTimeout(() => navigation.navigate(screenName as never), 150);
     }
   };
+
+  // ✅ إصلاح: التحقق باستخدام (as any) لحل مشكلة TypeScript
+  const shouldShowAds = (AdsController as any).shouldShowBannerOrNative 
+    ? (AdsController as any).shouldShowBannerOrNative() 
+    : true; 
 
   return (
     <View style={[styles.container, { backgroundColor: currentTheme.background }]}>
@@ -267,8 +281,12 @@ const DefySelfIcons: React.FC = () => {
           </View>
         </View>
 
-        {/* Main Content - تصميم محسّن */}
-        <View style={styles.mainContent}>
+        {/* Main Content */}
+        <ScrollView 
+            style={styles.mainContent}
+            contentContainerStyle={styles.scrollContentContainer}
+            showsVerticalScrollIndicator={false}
+        >
           {/* Logo */}
           <View style={styles.logoSection}>
             <Image 
@@ -279,7 +297,7 @@ const DefySelfIcons: React.FC = () => {
             />
           </View>
 
-          {/* Cards Grid - تصميم بسيط ومحسّن */}
+          {/* Cards Grid */}
           <View style={styles.cardsGrid}>
             {indicators.map((item, index) => (
               <TouchableOpacity
@@ -300,10 +318,7 @@ const DefySelfIcons: React.FC = () => {
                     }
                   ]}
                 >
-                  {/* Gradient Background */}
                   <View style={[styles.cardGradient, { backgroundColor: `${item.color}15` }]} />
-                  
-                  {/* Icon */}
                   <View style={[styles.cardIconContainer, { width: ICON_SIZE, height: ICON_SIZE }]}>
                     <Image 
                       key={`${item.id}-${isDark}-${imageKey}`}
@@ -312,50 +327,70 @@ const DefySelfIcons: React.FC = () => {
                       resizeMode="contain" 
                     />
                   </View>
-                  
-                  {/* Label */}
                   <Text style={[styles.cardLabel, { color: textColor }]}>
                     {language === 'en' ? item.label : item.labelAr}
                   </Text>
-                  
-                  {/* Status Indicator */}
                   <View style={[styles.statusIndicator, { backgroundColor: item.color }]} />
                 </Animated.View>
               </TouchableOpacity>
             ))}
           </View>
-        </View>
 
-        {/* Footer */}
-        <View style={styles.footer}>
-          <View style={[
-            styles.footerCard, 
-            { 
-              backgroundColor: isDark ? 'rgba(30, 41, 59, 0.7)' : 'rgba(255, 255, 255, 0.7)',
-              borderColor: isDark ? 'rgba(148, 163, 184, 0.2)' : 'rgba(148, 163, 184, 0.3)'
-            }
-          ]}>
-            <Text style={[styles.footerText, { color: textColor }]}>
-              {t('footerMessage')}
-            </Text>
+          {/* 🔥 إعلان مستطيل (Medium Rectangle) */}
+          {shouldShowAds && (
+            <View style={[styles.nativeAdContainer, { 
+                backgroundColor: isDark ? '#1e293b' : '#fff',
+                borderColor: isDark ? '#334155' : '#e2e8f0' 
+            }]}>
+                <View style={{ alignItems: 'center', justifyContent: 'center', padding: 10 }}>
+                     <BannerAd
+                        unitId={AD_UNITS.RECTANGLE}
+                        size={BannerAdSize.MEDIUM_RECTANGLE}
+                        requestOptions={{
+                        requestNonPersonalizedAdsOnly: false,
+                        }}
+                    />
+                </View>
+                {/* Ad Label */}
+                <View style={styles.adLabelContainer}>
+                    <Text style={styles.adLabelText}>Ad</Text>
+                </View>
+            </View>
+          )}
+
+          {/* Footer inside ScrollView */}
+          <View style={styles.footer}>
+            <View style={[
+              styles.footerCard, 
+              { 
+                backgroundColor: isDark ? 'rgba(30, 41, 59, 0.7)' : 'rgba(255, 255, 255, 0.7)',
+                borderColor: isDark ? 'rgba(148, 163, 184, 0.2)' : 'rgba(148, 163, 184, 0.3)'
+              }
+            ]}>
+              <Text style={[styles.footerText, { color: textColor }]}>
+                {t('footerMessage')}
+              </Text>
+            </View>
           </View>
-        </View>
+          
+          <View style={{ height: 20 }} /> 
+        </ScrollView>
 
-        {/* AdMob Banner */}
-        <View style={styles.adContainer}>
-          <BannerAd
-            unitId={AD_UNITS.BANNER}
-            size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
-            requestOptions={{
-              requestNonPersonalizedAdsOnly: false,
-            }}
-            onAdLoaded={() => console.log('✅ Banner ad loaded')}
-            onAdFailedToLoad={(error) => console.log('❌ Banner ad failed:', error)}
-          />
-        </View>
+        {/* AdMob Banner (Fixed at Bottom) */}
+        {shouldShowAds && (
+            <View style={[styles.adContainer, { backgroundColor: isDark ? '#0f172a' : '#f8fafc' }]}>
+            <BannerAd
+                unitId={AD_UNITS.BANNER}
+                size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
+                requestOptions={{
+                requestNonPersonalizedAdsOnly: false,
+                }}
+            />
+            </View>
+        )}
       </SafeAreaView>
 
-      {/* Settings Modal - نفس التصميم السابق */}
+      {/* Settings Modal */}
       {settingsVisible && (
         <Modal 
           visible={settingsVisible} 
@@ -399,6 +434,17 @@ const DefySelfIcons: React.FC = () => {
                     </Text>
                   </View>
                 </View>
+
+                {/* 🔥 إعلان داخل الإعدادات */}
+                {shouldShowAds && (
+                    <View style={styles.settingsAdContainer}>
+                        <BannerAd
+                            unitId={AD_UNITS.RECTANGLE}
+                            size={BannerAdSize.MEDIUM_RECTANGLE}
+                            requestOptions={{ requestNonPersonalizedAdsOnly: false }}
+                        />
+                    </View>
+                )}
 
                 <TouchableOpacity 
                   style={[styles.optionCard, { backgroundColor: isDark ? '#1e293b' : '#fff' }]} 
@@ -534,11 +580,14 @@ const styles = StyleSheet.create({
     fontWeight: '600' 
   },
   
-  // 🎯 Main Content - تصميم محسّن
+  // 🎯 Main Content ScrollView
   mainContent: { 
     flex: 1, 
+  },
+  scrollContentContainer: {
     paddingHorizontal: wp('5%'),
     paddingTop: hp('3%'),
+    paddingBottom: 20
   },
   
   logoSection: {
@@ -553,13 +602,14 @@ const styles = StyleSheet.create({
     maxHeight: 200,
   },
   
-  // 🎯 Cards Grid - تصميم بسيط ومحسّن
+  // 🎯 Cards Grid
   cardsGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
     gap: wp('4%'),
     paddingHorizontal: wp('2%'),
+    marginBottom: 20,
   },
   
   cardTouchable: {
@@ -614,9 +664,9 @@ const styles = StyleSheet.create({
   },
   
   footer: { 
-    paddingHorizontal: wp('5%'), 
     paddingVertical: hp('2%'), 
-    alignItems: 'center' 
+    alignItems: 'center',
+    marginTop: 10
   },
   footerCard: { 
     paddingVertical: hp('1.5%'), 
@@ -631,10 +681,45 @@ const styles = StyleSheet.create({
   },
   
   adContainer: { 
+    width: '100%',
     alignItems: 'center', 
     justifyContent: 'center', 
-    backgroundColor: 'transparent', 
-    paddingVertical: 5 
+    paddingTop: 5,
+    paddingBottom: Platform.OS === 'ios' ? 20 : 5, 
+    borderTopWidth: 1,
+    borderTopColor: 'rgba(0,0,0,0.05)',
+  },
+
+  // 🔥 Native/Rectangle Ad Styles
+  nativeAdContainer: {
+    borderWidth: 1,
+    borderRadius: 12,
+    overflow: 'hidden',
+    marginBottom: 20,
+    marginTop: 10,
+    elevation: 2,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+  },
+  adLabelContainer: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    backgroundColor: '#f59e0b',
+    paddingHorizontal: 8,
+    paddingVertical: 2,
+    borderBottomRightRadius: 8,
+  },
+  adLabelText: {
+    fontSize: 10,
+    fontWeight: 'bold',
+    color: 'white',
+  },
+  settingsAdContainer: {
+    alignItems: 'center',
+    marginVertical: 15,
   },
   
   // Modal styles
