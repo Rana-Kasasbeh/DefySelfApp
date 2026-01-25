@@ -22,16 +22,19 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Picker } from '@react-native-picker/picker';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import * as Notifications from 'expo-notifications';
-import { getDatabase, ref, set, get, update } from 'firebase/database';
-import { getAuth } from 'firebase/auth';
 import { LinearGradient } from 'expo-linear-gradient';
 import { BannerAd, BannerAdSize } from 'react-native-google-mobile-ads';
+import axios from 'axios';
 
 import { useGlobal } from '../contexts/GlobalContext';
 import { AdUnits } from '../ads/AdConfig';
-import AdsController from '../ads/AdsController'; // ✅ استيراد صحيح
+import AdsController from '../ads/AdsController';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
+
+// ============ API CONFIG ============
+const API_URL = 'http://192.168.1.100:5000/api'; // غير هذا إلى IP الخادم الخاص بك
+// أو استخدم: const API_URL = 'http://localhost:5000/api'; للاختبار المحلي
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -41,7 +44,6 @@ Notifications.setNotificationHandler({
   }),
 });
 
-// ==================== TRANSLATIONS ====================
 const translations = {
   ar: {
     title: 'متتبع شرب الماء',
@@ -80,6 +82,9 @@ const translations = {
     ramadanGreeting: 'رمضان كريم',
     blessedMonth: 'اللهم بلغنا رمضان',
     progress: 'الإنجاز',
+    error: 'خطأ',
+    loginRequired: 'يرجى تسجيل الدخول أولاً',
+    networkError: 'خطأ في الاتصال بالخادم',
   },
   en: {
     title: 'Water Tracker',
@@ -118,10 +123,12 @@ const translations = {
     ramadanGreeting: 'Ramadan Kareem',
     blessedMonth: 'Blessed Month',
     progress: 'Progress',
+    error: 'Error',
+    loginRequired: 'Please login first',
+    networkError: 'Network error',
   },
 };
 
-// ==================== COLORS ====================
 const COLORS = {
   primary: '#6366f1',
   success: '#10b981',
@@ -143,7 +150,47 @@ const COLORS = {
 
 const getTodayDate = () => new Date().toISOString().split('T')[0];
 
-// ==================== WATER GLASS ====================
+// ==================== API HELPER ====================
+const getAuthToken = async () => {
+  try {
+    const token = await AsyncStorage.getItem('authToken');
+    return token;
+  } catch (error) {
+    console.error('Error getting token:', error);
+    return null;
+  }
+};
+
+const apiRequest = async (method, endpoint, data = null) => {
+  try {
+    const token = await getAuthToken();
+    
+    if (!token) {
+      throw new Error('No auth token');
+    }
+
+    const config = {
+      method,
+      url: `${API_URL}${endpoint}`,
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    };
+
+    if (data) {
+      config.data = data;
+    }
+
+    const response = await axios(config);
+    return response.data;
+  } catch (error) {
+    console.error('API Request Error:', error.response?.data || error.message);
+    throw error;
+  }
+};
+
+// ==================== WATER GLASS COMPONENT ====================
 const RealisticWaterGlass = forwardRef(({ percentage, onPress, isDark, isRamadan }, ref) => {
   const waterLevelAnim = useRef(new Animated.Value(0)).current;
   const shatterAnim = useRef(new Animated.Value(0)).current;
@@ -285,7 +332,6 @@ const RealisticWaterGlass = forwardRef(({ percentage, onPress, isDark, isRamadan
   );
 });
 
-// ==================== STAT CARD ====================
 const PremiumStatCard = ({ icon, value, label, color, isDarkTheme, isRamadan }) => (
   <View style={[
     styles.statCard, 
@@ -307,7 +353,6 @@ const PremiumStatCard = ({ icon, value, label, color, isDarkTheme, isRamadan }) 
   </View>
 );
 
-// ==================== FLOATING RAMADAN BUTTON ====================
 const FloatingRamadanButton = ({ isRamadanMode, onPress, isDark }) => {
   const scaleAnim = useRef(new Animated.Value(1)).current;
   const glowAnim = useRef(new Animated.Value(0)).current;
@@ -407,8 +452,6 @@ const FloatingRamadanButton = ({ isRamadanMode, onPress, isDark }) => {
 const WaterTracker = ({ navigation }) => {
   const { isDark, language, toggleTheme, toggleLanguage } = useGlobal();
   
-  const auth = getAuth();
-  const database = getDatabase();
   const glassRef = useRef(null);
 
   const [weight, setWeight] = useState('');
@@ -416,6 +459,7 @@ const WaterTracker = ({ navigation }) => {
   const [climate, setClimate] = useState('');
   const [goal, setGoal] = useState(0);
   const [intake, setIntake] = useState(0);
+  const [glassesConsumed, setGlassesConsumed] = useState(0);
   const [showTracker, setShowTracker] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [isRamadanMode, setIsRamadanMode] = useState(false);
@@ -426,15 +470,12 @@ const WaterTracker = ({ navigation }) => {
   const today = getTodayDate();
   const t = translations[language];
   const isRTL = language === 'ar';
-  const userEmail = auth.currentUser?.email;
-  const userId = userEmail ? userEmail.replace(/\./g, '_') : null;
 
   const backgroundColor = isRamadanMode ? COLORS.ramadanBg : isDark ? COLORS.darkBg : COLORS.lightBg;
   const cardColor = isRamadanMode ? COLORS.ramadanCard : isDark ? COLORS.darkCard : COLORS.lightCard;
   const textColor = isRamadanMode ? COLORS.ramadan : isDark ? COLORS.darkText : COLORS.lightText;
   const secondaryTextColor = isRamadanMode ? '#fff' : isDark ? COLORS.darkSecondary : COLORS.lightSecondary;
 
-  // ==================== BACK HANDLER ====================
   useEffect(() => {
     const backAction = () => {
       navigation.goBack();
@@ -444,161 +485,163 @@ const WaterTracker = ({ navigation }) => {
     return () => backHandler.remove();
   }, []);
 
-  // ==================== ADS CONTROLLER ====================
   useEffect(() => {
-    // ✅ تحميل الإعلان عند فتح الشاشة
     AdsController.loadInterstitial();
-    console.log('✅ Interstitial loaded for WaterTracker');
   }, []);
 
-  // ==================== NOTIFICATIONS ====================
-  const scheduleSmartReminders = async () => {
-    if (Platform.OS === 'web' || !userId) return;
+  // ==================== API FUNCTIONS ====================
+
+  const loadTodayWaterData = async () => {
     try {
-      await Notifications.cancelAllScheduledNotificationsAsync();
-      if (goal > 0 && intake >= goal) return;
-
-      let startHour = isRamadanMode ? iftarHour : 8;
-      let endHour = isRamadanMode ? suhoorHour : 22;
-      const triggers = [];
-      let current = startHour;
-      let loops = 0;
-
-      while (loops < 7) {
-        triggers.push(current);
-        if (startHour < endHour) {
-          if (current + 2 >= endHour) break;
-        } else {
-          if (current < startHour && current + 2 >= endHour) break;
-        }
-        current = (current + 2) % 24;
-        loops++;
-      }
-
-      for (const hour of triggers) {
-        await Notifications.scheduleNotificationAsync({
-          content: {
-            title: isRamadanMode ? '🌙 تذكير رمضان' : t.waterReminder,
-            body: t.drinkWaterNow,
-            sound: true,
-          },
-          trigger: {
-            type: Notifications.SchedulableTriggerInputTypes.DAILY,
-            hour: hour,
-            minute: 0,
-          },
-        });
+      const response = await apiRequest('GET', '/water/today');
+      
+      if (response.success && response.data) {
+        const data = response.data;
+        setWeight(data.weight?.toString() || '');
+        setActivity(data.activityLevel || '');
+        setClimate(data.weatherCondition || '');
+        setGoal(data.dailyWaterGoal || 0);
+        setIntake(data.totalConsumed || 0);
+        setGlassesConsumed(data.glassesConsumed || 0);
+        setShowTracker(true);
+      } else {
+        // لا توجد بيانات لليوم - عرض شاشة الإعداد
+        setShowTracker(false);
       }
     } catch (error) {
-      console.error(error);
-    }
-  };
-
-  useEffect(() => {
-    const setup = async () => {
-      if (!userId || Platform.OS === 'web') return;
-      const key = `@water_notifications_${userId}`;
-      const lastScheduled = await AsyncStorage.getItem(key);
-      const today = getTodayDate();
-      if (lastScheduled === today) return;
-      await scheduleSmartReminders();
-      await AsyncStorage.setItem(key, today);
-    };
-    setup();
-  }, [userId]);
-
-  // ==================== DATA ====================
-  const loadUserData = async () => {
-    if (!userId) {
-      setIsLoading(false);
-      return;
-    }
-    try {
-      const userDataRef = ref(database, `users/${userId}/waterTracker`);
-      const snapshot = await get(userDataRef);
-      if (snapshot.exists()) {
-        const data = snapshot.val();
-        setWeight(data.weight || '');
-        setActivity(data.activity || '');
-        setClimate(data.climate || '');
-        if (data.isRamadanMode !== undefined) setIsRamadanMode(data.isRamadanMode);
-        if (data.iftarHour) setIftarHour(data.iftarHour);
-        if (data.suhoorHour) setSuhoorHour(data.suhoorHour);
-        if (data.weight && data.activity && data.climate) {
-          calculateGoal(data.weight, data.activity, data.climate);
-          setShowTracker(true);
-        }
+      console.error('Load today water error:', error);
+      if (error.response?.status === 404) {
+        setShowTracker(false);
       }
-    } catch (error) {
-      console.error(error);
     } finally {
       setIsLoading(false);
     }
   };
 
-  const saveUserData = async () => {
-    if (!userId) return;
-    try {
-      const userDataRef = ref(database, `users/${userId}/waterTracker`);
-      await update(userDataRef, {
-        weight,
-        activity,
-        climate,
-        goal,
-        isRamadanMode,
-        iftarHour,
-        suhoorHour,
-        lastUpdated: new Date().toISOString(),
-      });
-      await scheduleSmartReminders();
-      await AsyncStorage.setItem(`@water_notifications_${userId}`, getTodayDate());
-      setShowTracker(true);
-      setShowRamadanModal(false);
-      Alert.alert(t.success, t.dataSaved);
-    } catch (error) {
-      console.error(error);
+  const setupWaterTracking = async () => {
+    if (!weight || !activity || !climate) {
+      Alert.alert(t.error, 'جميع الحقول مطلوبة');
+      return;
     }
-  };
 
-  const loadDailyIntake = async () => {
-    if (!userId) return;
     try {
-      const intakeRef = ref(database, `users/${userId}/waterIntake/${today}`);
-      const snapshot = await get(intakeRef);
-      if (snapshot.exists()) {
-        setIntake(snapshot.val().amount || 0);
-      } else {
-        setIntake(0);
+      setIsLoading(true);
+
+      // تحويل القيم إلى الصيغة المطلوبة من الباك إند
+      const activityMap = {
+        'low': 'low',
+        'medium': 'medium',
+        'high': 'high',
+        'very_high': 'high' // أو يمكنك تعديل الباك إند ليدعم very_high
+      };
+
+      const climateMap = {
+        'normal': 'moderate',
+        'hot': 'hot',
+        'cold': 'cold'
+      };
+
+      const response = await apiRequest('POST', '/water/setup', {
+        weight: parseInt(weight),
+        activityLevel: activityMap[activity] || 'medium',
+        weatherCondition: climateMap[climate] || 'moderate'
+      });
+
+      if (response.success) {
+        setGoal(response.data.dailyWaterGoal);
+        setShowTracker(true);
+        Alert.alert(t.success, t.dataSaved);
+        
+        // تحميل بيانات اليوم
+        await loadTodayWaterData();
       }
     } catch (error) {
-      console.error(error);
+      console.error('Setup error:', error);
+      Alert.alert(t.error, error.response?.data?.message || t.networkError);
+    } finally {
+      setIsLoading(false);
     }
   };
 
-  const saveDailyIntake = async amount => {
-    if (!userId) return;
+  const addWaterGlass = async () => {
+    if (!goal) return;
+    if (glassRef.current) glassRef.current.triggerBubbles();
+
+    const oldPercentage = (intake / goal) * 100;
+
     try {
-      const intakeRef = ref(database, `users/${userId}/waterIntake/${today}`);
-      await set(intakeRef, {
-        amount,
-        glasses: Math.floor(amount / 100),
-        goal,
-        achieved: amount >= goal,
-        date: today,
-        percentage: Math.min((amount / goal) * 100, 100),
-        lastUpdated: new Date().toISOString(),
-      });
+      const response = await apiRequest('POST', '/water/add-glass');
+
+      if (response.success) {
+        const newIntake = response.data.totalConsumed;
+        const newGlasses = response.data.glassesConsumed;
+        const newPercentage = response.data.percentage;
+
+        setIntake(newIntake);
+        setGlassesConsumed(newGlasses);
+
+        // Achievement at 40%
+        if (oldPercentage < 40 && newPercentage >= 40) {
+          AdsController.showInterstitial();
+          Alert.alert(t.achievementUnlocked, t.achievement40);
+        }
+
+        // Achievement at 100%
+        if (newPercentage >= 100 && oldPercentage < 100) {
+          await Notifications.scheduleNotificationAsync({
+            content: { title: '🎉', body: t.congratsMessage, sound: true },
+            trigger: null,
+          });
+          AdsController.showInterstitial();
+        }
+      }
     } catch (error) {
-      console.error(error);
+      console.error('Add glass error:', error);
+      Alert.alert(t.error, error.response?.data?.message || t.networkError);
     }
+  };
+
+  const resetWaterProgress = async () => {
+    Alert.alert(t.resetConfirm, '', [
+      { text: t.cancel, style: 'cancel' },
+      {
+        text: t.confirm,
+        onPress: async () => {
+          if (glassRef.current) glassRef.current.triggerShatter();
+          
+          try {
+            // إعادة إعداد التتبع لنفس اليوم (سيعيد تعيين العدادات)
+            await apiRequest('POST', '/water/setup', {
+              weight: parseInt(weight),
+              activityLevel: activity === 'very_high' ? 'high' : activity,
+              weatherCondition: climate === 'normal' ? 'moderate' : climate
+            });
+
+            setIntake(0);
+            setGlassesConsumed(0);
+          } catch (error) {
+            console.error('Reset error:', error);
+            Alert.alert(t.error, t.networkError);
+          }
+        },
+      },
+    ]);
   };
 
   useEffect(() => {
-    if (userId) {
-      loadUserData();
-      loadDailyIntake();
-    }
-  }, [userId]);
+    const checkAuthAndLoad = async () => {
+      const token = await getAuthToken();
+      if (!token) {
+        Alert.alert(t.error, t.loginRequired);
+        navigation.navigate('Login'); // أو الشاشة المناسبة
+        return;
+      }
+      
+      loadTodayWaterData();
+    };
+
+    checkAuthAndLoad();
+  }, []);
 
   useEffect(() => {
     const requestPerms = async () => {
@@ -606,90 +649,6 @@ const WaterTracker = ({ navigation }) => {
     };
     requestPerms();
   }, []);
-
-  const calculateGoal = (w, act, cli) => {
-    if (!w) {
-      setGoal(0);
-      return;
-    }
-    const base = 30;
-    let waterNeed = Number(w) * base;
-    if (act === 'medium') waterNeed += 500;
-    if (act === 'high') waterNeed += 1000;
-    if (act === 'very_high') waterNeed += 1500;
-    if (cli === 'hot') waterNeed += 500;
-    if (cli === 'cold') waterNeed -= 200;
-    setGoal(Math.round(waterNeed / 100) * 100);
-  };
-
-  // ==================== 🎯 ADD WATER WITH ADS CONTROLLER ====================
-  const addWater = async () => {
-    if (!goal) return;
-    if (glassRef.current) glassRef.current.triggerBubbles();
-
-    // 1. حساب النسبة القديمة
-    const oldPercentage = (intake / goal) * 100;
-    
-    // 2. القيمة الجديدة
-    const newIntake = intake + 100;
-    
-    // 3. حساب النسبة الجديدة
-    const newPercentage = (newIntake / goal) * 100;
-
-    // تحديث الواجهة
-    setIntake(newIntake);
-    await saveDailyIntake(newIntake);
-
-    // 🎯 عرض الإعلان عند 40%
-    if (oldPercentage < 40 && newPercentage >= 40) {
-      console.log('🎉 Achievement: 40% reached!');
-      const shown = AdsController.showInterstitial();
-      if (shown) {
-        console.log('✅ Interstitial shown at 40%');
-      }
-      Alert.alert(t.achievementUnlocked, t.achievement40);
-    }
-
-    // 🎯 عرض الإعلان عند 100%
-    if (newPercentage >= 100 && oldPercentage < 100) {
-      await Notifications.scheduleNotificationAsync({
-        content: { title: '🎉', body: t.congratsMessage, sound: true },
-        trigger: null,
-      });
-      Alert.alert(t.success, t.notificationsPaused);
-      await Notifications.cancelAllScheduledNotificationsAsync();
-      
-      const shown = AdsController.showInterstitial();
-      if (shown) {
-        console.log('✅ Interstitial shown at 100%');
-      }
-    }
-  };
-
-  const resetWater = async () => {
-    Alert.alert(t.resetConfirm, '', [
-      { text: t.cancel, style: 'cancel' },
-      {
-        text: t.confirm,
-        onPress: async () => {
-          if (glassRef.current) glassRef.current.triggerShatter();
-          setIntake(0);
-          if (userId) {
-            await set(ref(database, `users/${userId}/waterIntake/${today}`), {
-              amount: 0,
-              glasses: 0,
-              goal,
-              achieved: false,
-              date: today,
-              percentage: 0,
-              lastUpdated: new Date().toISOString(),
-            });
-            await scheduleSmartReminders();
-          }
-        },
-      },
-    ]);
-  };
 
   const progressPercentage = goal > 0 ? Math.min((intake / goal) * 100, 100) : 0;
 
@@ -761,7 +720,7 @@ const WaterTracker = ({ navigation }) => {
 
           <TouchableOpacity
             style={[styles.saveButton, { backgroundColor: isRamadanMode ? COLORS.ramadan : COLORS.primary }]}
-            onPress={saveUserData}
+            onPress={() => setShowRamadanModal(false)}
           >
             <MaterialCommunityIcons name="check-circle" size={28} color={isRamadanMode ? COLORS.ramadanDark : '#fff'} />
             <Text style={[styles.saveButtonText, { color: isRamadanMode ? COLORS.ramadanDark : '#fff' }]}>
@@ -869,7 +828,7 @@ const WaterTracker = ({ navigation }) => {
 
             <TouchableOpacity
               style={[styles.nextButton, { backgroundColor: isRamadanMode ? COLORS.ramadan : COLORS.primary }]}
-              onPress={saveUserData}
+              onPress={setupWaterTracking}
             >
               <Text style={[styles.nextButtonText, { color: isRamadanMode ? COLORS.ramadanDark : '#fff' }]}>
                 {t.next}
@@ -891,7 +850,7 @@ const WaterTracker = ({ navigation }) => {
             <RealisticWaterGlass
               ref={glassRef}
               percentage={goal > 0 ? intake / goal : 0}
-              onPress={addWater}
+              onPress={addWaterGlass}
               isDark={isDark}
               isRamadan={isRamadanMode}
             />
@@ -903,7 +862,7 @@ const WaterTracker = ({ navigation }) => {
             <View style={styles.statsContainer}>
               <PremiumStatCard
                 icon="cup"
-                value={Math.floor(intake / 100)}
+                value={glassesConsumed}
                 label={t.consumed}
                 color={COLORS.success}
                 isDarkTheme={isDark}
@@ -922,7 +881,7 @@ const WaterTracker = ({ navigation }) => {
             <View style={styles.actionsRow}>
               <TouchableOpacity
                 style={[styles.actionButton, { backgroundColor: isRamadanMode ? 'rgba(255,215,0,0.3)' : COLORS.danger }]}
-                onPress={resetWater}
+                onPress={resetWaterProgress}
               >
                 <MaterialCommunityIcons name="delete-restore" size={wp('5%')} color={isRamadanMode ? COLORS.ramadan : '#fff'} />
                 <Text style={[styles.actionButtonText, { color: isRamadanMode ? COLORS.ramadan : '#fff' }]}>

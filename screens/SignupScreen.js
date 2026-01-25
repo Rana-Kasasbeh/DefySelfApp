@@ -1,5 +1,5 @@
-// screens/SignupScreen.js
-import React, { useState, useContext } from 'react';
+// screens/SignupScreen.js - CONNECTED TO BACKEND
+import React, { useState, useEffect, useRef } from 'react';
 import {
   View,
   Text,
@@ -10,168 +10,226 @@ import {
   KeyboardAvoidingView,
   Platform,
   ScrollView,
-  Image,
   ActivityIndicator,
-  useColorScheme,
   StatusBar,
+  Image,
+  Animated,
 } from 'react-native';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { LinearGradient } from 'expo-linear-gradient';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
-import { auth, db } from '../services/firebaseConfig';
-import { ref, set } from 'firebase/database';
-import { AppContext } from '../App';
+import { useGlobal } from '../contexts/GlobalContext';
+import api from '../services/api';
+
+const COLORS = {
+  primary: '#6366f1',
+  primaryGradient: ['#6366f1', '#8b5cf6', '#a855f7'],
+  success: '#10b981',
+  successGradient: ['#10b981', '#059669'],
+  dark: '#1f2937',
+  darkBg: '#0f172a',
+  darkCard: '#1e293b',
+  darkText: '#f1f5f9',
+  darkBorder: '#334155',
+  light: '#f8fafc',
+  white: '#ffffff',
+  gray: '#64748b',
+  lightGray: '#94a3b8',
+};
+
+const translations = {
+  ar: {
+    title: 'إنشاء حساب جديد',
+    subtitle: 'انضم إلينا وابدأ رحلتك',
+    namePlaceholder: 'الاسم الكامل *',
+    emailPlaceholder: 'البريد الإلكتروني *',
+    passwordPlaceholder: 'كلمة المرور *',
+    confirmPasswordPlaceholder: 'تأكيد كلمة المرور *',
+    agePlaceholder: 'العمر *',
+    signupButton: 'إنشاء الحساب',
+    haveAccount: 'لديك حساب بالفعل؟',
+    login: 'تسجيل الدخول',
+    error: 'خطأ',
+    success: 'نجاح',
+    signupSuccess: 'تم إنشاء حسابك بنجاح! 🎉',
+    enterName: 'الرجاء إدخال الاسم',
+    enterEmail: 'الرجاء إدخال البريد الإلكتروني',
+    enterPassword: 'الرجاء إدخال كلمة المرور',
+    enterAge: 'الرجاء إدخال العمر',
+    invalidEmail: 'تنسيق البريد الإلكتروني غير صحيح',
+    shortPassword: 'كلمة المرور يجب أن تكون 6 أحرف على الأقل',
+    passwordMismatch: 'كلمات المرور غير متطابقة',
+    emailInUse: 'البريد الإلكتروني مستخدم بالفعل',
+    creating: 'جاري إنشاء الحساب...',
+  },
+  en: {
+    title: 'Create New Account',
+    subtitle: 'Join us and start your journey',
+    namePlaceholder: 'Full Name *',
+    emailPlaceholder: 'Email Address *',
+    passwordPlaceholder: 'Password *',
+    confirmPasswordPlaceholder: 'Confirm Password *',
+    agePlaceholder: 'Age *',
+    signupButton: 'Create Account',
+    haveAccount: 'Already have an account?',
+    login: 'Login',
+    error: 'Error',
+    success: 'Success',
+    signupSuccess: 'Account created successfully! 🎉',
+    enterName: 'Please enter name',
+    enterEmail: 'Please enter email',
+    enterPassword: 'Please enter password',
+    enterAge: 'Please enter age',
+    invalidEmail: 'Invalid email format',
+    shortPassword: 'Password must be at least 6 characters',
+    passwordMismatch: 'Passwords do not match',
+    emailInUse: 'Email already in use',
+    creating: 'Creating account...',
+  },
+};
+
+const isValidEmail = (email) => {
+  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return re.test(email);
+};
 
 export default function SignupScreen({ navigation }) {
-  const scheme = useColorScheme();
-  let dark = scheme === 'dark';
-  
-  try {
-    const context = useContext(AppContext);
-    if (context) dark = context.dark;
-  } catch (e) {
-    console.log('Using system theme');
-  }
+  const { isDark, language, toggleTheme, toggleLanguage } = useGlobal();
 
-  // ✅ State Management
-  const [name, setName] = useState(''); // ✅ إضافة حقل الاسم
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [age, setAge] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  // ✅ التحقق من صحة البريد الإلكتروني
-  const isValidEmail = (email) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+  const slideAnim = useRef(new Animated.Value(50)).current;
 
-  // ✅ Handle Signup
+  const t = translations[language];
+  const isRTL = language === 'ar';
+
+  const backgroundColor = isDark ? COLORS.darkBg : COLORS.light;
+  const cardColor = isDark ? COLORS.darkCard : COLORS.white;
+  const textColor = isDark ? COLORS.darkText : COLORS.dark;
+  const secondaryTextColor = isDark ? COLORS.lightGray : COLORS.gray;
+  const inputColor = isDark ? COLORS.darkCard : COLORS.white;
+  const borderColor = isDark ? COLORS.darkBorder : '#e2e8f0';
+  const placeholderColor = isDark ? COLORS.lightGray : COLORS.gray;
+
+  useEffect(() => {
+    Animated.parallel([
+      Animated.timing(fadeAnim, {
+        toValue: 1,
+        duration: 600,
+        useNativeDriver: true,
+      }),
+      Animated.spring(slideAnim, {
+        toValue: 0,
+        tension: 50,
+        friction: 7,
+        useNativeDriver: true,
+      }),
+    ]).start();
+  }, []);
+
   const handleSignup = async () => {
-    console.log('🔐 Starting signup process...');
+    const cleanName = name.trim();
+    const cleanEmail = email.trim().toLowerCase();
+    const cleanPassword = password.trim();
+    const cleanAge = age.trim();
 
     // Validation
-    if (!name.trim()) {
-      Alert.alert('خطأ', 'الرجاء إدخال الاسم الكامل');
+    if (!cleanName) {
+      Alert.alert(t.error, t.enterName);
       return;
     }
 
-    if (!email.trim()) {
-      Alert.alert('خطأ', 'الرجاء إدخال البريد الإلكتروني');
+    if (!cleanEmail) {
+      Alert.alert(t.error, t.enterEmail);
       return;
     }
 
-    if (!isValidEmail(email.trim())) {
-      Alert.alert('خطأ', 'تنسيق البريد الإلكتروني غير صحيح');
+    if (!isValidEmail(cleanEmail)) {
+      Alert.alert(t.error, t.invalidEmail);
       return;
     }
 
-    if (!password) {
-      Alert.alert('خطأ', 'الرجاء إدخال كلمة المرور');
+    if (!cleanPassword) {
+      Alert.alert(t.error, t.enterPassword);
       return;
     }
 
-    if (password.length < 6) {
-      Alert.alert('خطأ', 'كلمة المرور يجب أن تكون 6 أحرف على الأقل');
+    if (cleanPassword.length < 6) {
+      Alert.alert(t.error, t.shortPassword);
       return;
     }
 
-    if (password !== confirmPassword) {
-      Alert.alert('خطأ', 'كلمات المرور غير متطابقة');
+    if (cleanPassword !== confirmPassword.trim()) {
+      Alert.alert(t.error, t.passwordMismatch);
+      return;
+    }
+
+    if (!cleanAge) {
+      Alert.alert(t.error, t.enterAge);
       return;
     }
 
     setLoading(true);
 
     try {
-      const cleanEmail = email.trim().toLowerCase();
-      const cleanName = name.trim();
+      console.log('🚀 Starting signup process...');
+      console.log('📧 Email:', cleanEmail);
+      console.log('👤 Name:', cleanName);
+      console.log('🎂 Age:', cleanAge);
 
-      console.log('📧 Creating user with email:', cleanEmail);
+      // Call API register
+      const response = await api.register(cleanName, cleanEmail, cleanAge, cleanPassword);
 
-      // 1️⃣ إنشاء حساب في Firebase Authentication
-      const userCredential = await createUserWithEmailAndPassword(
-        auth, 
-        cleanEmail, 
-        password
-      );
-      const user = userCredential.user;
-      console.log('✅ User created in Auth:', user.uid);
+      if (response.success) {
+        console.log('✅ Signup successful');
+        console.log('👤 User created:', response.user);
 
-      // 2️⃣ حفظ بيانات المستخدم في Realtime Database
-      // تشفير البريد الإلكتروني لاستخدامه كـ key
-      const encodedEmail = cleanEmail
-        .replace(/\./g, '_')
-        .replace(/@/g, '_at_');
+        Alert.alert(
+          t.success,
+          t.signupSuccess,
+          [
+            {
+              text: t.login,
+              onPress: () => {
+                // Clear fields
+                setName('');
+                setEmail('');
+                setPassword('');
+                setConfirmPassword('');
+                setAge('');
 
-      const userRef = ref(db, `users/${encodedEmail}`);
-      
-      const userData = {
-        uid: user.uid,
-        name: cleanName, // ✅ حفظ الاسم
-        email: cleanEmail,
-        password: password, // ⚠️ في الإنتاج، لا تحفظ كلمة المرور هنا
-        createdAt: new Date().toISOString(),
-        lastLogin: new Date().toISOString(),
-        // بيانات إضافية
-        age: 0,
-        weight: 0,
-        height: 0,
-        waterIntake: 0,
-        habits: [],
-      };
-
-      await set(userRef, userData);
-      console.log('✅ User data saved to database');
-
-      Alert.alert(
-        'تم بنجاح! 🎉',
-        'تم إنشاء حسابك بنجاح',
-        [
-          {
-            text: 'تسجيل الدخول',
-            onPress: () => navigation.replace('Login'),
-          },
-        ]
-      );
+                // Navigate to DefySelfIcons (already logged in via API)
+                navigation.replace('DefySelfIcons');
+              },
+            },
+          ],
+          { cancelable: false }
+        );
+      }
     } catch (error) {
       console.error('❌ Signup error:', error);
-      
-      let errorMessage = 'حدث خطأ أثناء إنشاء الحساب';
-      
-      if (error.code === 'auth/email-already-in-use') {
-        errorMessage = 'البريد الإلكتروني مستخدم بالفعل';
-      } else if (error.code === 'auth/invalid-email') {
-        errorMessage = 'تنسيق البريد الإلكتروني غير صحيح';
-      } else if (error.code === 'auth/weak-password') {
-        errorMessage = 'كلمة المرور ضعيفة جداً';
-      } else if (error.code === 'auth/network-request-failed') {
-        errorMessage = 'تحقق من اتصالك بالإنترنت';
-      }
-
-      Alert.alert('خطأ', errorMessage);
+      Alert.alert(t.error, error.message || 'حدث خطأ غير متوقع');
     } finally {
       setLoading(false);
     }
   };
 
-  // Colors
-  const bgColor = dark ? '#0f172a' : '#f8fafc';
-  const cardColor = dark ? '#1e293b' : '#ffffff';
-  const textColor = dark ? '#f1f5f9' : '#1e293b';
-  const secondaryTextColor = dark ? '#94a3b8' : '#64748b';
-  const inputColor = dark ? '#1e293b' : '#ffffff';
-  const borderColor = dark ? '#334155' : '#e2e8f0';
-  const placeholderColor = dark ? '#94a3b8' : '#64748b';
-
   return (
-    <View style={[styles.container, { backgroundColor: bgColor }]}>
-      <StatusBar barStyle={dark ? 'light-content' : 'dark-content'} />
-      
+    <View style={[styles.container, { backgroundColor }]}>
+      <StatusBar
+        barStyle={isDark ? 'light-content' : 'dark-content'}
+        backgroundColor={backgroundColor}
+      />
+
       <KeyboardAvoidingView
         style={styles.keyboardView}
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -181,40 +239,79 @@ export default function SignupScreen({ navigation }) {
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps="handled"
         >
+          {/* Header Buttons */}
+          <View style={styles.headerButtons}>
+            <TouchableOpacity
+              style={[styles.headerButton, { backgroundColor: isDark ? COLORS.darkBorder : '#e2e8f0' }]}
+              onPress={toggleLanguage}
+              activeOpacity={0.7}
+            >
+              <Text style={[styles.headerButtonText, { color: textColor }]}>
+                {language === 'en' ? 'AR' : 'EN'}
+              </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={[styles.headerButton, { backgroundColor: isDark ? COLORS.darkBorder : '#e2e8f0' }]}
+              onPress={toggleTheme}
+              activeOpacity={0.7}
+            >
+              <Text style={[styles.headerButtonText, { color: textColor }]}>
+                {isDark ? '☀️' : '🌙'}
+              </Text>
+            </TouchableOpacity>
+          </View>
+
           {/* Logo */}
-          <View style={styles.logoContainer}>
+          <Animated.View
+            style={[
+              styles.logoContainer,
+              {
+                opacity: fadeAnim,
+                transform: [{ translateY: slideAnim }],
+              },
+            ]}
+          >
             <Image
               source={require('../assets/LOGO.png')}
               style={styles.logo}
               resizeMode="contain"
             />
-          </View>
+          </Animated.View>
 
           {/* Title */}
-          <Text style={[styles.title, { color: textColor }]}>
-            إنشاء حساب جديد
-          </Text>
-          <Text style={[styles.subtitle, { color: secondaryTextColor }]}>
-            انضم إلينا وابدأ رحلتك
-          </Text>
+          <Animated.View
+            style={{
+              opacity: fadeAnim,
+              transform: [{ translateY: slideAnim }],
+            }}
+          >
+            <Text style={[styles.title, { color: textColor }]}>
+              {t.title}
+            </Text>
+            <Text style={[styles.subtitle, { color: secondaryTextColor }]}>
+              {t.subtitle}
+            </Text>
+          </Animated.View>
 
           {/* Card */}
-          <View
+          <Animated.View
             style={[
               styles.card,
               {
                 backgroundColor: cardColor,
-                shadowColor: dark ? '#000' : '#64748b',
+                opacity: fadeAnim,
+                transform: [{ translateY: slideAnim }],
               },
             ]}
           >
-            {/* ✅ Name Input */}
+            {/* Name */}
             <View style={styles.inputContainer}>
               <MaterialCommunityIcons
                 name="account"
-                size={wp('5%')}
+                size={20}
                 color={secondaryTextColor}
-                style={styles.inputIcon}
+                style={[styles.inputIcon, { [isRTL ? 'right' : 'left']: 15 }]}
               />
               <TextInput
                 style={[
@@ -223,25 +320,26 @@ export default function SignupScreen({ navigation }) {
                     backgroundColor: inputColor,
                     color: textColor,
                     borderColor,
+                    [isRTL ? 'paddingRight' : 'paddingLeft']: 45,
+                    textAlign: isRTL ? 'right' : 'left',
                   },
                 ]}
-                placeholder="الاسم الكامل"
+                placeholder={t.namePlaceholder}
                 placeholderTextColor={placeholderColor}
                 value={name}
                 onChangeText={setName}
                 autoCapitalize="words"
-                textAlign="right"
                 editable={!loading}
               />
             </View>
 
-            {/* Email Input */}
+            {/* Email */}
             <View style={styles.inputContainer}>
               <MaterialCommunityIcons
                 name="at"
-                size={wp('5%')}
+                size={20}
                 color={secondaryTextColor}
-                style={styles.inputIcon}
+                style={[styles.inputIcon, { [isRTL ? 'right' : 'left']: 15 }]}
               />
               <TextInput
                 style={[
@@ -250,26 +348,27 @@ export default function SignupScreen({ navigation }) {
                     backgroundColor: inputColor,
                     color: textColor,
                     borderColor,
+                    [isRTL ? 'paddingRight' : 'paddingLeft']: 45,
+                    textAlign: isRTL ? 'right' : 'left',
                   },
                 ]}
-                placeholder="البريد الإلكتروني"
+                placeholder={t.emailPlaceholder}
                 placeholderTextColor={placeholderColor}
                 value={email}
                 onChangeText={setEmail}
                 keyboardType="email-address"
                 autoCapitalize="none"
-                textAlign="right"
                 editable={!loading}
               />
             </View>
 
-            {/* Password Input */}
+            {/* Age */}
             <View style={styles.inputContainer}>
               <MaterialCommunityIcons
-                name="lock-outline"
-                size={wp('5%')}
+                name="calendar"
+                size={20}
                 color={secondaryTextColor}
-                style={styles.inputIcon}
+                style={[styles.inputIcon, { [isRTL ? 'right' : 'left']: 15 }]}
               />
               <TextInput
                 style={[
@@ -278,35 +377,65 @@ export default function SignupScreen({ navigation }) {
                     backgroundColor: inputColor,
                     color: textColor,
                     borderColor,
+                    [isRTL ? 'paddingRight' : 'paddingLeft']: 45,
+                    textAlign: isRTL ? 'right' : 'left',
                   },
                 ]}
-                placeholder="كلمة المرور"
+                placeholder={t.agePlaceholder}
+                placeholderTextColor={placeholderColor}
+                value={age}
+                onChangeText={setAge}
+                keyboardType="numeric"
+                editable={!loading}
+              />
+            </View>
+
+            {/* Password */}
+            <View style={styles.inputContainer}>
+              <MaterialCommunityIcons
+                name="lock-outline"
+                size={20}
+                color={secondaryTextColor}
+                style={[styles.inputIcon, { [isRTL ? 'right' : 'left']: 15 }]}
+              />
+              <TextInput
+                style={[
+                  styles.input,
+                  {
+                    backgroundColor: inputColor,
+                    color: textColor,
+                    borderColor,
+                    [isRTL ? 'paddingRight' : 'paddingLeft']: 45,
+                    paddingRight: 45,
+                    textAlign: isRTL ? 'right' : 'left',
+                  },
+                ]}
+                placeholder={t.passwordPlaceholder}
                 placeholderTextColor={placeholderColor}
                 value={password}
                 onChangeText={setPassword}
                 secureTextEntry={!showPassword}
-                textAlign="right"
                 editable={!loading}
               />
               <TouchableOpacity
                 onPress={() => setShowPassword(!showPassword)}
-                style={styles.eyeIcon}
+                style={[styles.eyeIcon, { [isRTL ? 'left' : 'right']: 15 }]}
               >
                 <MaterialCommunityIcons
                   name={showPassword ? 'eye-off' : 'eye'}
-                  size={wp('5%')}
+                  size={20}
                   color={secondaryTextColor}
                 />
               </TouchableOpacity>
             </View>
 
-            {/* Confirm Password Input */}
+            {/* Confirm Password */}
             <View style={styles.inputContainer}>
               <MaterialCommunityIcons
                 name="lock-check-outline"
-                size={wp('5%')}
+                size={20}
                 color={secondaryTextColor}
-                style={styles.inputIcon}
+                style={[styles.inputIcon, { [isRTL ? 'right' : 'left']: 15 }]}
               />
               <TextInput
                 style={[
@@ -315,23 +444,25 @@ export default function SignupScreen({ navigation }) {
                     backgroundColor: inputColor,
                     color: textColor,
                     borderColor,
+                    [isRTL ? 'paddingRight' : 'paddingLeft']: 45,
+                    paddingRight: 45,
+                    textAlign: isRTL ? 'right' : 'left',
                   },
                 ]}
-                placeholder="تأكيد كلمة المرور"
+                placeholder={t.confirmPasswordPlaceholder}
                 placeholderTextColor={placeholderColor}
                 value={confirmPassword}
                 onChangeText={setConfirmPassword}
                 secureTextEntry={!showConfirmPassword}
-                textAlign="right"
                 editable={!loading}
               />
               <TouchableOpacity
                 onPress={() => setShowConfirmPassword(!showConfirmPassword)}
-                style={styles.eyeIcon}
+                style={[styles.eyeIcon, { [isRTL ? 'left' : 'right']: 15 }]}
               >
                 <MaterialCommunityIcons
                   name={showConfirmPassword ? 'eye-off' : 'eye'}
-                  size={wp('5%')}
+                  size={20}
                   color={secondaryTextColor}
                 />
               </TouchableOpacity>
@@ -341,26 +472,25 @@ export default function SignupScreen({ navigation }) {
             <TouchableOpacity
               onPress={handleSignup}
               disabled={loading}
-              style={styles.signupButtonContainer}
+              activeOpacity={0.8}
             >
               <LinearGradient
-                colors={
-                  loading
-                    ? ['#64748b', '#64748b']
-                    : ['#10b981', '#059669']
-                }
+                colors={loading ? [COLORS.gray, COLORS.gray] : [...COLORS.successGradient]}
                 style={styles.signupButton}
               >
                 {loading ? (
-                  <ActivityIndicator color="#fff" />
+                  <>
+                    <ActivityIndicator color={COLORS.white} size="small" />
+                    <Text style={styles.signupButtonText}>{t.creating}</Text>
+                  </>
                 ) : (
                   <>
                     <MaterialCommunityIcons
                       name="account-plus"
-                      size={wp('5%')}
-                      color="#fff"
+                      size={20}
+                      color={COLORS.white}
                     />
-                    <Text style={styles.signupButtonText}>إنشاء الحساب</Text>
+                    <Text style={styles.signupButtonText}>{t.signupButton}</Text>
                   </>
                 )}
               </LinearGradient>
@@ -368,23 +498,16 @@ export default function SignupScreen({ navigation }) {
 
             {/* Login Link */}
             <View style={styles.loginContainer}>
-              <TouchableOpacity
-                onPress={() => navigation.navigate('Login')}
-              >
-                <Text
-                  style={[
-                    styles.linkText,
-                    { color: dark ? '#60a5fa' : '#3b82f6' },
-                  ]}
-                >
-                  تسجيل الدخول
+              <Text style={[styles.loginText, { color: secondaryTextColor }]}>
+                {t.haveAccount}{' '}
+              </Text>
+              <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+                <Text style={[styles.loginLink, { color: COLORS.primary }]}>
+                  {t.login}
                 </Text>
               </TouchableOpacity>
-              <Text style={[styles.loginText, { color: secondaryTextColor }]}>
-                لديك حساب بالفعل؟
-              </Text>
             </View>
-          </View>
+          </Animated.View>
         </ScrollView>
       </KeyboardAvoidingView>
     </View>
@@ -401,74 +524,95 @@ const styles = StyleSheet.create({
   scrollContent: {
     flexGrow: 1,
     justifyContent: 'center',
-    alignItems: 'center',
     padding: wp('5%'),
     paddingTop: hp('8%'),
   },
+  headerButtons: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    gap: 10,
+    marginBottom: hp('2%'),
+  },
+  headerButton: {
+    width: 45,
+    height: 45,
+    borderRadius: 12,
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  headerButtonText: {
+    fontSize: 16,
+    fontWeight: '800',
+  },
   logoContainer: {
-    marginBottom: hp('3%'),
+    alignItems: 'center',
+    marginBottom: hp('2%'),
   },
   logo: {
     width: wp('35%'),
     height: wp('35%'),
+    maxWidth: 180,
+    maxHeight: 180,
   },
   title: {
-    fontSize: wp('7%'),
+    fontSize: 26,
     fontWeight: '900',
-    marginBottom: hp('1%'),
+    marginBottom: 8,
     textAlign: 'center',
   },
   subtitle: {
-    fontSize: wp('4%'),
-    marginBottom: hp('4%'),
+    fontSize: 15,
+    marginBottom: hp('3%'),
     textAlign: 'center',
   },
   card: {
     width: '100%',
     maxWidth: 450,
-    borderRadius: wp('4%'),
+    borderRadius: 20,
     padding: wp('6%'),
+    shadowColor: '#000',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.1,
     shadowRadius: 12,
     elevation: 5,
+    alignSelf: 'center',
   },
   inputContainer: {
     position: 'relative',
-    marginBottom: hp('2%'),
+    marginBottom: hp('1.5%'),
   },
   inputIcon: {
     position: 'absolute',
-    top: hp('2%'),
-    right: wp('4%'),
+    top: 15,
     zIndex: 1,
   },
   eyeIcon: {
     position: 'absolute',
-    top: hp('2%'),
-    left: wp('4%'),
+    top: 15,
     zIndex: 1,
   },
   input: {
     width: '100%',
-    paddingVertical: hp('2%'),
-    paddingHorizontal: wp('13%'),
-    borderRadius: wp('3%'),
-    fontSize: wp('4%'),
+    paddingVertical: 15,
+    paddingHorizontal: 15,
+    borderRadius: 12,
+    fontSize: 15,
     fontWeight: '600',
     borderWidth: 2,
-  },
-  signupButtonContainer: {
-    marginTop: hp('2%'),
-    marginBottom: hp('2%'),
   },
   signupButton: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: hp('2%'),
-    borderRadius: wp('3%'),
-    gap: wp('2%'),
+    paddingVertical: 16,
+    borderRadius: 12,
+    gap: 10,
+    marginTop: hp('1%'),
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
@@ -476,22 +620,21 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   signupButtonText: {
-    color: '#fff',
-    fontSize: wp('4.5%'),
+    color: COLORS.white,
+    fontSize: 17,
     fontWeight: '900',
   },
   loginContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    gap: 5,
-    marginTop: hp('1%'),
-  },
-  linkText: {
-    fontSize: wp('4%'),
-    fontWeight: '800',
+    marginTop: hp('2%'),
   },
   loginText: {
-    fontSize: wp('4%'),
+    fontSize: 14,
+  },
+  loginLink: {
+    fontSize: 14,
+    fontWeight: '800',
   },
 });

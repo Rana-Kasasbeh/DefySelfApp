@@ -1,0 +1,5523 @@
+[
+  {
+    "id": 1,
+    "learned": true,
+    "translation": "تفاحة",
+    "word": "apple"
+  },
+  {
+    "id": 2,
+    "learned": true,
+    "translation": "كتاب",
+    "word": "book"
+  },
+  {
+    "id": 3,
+    "learned": true,
+    "translation": "منزل",
+    "word": "house"
+  },
+  {
+    "id": 4,
+    "learned": true,
+    "translation": "سيارة",
+    "word": "car"
+  },
+  {
+    "id": 5,
+    "learned": true,
+    "translation": "حاسوب",
+    "word": "computer"
+  },
+  {
+    "id": 6,
+    "learned": true,
+    "translation": "مدرسة",
+    "word": "school"
+  },
+  {
+    "id": 7,
+    "learned": true,
+    "translation": "معلم",
+    "word": "teacher"
+  },
+  {
+    "id": 8,
+    "learned": true,
+    "translation": "طالب",
+    "word": "student"
+  },
+  {
+    "id": 9,
+    "learned": true,
+    "translation": "صديق",
+    "word": "friend"
+  },
+  {
+    "id": 10,
+    "learned": true,
+    "translation": "عائلة",
+    "word": "family"
+  },
+  {
+    "id": 11,
+    "learned": true,
+    "translation": "طعام",
+    "word": "food"
+  },
+  {
+    "id": 12,
+    "learned": true,
+    "translation": "ماء",
+    "word": "water"
+  },
+  {
+    "id": 13,
+    "learned": true,
+    "translation": "شمس",
+    "word": "sun"
+  },
+  {
+    "id": 14,
+    "learned": true,
+    "translation": "قمر",
+    "word": "moon"
+  },
+  {
+    "id": 15,
+    "learned": true,
+    "translation": "نجم",
+    "word": "star"
+  },
+  {
+    "id": 16,
+    "learned": true,
+    "translation": "شجرة",
+    "word": "tree"
+  },
+  {
+    "id": 17,
+    "learned": true,
+    "translation": "زهرة",
+    "word": "flower"
+  },
+  {
+    "id": 18,
+    "learned": true,
+    "translation": "طائر",
+    "word": "bird"
+  },
+  {
+    "id": 19,
+    "learned": true,
+    "translation": "كلب",
+    "word": "dog"
+  },
+  {
+    "id": 20,
+    "learned": true,
+    "translation": "قطة",
+    "word": "cat"
+  },
+  {
+    "id": 21,
+    "learned": true,
+    "translation": "سمك",
+    "word": "fish"
+  },
+  {
+    "id": 22,
+    "learned": true,
+    "translation": "فيل",
+    "word": "elephant"
+  },
+  {
+    "id": 23,
+    "learned": true,
+    "translation": "أسد",
+    "word": "lion"
+  },
+  {
+    "id": 24,
+    "learned": true,
+    "translation": "نمر",
+    "word": "tiger"
+  },
+  {
+    "id": 25,
+    "learned": true,
+    "translation": "دب",
+    "word": "bear"
+  },
+  {
+    "id": 26,
+    "learned": true,
+    "translation": "أرنب",
+    "word": "rabbit"
+  },
+  {
+    "id": 27,
+    "learned": true,
+    "translation": "حصان",
+    "word": "horse"
+  },
+  {
+    "id": 28,
+    "learned": true,
+    "translation": "بقرة",
+    "word": "cow"
+  },
+  {
+    "id": 29,
+    "learned": true,
+    "translation": "خروف",
+    "word": "sheep"
+  },
+  {
+    "id": 30,
+    "learned": true,
+    "translation": "ماعز",
+    "word": "goat"
+  },
+  {
+    "id": 31,
+    "learned": true,
+    "translation": "دجاجة",
+    "word": "chicken"
+  },
+  {
+    "id": 32,
+    "learned": true,
+    "translation": "بطة",
+    "word": "duck"
+  },
+  {
+    "id": 33,
+    "translation": "خنزير",
+    "word": "pig"
+  },
+  {
+    "id": 34,
+    "translation": "ضفدع",
+    "word": "frog"
+  },
+  {
+    "id": 35,
+    "translation": "ثعبان",
+    "word": "snake"
+  },
+  {
+    "id": 36,
+    "translation": "سحلية",
+    "word": "lizard"
+  },
+  {
+    "id": 37,
+    "translation": "فأر",
+    "word": "mouse"
+  },
+  {
+    "id": 38,
+    "translation": "جرذ",
+    "word": "rat"
+  },
+  {
+    "id": 39,
+    "translation": "خفاش",
+    "word": "bat"
+  },
+  {
+    "id": 40,
+    "translation": "عنكبوت",
+    "word": "spider"
+  },
+  {
+    "id": 41,
+    "translation": "نملة",
+    "word": "ant"
+  },
+  {
+    "id": 42,
+    "translation": "نحلة",
+    "word": "bee"
+  },
+  {
+    "id": 43,
+    "translation": "فراشة",
+    "word": "butterfly"
+  },
+  {
+    "id": 44,
+    "translation": "ذبابة",
+    "word": "fly"
+  },
+  {
+    "id": 45,
+    "translation": "بعوضة",
+    "word": "mosquito"
+  },
+  {
+    "id": 46,
+    "translation": "دودة",
+    "word": "worm"
+  },
+  {
+    "id": 47,
+    "translation": "يرقة",
+    "word": "caterpillar"
+  },
+  {
+    "id": 48,
+    "translation": "خنفساء",
+    "word": "ladybug"
+  },
+  {
+    "id": 49,
+    "translation": "جرادة",
+    "word": "grasshopper"
+  },
+  {
+    "id": 50,
+    "translation": "صرصور",
+    "word": "cricket"
+  },
+  {
+    "id": 51,
+    "translation": "صراصير",
+    "word": "cockroach"
+  },
+  {
+    "id": 52,
+    "translation": "نمل أبيض",
+    "word": "termite"
+  },
+  {
+    "id": 53,
+    "translation": "خنفساء",
+    "word": "beetle"
+  },
+  {
+    "id": 54,
+    "translation": "عثة",
+    "word": "moth"
+  },
+  {
+    "id": 55,
+    "translation": "يعسوب",
+    "word": "dragonfly"
+  },
+  {
+    "id": 56,
+    "translation": "عشب",
+    "word": "grass"
+  },
+  {
+    "id": 57,
+    "translation": "ورقة",
+    "word": "leaf"
+  },
+  {
+    "id": 58,
+    "translation": "غصن",
+    "word": "branch"
+  },
+  {
+    "id": 59,
+    "translation": "جذر",
+    "word": "root"
+  },
+  {
+    "id": 60,
+    "translation": "بذرة",
+    "word": "seed"
+  },
+  {
+    "id": 61,
+    "translation": "تربة",
+    "word": "soil"
+  },
+  {
+    "id": 62,
+    "translation": "حديقة",
+    "word": "garden"
+  },
+  {
+    "id": 63,
+    "learned": true,
+    "translation": "منتزه",
+    "word": "park"
+  },
+  {
+    "id": 64,
+    "learned": true,
+    "translation": "غابة",
+    "word": "forest"
+  },
+  {
+    "id": 65,
+    "learned": true,
+    "translation": "جبل",
+    "word": "mountain"
+  },
+  {
+    "id": 66,
+    "translation": "تل",
+    "word": "hill"
+  },
+  {
+    "id": 67,
+    "translation": "وادي",
+    "word": "valley"
+  },
+  {
+    "id": 68,
+    "translation": "نهر",
+    "word": "river"
+  },
+  {
+    "id": 69,
+    "translation": "بحيرة",
+    "word": "lake"
+  },
+  {
+    "id": 70,
+    "translation": "محيط",
+    "word": "ocean"
+  },
+  {
+    "id": 71,
+    "translation": "بحر",
+    "word": "sea"
+  },
+  {
+    "id": 72,
+    "translation": "جداول",
+    "word": "stream"
+  },
+  {
+    "id": 73,
+    "translation": "شلال",
+    "word": "waterfall"
+  },
+  {
+    "id": 74,
+    "translation": "مطر",
+    "word": "rain"
+  },
+  {
+    "id": 75,
+    "translation": "ثلج",
+    "word": "snow"
+  },
+  {
+    "id": 76,
+    "translation": "سحابة",
+    "word": "cloud"
+  },
+  {
+    "id": 77,
+    "translation": "ريح",
+    "word": "wind"
+  },
+  {
+    "id": 78,
+    "translation": "عاصفة",
+    "word": "storm"
+  },
+  {
+    "id": 79,
+    "translation": "رعد",
+    "word": "thunder"
+  },
+  {
+    "id": 80,
+    "translation": "برق",
+    "word": "lightning"
+  },
+  {
+    "id": 81,
+    "translation": "ضباب",
+    "word": "fog"
+  },
+  {
+    "id": 82,
+    "translation": "برد",
+    "word": "hail"
+  },
+  {
+    "id": 83,
+    "translation": "زلزال",
+    "word": "earthquake"
+  },
+  {
+    "id": 84,
+    "translation": "بركان",
+    "word": "volcano"
+  },
+  {
+    "id": 85,
+    "translation": "تسونامي",
+    "word": "tsunami"
+  },
+  {
+    "id": 86,
+    "translation": "إعصار",
+    "word": "hurricane"
+  },
+  {
+    "id": 87,
+    "translation": "زوبعة",
+    "word": "tornado"
+  },
+  {
+    "id": 88,
+    "translation": "إعصار",
+    "word": "cyclone"
+  },
+  {
+    "id": 89,
+    "translation": "جفاف",
+    "word": "drought"
+  },
+  {
+    "id": 90,
+    "translation": "فيضانات",
+    "word": "flood"
+  },
+  {
+    "id": 91,
+    "translation": "نار",
+    "word": "fire"
+  },
+  {
+    "id": 92,
+    "translation": "دخان",
+    "word": "smoke"
+  },
+  {
+    "id": 93,
+    "translation": "رماد",
+    "word": "ash"
+  },
+  {
+    "id": 94,
+    "translation": "فحم",
+    "word": "coal"
+  },
+  {
+    "id": 95,
+    "translation": "زيت",
+    "word": "oil"
+  },
+  {
+    "id": 96,
+    "translation": "غاز",
+    "word": "gas"
+  },
+  {
+    "id": 97,
+    "learned": true,
+    "translation": "كهرباء",
+    "word": "electricity"
+  },
+  {
+    "id": 98,
+    "translation": "بطارية",
+    "word": "battery"
+  },
+  {
+    "id": 99,
+    "translation": "طاقة شمسية",
+    "word": "solar"
+  },
+  {
+    "id": 100,
+    "translation": "طاحونة هوائية",
+    "word": "windmill"
+  },
+  {
+    "id": 101,
+    "translation": "مولد",
+    "word": "generator"
+  },
+  {
+    "id": 102,
+    "translation": "محرك",
+    "word": "engine"
+  },
+  {
+    "id": 103,
+    "translation": "آلة",
+    "word": "machine"
+  },
+  {
+    "id": 104,
+    "translation": "روبوت",
+    "word": "robot"
+  },
+  {
+    "id": 105,
+    "translation": "حاسوب",
+    "word": "computer"
+  },
+  {
+    "id": 106,
+    "translation": "لوحة مفاتيح",
+    "word": "keyboard"
+  },
+  {
+    "id": 107,
+    "translation": "فأرة",
+    "word": "mouse"
+  },
+  {
+    "id": 108,
+    "translation": "شاشة",
+    "word": "screen"
+  },
+  {
+    "id": 109,
+    "translation": "شاشة عرض",
+    "word": "monitor"
+  },
+  {
+    "id": 110,
+    "translation": "طابعة",
+    "word": "printer"
+  },
+  {
+    "id": 111,
+    "translation": "ماسح ضوئي",
+    "word": "scanner"
+  },
+  {
+    "id": 112,
+    "translation": "كاميرا",
+    "word": "camera"
+  },
+  {
+    "id": 113,
+    "translation": "مكبر صوت",
+    "word": "speaker"
+  },
+  {
+    "id": 114,
+    "translation": "ميكروفون",
+    "word": "microphone"
+  },
+  {
+    "id": 115,
+    "translation": "عالم",
+    "word": "headphones"
+  },
+  {
+    "id": 116,
+    "translation": "هاتف",
+    "word": "phone"
+  },
+  {
+    "id": 117,
+    "translation": "تلفاز",
+    "word": "television"
+  },
+  {
+    "id": 118,
+    "translation": "راديو",
+    "word": "radio"
+  },
+  {
+    "id": 119,
+    "translation": "جهاز لوحي",
+    "word": "tablet"
+  },
+  {
+    "id": 120,
+    "translation": "حاسوب محمول",
+    "word": "laptop"
+  },
+  {
+    "id": 121,
+    "translation": "إنترنت",
+    "word": "internet"
+  },
+  {
+    "id": 122,
+    "translation": "موقع إلكتروني",
+    "word": "website"
+  },
+  {
+    "id": 123,
+    "translation": "بريد إلكتروني",
+    "word": "email"
+  },
+  {
+    "id": 124,
+    "translation": "رسالة",
+    "word": "message"
+  },
+  {
+    "id": 125,
+    "translation": "مكالمة",
+    "word": "call"
+  },
+  {
+    "id": 126,
+    "translation": "صورة",
+    "word": "photo"
+  },
+  {
+    "id": 127,
+    "translation": "فيديو",
+    "word": "video"
+  },
+  {
+    "id": 128,
+    "translation": "موسيقى",
+    "word": "music"
+  },
+  {
+    "id": 129,
+    "translation": "أغنية",
+    "word": "song"
+  },
+  {
+    "id": 130,
+    "translation": "فيلم",
+    "word": "movie"
+  },
+  {
+    "id": 131,
+    "translation": "لعبة",
+    "word": "game"
+  },
+  {
+    "id": 132,
+    "translation": "يلعب",
+    "word": "play"
+  },
+  {
+    "id": 133,
+    "translation": "يجري",
+    "word": "run"
+  },
+  {
+    "id": 134,
+    "translation": "يمشي",
+    "word": "walk"
+  },
+  {
+    "id": 135,
+    "translation": "يقفز",
+    "word": "jump"
+  },
+  {
+    "id": 136,
+    "translation": "يسبح",
+    "word": "swim"
+  },
+  {
+    "id": 137,
+    "translation": "يقود",
+    "word": "drive"
+  },
+  {
+    "id": 138,
+    "translation": "يطير",
+    "word": "fly"
+  },
+  {
+    "id": 139,
+    "translation": "يأكل",
+    "word": "eat"
+  },
+  {
+    "id": 140,
+    "translation": "يشرب",
+    "word": "drink"
+  },
+  {
+    "id": 141,
+    "translation": "ينام",
+    "word": "sleep"
+  },
+  {
+    "id": 142,
+    "translation": "يستيقظ",
+    "word": "wake"
+  },
+  {
+    "id": 143,
+    "translation": "يجلس",
+    "word": "sit"
+  },
+  {
+    "id": 144,
+    "translation": "يقف",
+    "word": "stand"
+  },
+  {
+    "id": 145,
+    "translation": "يقرأ",
+    "word": "read"
+  },
+  {
+    "id": 146,
+    "translation": "يكتب",
+    "word": "write"
+  },
+  {
+    "id": 147,
+    "translation": "يرسم",
+    "word": "draw"
+  },
+  {
+    "id": 148,
+    "translation": "يدهن",
+    "word": "paint"
+  },
+  {
+    "id": 149,
+    "translation": "يستمع",
+    "word": "listen"
+  },
+  {
+    "id": 150,
+    "translation": "يتحدث",
+    "word": "speak"
+  },
+  {
+    "id": 151,
+    "translation": "يغني",
+    "word": "sing"
+  },
+  {
+    "id": 152,
+    "translation": "يرقص",
+    "word": "dance"
+  },
+  {
+    "id": 153,
+    "translation": "يبتسم",
+    "word": "smile"
+  },
+  {
+    "id": 154,
+    "translation": "يضحك",
+    "word": "laugh"
+  },
+  {
+    "id": 155,
+    "translation": "يبكي",
+    "word": "cry"
+  },
+  {
+    "id": 156,
+    "translation": "يحب",
+    "word": "love"
+  },
+  {
+    "id": 157,
+    "translation": "يعجب",
+    "word": "like"
+  },
+  {
+    "id": 158,
+    "translation": "يكره",
+    "word": "hate"
+  },
+  {
+    "id": 159,
+    "translation": "يريد",
+    "word": "want"
+  },
+  {
+    "id": 160,
+    "translation": "يحتاج",
+    "word": "need"
+  },
+  {
+    "id": 161,
+    "translation": "يشتري",
+    "word": "buy"
+  },
+  {
+    "id": 162,
+    "translation": "يبيع",
+    "word": "sell"
+  },
+  {
+    "id": 163,
+    "translation": "يفتح",
+    "word": "open"
+  },
+  {
+    "id": 164,
+    "translation": "يغلق",
+    "word": "close"
+  },
+  {
+    "id": 165,
+    "translation": "يدفع",
+    "word": "push"
+  },
+  {
+    "id": 166,
+    "translation": "يسحب",
+    "word": "pull"
+  },
+  {
+    "id": 167,
+    "translation": "يساعد",
+    "word": "help"
+  },
+  {
+    "id": 168,
+    "translation": "يتوقف",
+    "word": "stop"
+  },
+  {
+    "id": 169,
+    "translation": "يبدأ",
+    "word": "start"
+  },
+  {
+    "id": 170,
+    "translation": "ينهي",
+    "word": "finish"
+  },
+  {
+    "id": 171,
+    "translation": "يبني",
+    "word": "build"
+  },
+  {
+    "id": 172,
+    "translation": "يهدم",
+    "word": "destroy"
+  },
+  {
+    "id": 173,
+    "translation": "يُنشئ",
+    "word": "create"
+  },
+  {
+    "id": 174,
+    "translation": "يصنع",
+    "word": "make"
+  },
+  {
+    "id": 175,
+    "translation": "يقطع",
+    "word": "cut"
+  },
+  {
+    "id": 176,
+    "translation": "يكسر",
+    "word": "break"
+  },
+  {
+    "id": 177,
+    "translation": "يصلح",
+    "word": "fix"
+  },
+  {
+    "id": 178,
+    "translation": "ينظف",
+    "word": "clean"
+  },
+  {
+    "id": 179,
+    "translation": "يوسّخ",
+    "word": "dirty"
+  },
+  {
+    "id": 180,
+    "translation": "يغسل",
+    "word": "wash"
+  },
+  {
+    "id": 181,
+    "translation": "يطبخ",
+    "word": "cook"
+  },
+  {
+    "id": 182,
+    "translation": "يخبز",
+    "word": "bake"
+  },
+  {
+    "id": 183,
+    "translation": "يغلي",
+    "word": "boil"
+  },
+  {
+    "id": 184,
+    "translation": "يقلي",
+    "word": "fry"
+  },
+  {
+    "id": 185,
+    "translation": "يتناول الفطور",
+    "word": "eat breakfast"
+  },
+  {
+    "id": 186,
+    "translation": "يتناول الغداء",
+    "word": "eat lunch"
+  },
+  {
+    "id": 187,
+    "translation": "يتناول العشاء",
+    "word": "eat dinner"
+  },
+  {
+    "id": 188,
+    "translation": "جائع",
+    "word": "hungry"
+  },
+  {
+    "id": 189,
+    "translation": "عطشان",
+    "word": "thirsty"
+  },
+  {
+    "id": 190,
+    "translation": "شبعان",
+    "word": "full"
+  },
+  {
+    "id": 191,
+    "translation": "سعيد",
+    "word": "happy"
+  },
+  {
+    "id": 192,
+    "translation": "حزين",
+    "word": "sad"
+  },
+  {
+    "id": 193,
+    "translation": "غاضب",
+    "word": "angry"
+  },
+  {
+    "id": 194,
+    "translation": "خائف",
+    "word": "afraid"
+  },
+  {
+    "id": 195,
+    "translation": "متعب",
+    "word": "tired"
+  },
+  {
+    "id": 196,
+    "translation": "قوي",
+    "word": "strong"
+  },
+  {
+    "id": 197,
+    "translation": "ضعيف",
+    "word": "weak"
+  },
+  {
+    "id": 198,
+    "translation": "سريع",
+    "word": "fast"
+  },
+  {
+    "id": 199,
+    "translation": "بطيء",
+    "word": "slow"
+  },
+  {
+    "id": 200,
+    "translation": "حار",
+    "word": "hot"
+  },
+  {
+    "id": 201,
+    "translation": "بارد",
+    "word": "cold"
+  },
+  {
+    "id": 202,
+    "translation": "دافئ",
+    "word": "warm"
+  },
+  {
+    "id": 203,
+    "translation": "منعش",
+    "word": "cool"
+  },
+  {
+    "id": 204,
+    "translation": "كبير",
+    "word": "big"
+  },
+  {
+    "id": 205,
+    "translation": "صغير",
+    "word": "small"
+  },
+  {
+    "id": 206,
+    "translation": "طويل",
+    "word": "long"
+  },
+  {
+    "id": 207,
+    "translation": "قصير",
+    "word": "short"
+  },
+  {
+    "id": 208,
+    "translation": "عالٍ",
+    "word": "high"
+  },
+  {
+    "id": 209,
+    "translation": "منخفض",
+    "word": "low"
+  },
+  {
+    "id": 210,
+    "translation": "قريب",
+    "word": "near"
+  },
+  {
+    "id": 211,
+    "translation": "بعيد",
+    "word": "far"
+  },
+  {
+    "id": 212,
+    "translation": "داخل",
+    "word": "inside"
+  },
+  {
+    "id": 213,
+    "translation": "خارج",
+    "word": "outside"
+  },
+  {
+    "id": 214,
+    "translation": "فوق",
+    "word": "up"
+  },
+  {
+    "id": 215,
+    "translation": "تحت",
+    "word": "down"
+  },
+  {
+    "id": 216,
+    "translation": "يسار",
+    "word": "left"
+  },
+  {
+    "id": 217,
+    "translation": "يمين",
+    "word": "right"
+  },
+  {
+    "id": 218,
+    "translation": "أمام",
+    "word": "front"
+  },
+  {
+    "id": 219,
+    "translation": "خلف",
+    "word": "back"
+  },
+  {
+    "id": 220,
+    "translation": "صباح",
+    "word": "morning"
+  },
+  {
+    "id": 221,
+    "translation": "بعد الظهر",
+    "word": "afternoon"
+  },
+  {
+    "id": 222,
+    "translation": "مساء",
+    "word": "evening"
+  },
+  {
+    "id": 223,
+    "translation": "ليل",
+    "word": "night"
+  },
+  {
+    "id": 224,
+    "translation": "نهار",
+    "word": "day"
+  },
+  {
+    "id": 225,
+    "translation": "أسبوع",
+    "word": "week"
+  },
+  {
+    "id": 226,
+    "translation": "شهر",
+    "word": "month"
+  },
+  {
+    "id": 227,
+    "translation": "سنة",
+    "word": "year"
+  },
+  {
+    "id": 228,
+    "translation": "اليوم",
+    "word": "today"
+  },
+  {
+    "id": 229,
+    "translation": "غدًا",
+    "word": "tomorrow"
+  },
+  {
+    "id": 230,
+    "translation": "أمس",
+    "word": "yesterday"
+  },
+  {
+    "id": 231,
+    "translation": "ربيع",
+    "word": "spring"
+  },
+  {
+    "id": 232,
+    "translation": "صيف",
+    "word": "summer"
+  },
+  {
+    "id": 233,
+    "translation": "خريف",
+    "word": "autumn"
+  },
+  {
+    "id": 234,
+    "translation": "شتاء",
+    "word": "winter"
+  },
+  {
+    "id": 235,
+    "translation": "لون",
+    "word": "color"
+  },
+  {
+    "id": 236,
+    "translation": "أحمر",
+    "word": "red"
+  },
+  {
+    "id": 237,
+    "translation": "أزرق",
+    "word": "blue"
+  },
+  {
+    "id": 238,
+    "translation": "أخضر",
+    "word": "green"
+  },
+  {
+    "id": 239,
+    "translation": "أصفر",
+    "word": "yellow"
+  },
+  {
+    "id": 240,
+    "translation": "أسود",
+    "word": "black"
+  },
+  {
+    "id": 241,
+    "translation": "أبيض",
+    "word": "white"
+  },
+  {
+    "id": 242,
+    "translation": "بني",
+    "word": "brown"
+  },
+  {
+    "id": 243,
+    "translation": "برتقالي",
+    "word": "orange"
+  },
+  {
+    "id": 244,
+    "translation": "زهري",
+    "word": "pink"
+  },
+  {
+    "id": 245,
+    "translation": "بنفسجي",
+    "word": "purple"
+  },
+  {
+    "id": 246,
+    "translation": "رمادي",
+    "word": "gray"
+  },
+  {
+    "id": 247,
+    "translation": "ذهبي",
+    "word": "gold"
+  },
+  {
+    "id": 248,
+    "translation": "فضي",
+    "word": "silver"
+  },
+  {
+    "id": 249,
+    "translation": "دائرة",
+    "word": "circle"
+  },
+  {
+    "id": 250,
+    "translation": "مربع",
+    "word": "square"
+  },
+  {
+    "id": 251,
+    "translation": "مثلث",
+    "word": "triangle"
+  },
+  {
+    "id": 252,
+    "translation": "مستطيل",
+    "word": "rectangle"
+  },
+  {
+    "id": 253,
+    "translation": "خط",
+    "word": "line"
+  },
+  {
+    "id": 254,
+    "translation": "نقطة",
+    "word": "point"
+  },
+  {
+    "id": 255,
+    "translation": "رقم",
+    "word": "number"
+  },
+  {
+    "id": 256,
+    "translation": "واحد",
+    "word": "one"
+  },
+  {
+    "id": 257,
+    "translation": "اثنان",
+    "word": "two"
+  },
+  {
+    "id": 258,
+    "translation": "ثلاثة",
+    "word": "three"
+  },
+  {
+    "id": 259,
+    "translation": "أربعة",
+    "word": "four"
+  },
+  {
+    "id": 260,
+    "translation": "خمسة",
+    "word": "five"
+  },
+  {
+    "id": 261,
+    "translation": "ستة",
+    "word": "six"
+  },
+  {
+    "id": 262,
+    "translation": "سبعة",
+    "word": "seven"
+  },
+  {
+    "id": 263,
+    "translation": "ثمانية",
+    "word": "eight"
+  },
+  {
+    "id": 264,
+    "translation": "تسعة",
+    "word": "nine"
+  },
+  {
+    "id": 265,
+    "translation": "عشرة",
+    "word": "ten"
+  },
+  {
+    "id": 266,
+    "translation": "يحقق",
+    "word": "achieve"
+  },
+  {
+    "id": 267,
+    "translation": "يحلل",
+    "word": "analyze"
+  },
+  {
+    "id": 268,
+    "translation": "نهج / مقاربة",
+    "word": "approach"
+  },
+  {
+    "id": 269,
+    "translation": "يقيم",
+    "word": "assess"
+  },
+  {
+    "id": 270,
+    "translation": "يفترض",
+    "word": "assume"
+  },
+  {
+    "id": 271,
+    "translation": "مفهوم",
+    "word": "concept"
+  },
+  {
+    "id": 272,
+    "translation": "يستنتج",
+    "word": "conclude"
+  },
+  {
+    "id": 273,
+    "translation": "يقوم بـ / يسلك",
+    "word": "conduct"
+  },
+  {
+    "id": 274,
+    "translation": "نتيجة / عاقبة",
+    "word": "consequence"
+  },
+  {
+    "id": 275,
+    "translation": "متسق / ثابت",
+    "word": "consistent"
+  },
+  {
+    "id": 276,
+    "translation": "سياق",
+    "word": "context"
+  },
+  {
+    "id": 277,
+    "translation": "مقارنة / تباين",
+    "word": "contrast"
+  },
+  {
+    "id": 278,
+    "translation": "معايير",
+    "word": "criteria"
+  },
+  {
+    "id": 279,
+    "translation": "مناظرة / نقاش",
+    "word": "debate"
+  },
+  {
+    "id": 280,
+    "translation": "يعرّف",
+    "word": "define"
+  },
+  {
+    "id": 281,
+    "translation": "يستمد / يشتق",
+    "word": "derive"
+  },
+  {
+    "id": 282,
+    "translation": "يؤكد / يشدد",
+    "word": "emphasize"
+  },
+  {
+    "id": 283,
+    "translation": "يؤسس",
+    "word": "establish"
+  },
+  {
+    "id": 284,
+    "translation": "يقيم",
+    "word": "evaluate"
+  },
+  {
+    "id": 285,
+    "translation": "دليل / برهان",
+    "word": "evidence"
+  },
+  {
+    "id": 286,
+    "translation": "يوضح",
+    "word": "illustrate"
+  },
+  {
+    "id": 287,
+    "translation": "ينفذ",
+    "word": "implement"
+  },
+  {
+    "id": 288,
+    "translation": "تداعيات / آثار",
+    "word": "implication"
+  },
+  {
+    "id": 289,
+    "translation": "يشير",
+    "word": "indicate"
+  },
+  {
+    "id": 290,
+    "translation": "يفسر",
+    "word": "interpret"
+  },
+  {
+    "id": 291,
+    "translation": "يحافظ على / يصون",
+    "word": "maintain"
+  },
+  {
+    "id": 292,
+    "translation": "يحدث",
+    "word": "occur"
+  },
+  {
+    "id": 293,
+    "translation": "وجهة نظر",
+    "word": "perspective"
+  },
+  {
+    "id": 294,
+    "translation": "يتنبأ",
+    "word": "predict"
+  },
+  {
+    "id": 295,
+    "translation": "مبدأ",
+    "word": "principle"
+  },
+  {
+    "id": 296,
+    "translation": "يعطي أولوية",
+    "word": "prioritize"
+  },
+  {
+    "id": 297,
+    "translation": "هام / ذو دلالة",
+    "word": "significant"
+  },
+  {
+    "id": 298,
+    "translation": "كافٍ",
+    "word": "sufficient"
+  },
+  {
+    "id": 299,
+    "translation": "يدعم / يحافظ على",
+    "word": "sustain"
+  },
+  {
+    "id": 300,
+    "translation": "نظرية",
+    "word": "theory"
+  },
+  {
+    "id": 301,
+    "translation": "يتكيف",
+    "word": "adapt"
+  },
+  {
+    "id": 302,
+    "translation": "يتقدم / تطور",
+    "word": "advance"
+  },
+  {
+    "id": 303,
+    "translation": "يخصص",
+    "word": "allocate"
+  },
+  {
+    "id": 304,
+    "translation": "غامض / ملتبس",
+    "word": "ambiguous"
+  },
+  {
+    "id": 305,
+    "translation": "تقريبي",
+    "word": "approximate"
+  },
+  {
+    "id": 306,
+    "translation": "يحقق / ينال",
+    "word": "attain"
+  },
+  {
+    "id": 307,
+    "translation": "ينسب / صفة",
+    "word": "attribute"
+  },
+  {
+    "id": 308,
+    "translation": "انحياز",
+    "word": "bias"
+  },
+  {
+    "id": 309,
+    "translation": "قادر / كفؤ",
+    "word": "capable"
+  },
+  {
+    "id": 310,
+    "translation": "سعة / قدرة",
+    "word": "capacity"
+  },
+  {
+    "id": 311,
+    "translation": "يتوقف",
+    "word": "cease"
+  },
+  {
+    "id": 312,
+    "translation": "يوضح",
+    "word": "clarify"
+  },
+  {
+    "id": 313,
+    "translation": "متماسك / منطقي",
+    "word": "coherent"
+  },
+  {
+    "id": 314,
+    "translation": "يجمع / يترجم",
+    "word": "compile"
+  },
+  {
+    "id": 315,
+    "translation": "يتألف من",
+    "word": "comprise"
+  },
+  {
+    "id": 316,
+    "translation": "يتصور / يبتكر",
+    "word": "conceive"
+  },
+  {
+    "id": 317,
+    "translation": "يتشاور / يمنح",
+    "word": "confer"
+  },
+  {
+    "id": 318,
+    "translation": "يقيد / يحد",
+    "word": "constrain"
+  },
+  {
+    "id": 319,
+    "translation": "جدل",
+    "word": "controversy"
+  },
+  {
+    "id": 320,
+    "translation": "ينقل / يوصل",
+    "word": "convey"
+  },
+  {
+    "id": 321,
+    "translation": "يقنع",
+    "word": "convince"
+  },
+  {
+    "id": 322,
+    "translation": "جوهر / نواة",
+    "word": "core"
+  },
+  {
+    "id": 323,
+    "translation": "يتطابق / يتوافق",
+    "word": "correspond"
+  },
+  {
+    "id": 324,
+    "translation": "حاسم / بالغ الأهمية",
+    "word": "crucial"
+  },
+  {
+    "id": 325,
+    "translation": "يستنتج",
+    "word": "deduce"
+  },
+  {
+    "id": 326,
+    "translation": "عجز / نقص",
+    "word": "deficit"
+  },
+  {
+    "id": 327,
+    "translation": "يدل على",
+    "word": "denote"
+  },
+  {
+    "id": 328,
+    "translation": "يشتق / يستمد",
+    "word": "derive"
+  },
+  {
+    "id": 329,
+    "translation": "يحدد",
+    "word": "determine"
+  },
+  {
+    "id": 330,
+    "translation": "يميز / يفرّق",
+    "word": "differentiate"
+  },
+  {
+    "id": 331,
+    "translation": "يقلل / يتضاءل",
+    "word": "diminish"
+  },
+  {
+    "id": 332,
+    "translation": "منفصل",
+    "word": "discrete"
+  },
+  {
+    "id": 333,
+    "translation": "متنوع",
+    "word": "diverse"
+  },
+  {
+    "id": 334,
+    "translation": "مجال / نطاق",
+    "word": "domain"
+  },
+  {
+    "id": 335,
+    "translation": "يقضي على / يزيل",
+    "word": "eliminate"
+  },
+  {
+    "id": 336,
+    "translation": "يظهر / يبرز",
+    "word": "emerge"
+  },
+  {
+    "id": 337,
+    "translation": "تجريبي",
+    "word": "empirical"
+  },
+  {
+    "id": 338,
+    "translation": "يواجه / يصادف",
+    "word": "encounter"
+  },
+  {
+    "id": 339,
+    "translation": "يفرض / ينفذ",
+    "word": "enforce"
+  },
+  {
+    "id": 340,
+    "translation": "يعزز / يحسن",
+    "word": "enhance"
+  },
+  {
+    "id": 341,
+    "translation": "يضمن",
+    "word": "ensure"
+  },
+  {
+    "id": 342,
+    "translation": "معادل / مساوي",
+    "word": "equivalent"
+  },
+  {
+    "id": 343,
+    "translation": "يتآكل",
+    "word": "erode"
+  },
+  {
+    "id": 344,
+    "translation": "تقدير",
+    "word": "estimation"
+  },
+  {
+    "id": 345,
+    "translation": "يتطور",
+    "word": "evolve"
+  },
+  {
+    "id": 346,
+    "translation": "يتجاوز",
+    "word": "exceed"
+  },
+  {
+    "id": 347,
+    "translation": "يستبعد",
+    "word": "exclude"
+  },
+  {
+    "id": 348,
+    "translation": "صريح / واضح",
+    "word": "explicit"
+  },
+  {
+    "id": 349,
+    "translation": "يسهل",
+    "word": "facilitate"
+  },
+  {
+    "id": 350,
+    "translation": "قابل للتنفيذ",
+    "word": "feasible"
+  },
+  {
+    "id": 351,
+    "translation": "يتقلب",
+    "word": "fluctuate"
+  },
+  {
+    "id": 352,
+    "translation": "إطار عمل",
+    "word": "framework"
+  },
+  {
+    "id": 353,
+    "translation": "أساسي / جوهري",
+    "word": "fundamental"
+  },
+  {
+    "id": 354,
+    "translation": "ينتج / يولد",
+    "word": "generate"
+  },
+  {
+    "id": 355,
+    "translation": "فرضية",
+    "word": "hypothesis"
+  },
+  {
+    "id": 356,
+    "translation": "يحدد / يتعرف",
+    "word": "identify"
+  },
+  {
+    "id": 357,
+    "translation": "يوضح / يشرح",
+    "word": "illustrate"
+  },
+  {
+    "id": 358,
+    "translation": "يلمح / يعني ضمنيًا",
+    "word": "imply"
+  },
+  {
+    "id": 359,
+    "translation": "حافز",
+    "word": "incentive"
+  },
+  {
+    "id": 360,
+    "translation": "يدمج",
+    "word": "incorporate"
+  },
+  {
+    "id": 361,
+    "translation": "يمنع / يعيق",
+    "word": "inhibit"
+  },
+  {
+    "id": 362,
+    "translation": "يبدأ / يطلق",
+    "word": "initiate"
+  },
+  {
+    "id": 363,
+    "translation": "يبتكر",
+    "word": "innovate"
+  },
+  {
+    "id": 364,
+    "translation": "يُدمج / يوحد",
+    "word": "integrate"
+  },
+  {
+    "id": 365,
+    "translation": "تفسير",
+    "word": "interpretation"
+  },
+  {
+    "id": 366,
+    "translation": "يتدخل",
+    "word": "intervene"
+  },
+  {
+    "id": 367,
+    "translation": "جوهري / داخلي",
+    "word": "intrinsic"
+  },
+  {
+    "id": 368,
+    "translation": "يحقق / يبحث",
+    "word": "investigate"
+  },
+  {
+    "id": 369,
+    "translation": "يتضمن / يشمل",
+    "word": "involve"
+  },
+  {
+    "id": 370,
+    "translation": "يبرر",
+    "word": "justify"
+  },
+  {
+    "id": 371,
+    "translation": "يشرّع",
+    "word": "legislate"
+  },
+  {
+    "id": 372,
+    "translation": "كذلك / أيضًا",
+    "word": "likewise"
+  },
+  {
+    "id": 373,
+    "translation": "يتلاعب",
+    "word": "manipulate"
+  },
+  {
+    "id": 374,
+    "translation": "ناضج / ينضج",
+    "word": "mature"
+  },
+  {
+    "id": 375,
+    "translation": "يتوسط",
+    "word": "mediate"
+  },
+  {
+    "id": 376,
+    "translation": "يعدل / يغير",
+    "word": "modify"
+  },
+  {
+    "id": 377,
+    "translation": "ينفي / يلغي",
+    "word": "negate"
+  },
+  {
+    "id": 378,
+    "translation": "فكرة / تصور",
+    "word": "notion"
+  },
+  {
+    "id": 379,
+    "translation": "يحصل على",
+    "word": "obtain"
+  },
+  {
+    "id": 380,
+    "translation": "يشغل / يحتل",
+    "word": "occupy"
+  },
+  {
+    "id": 381,
+    "translation": "مستمر",
+    "word": "ongoing"
+  },
+  {
+    "id": 382,
+    "translation": "نتيجة",
+    "word": "outcome"
+  },
+  {
+    "id": 383,
+    "translation": "تداخل",
+    "word": "overlap"
+  },
+  {
+    "id": 384,
+    "translation": "نموذج مثالي",
+    "word": "paradigm"
+  },
+  {
+    "id": 385,
+    "translation": "معامل / محدد",
+    "word": "parameter"
+  },
+  {
+    "id": 386,
+    "translation": "يشارك",
+    "word": "participate"
+  },
+  {
+    "id": 387,
+    "translation": "يدرك / يفهم",
+    "word": "perceive"
+  },
+  {
+    "id": 388,
+    "translation": "يثابر / يصر",
+    "word": "persist"
+  },
+  {
+    "id": 389,
+    "translation": "يقنع",
+    "word": "persuade"
+  },
+  {
+    "id": 390,
+    "translation": "يطرح / يشكل",
+    "word": "pose"
+  },
+  {
+    "id": 391,
+    "translation": "يسبق",
+    "word": "precede"
+  },
+  {
+    "id": 392,
+    "translation": "دقيق",
+    "word": "precise"
+  },
+  {
+    "id": 393,
+    "translation": "متوقع",
+    "word": "predictable"
+  },
+  {
+    "id": 394,
+    "translation": "سائد / غالب",
+    "word": "predominant"
+  },
+  {
+    "id": 395,
+    "translation": "تمهيدي / أولي",
+    "word": "preliminary"
+  },
+  {
+    "id": 396,
+    "translation": "سابق / أولي",
+    "word": "prior"
+  },
+  {
+    "id": 397,
+    "translation": "يمنع",
+    "word": "prohibit"
+  },
+  {
+    "id": 398,
+    "translation": "احتمال / فرصة",
+    "word": "prospect"
+  },
+  {
+    "id": 399,
+    "translation": "بروتوكول / إجراء رسمي",
+    "word": "protocol"
+  },
+  {
+    "id": 400,
+    "translation": "نوعي",
+    "word": "qualitative"
+  },
+  {
+    "id": 401,
+    "translation": "خوارزمية",
+    "word": "algorithm"
+  },
+  {
+    "id": 402,
+    "translation": "قاعدة بيانات",
+    "word": "database"
+  },
+  {
+    "id": 403,
+    "translation": "تشفير",
+    "word": "encryption"
+  },
+  {
+    "id": 404,
+    "translation": "جدار حماية",
+    "word": "firewall"
+  },
+  {
+    "id": 405,
+    "translation": "معالج",
+    "word": "processor"
+  },
+  {
+    "id": 406,
+    "translation": "مُترجم",
+    "word": "compiler"
+  },
+  {
+    "id": 407,
+    "translation": "ذاكرة مؤقتة",
+    "word": "cache"
+  },
+  {
+    "id": 408,
+    "translation": "عرض النطاق",
+    "word": "bandwidth"
+  },
+  {
+    "id": 409,
+    "translation": "الأمن السيبراني",
+    "word": "cybersecurity"
+  },
+  {
+    "id": 410,
+    "translation": "بروتوكول",
+    "word": "protocol"
+  },
+  {
+    "id": 411,
+    "translation": "منهاج",
+    "word": "curriculum"
+  },
+  {
+    "id": 412,
+    "translation": "تقييم",
+    "word": "assessment"
+  },
+  {
+    "id": 413,
+    "translation": "علم التدريس",
+    "word": "pedagogy"
+  },
+  {
+    "id": 414,
+    "translation": "منحة دراسية",
+    "word": "scholarship"
+  },
+  {
+    "id": 415,
+    "translation": "دافعية",
+    "word": "motivation"
+  },
+  {
+    "id": 416,
+    "translation": "حفظ",
+    "word": "memorization"
+  },
+  {
+    "id": 417,
+    "translation": "التفكير النقدي",
+    "word": "critical thinking"
+  },
+  {
+    "id": 418,
+    "translation": "محو الأمية / معرفة القراءة والكتابة",
+    "word": "literacy"
+  },
+  {
+    "id": 419,
+    "translation": "دروس خصوصية",
+    "word": "tutoring"
+  },
+  {
+    "id": 420,
+    "translation": "معرفة",
+    "word": "knowledge"
+  },
+  {
+    "id": 421,
+    "translation": "هيكل عظمي",
+    "word": "skeleton"
+  },
+  {
+    "id": 422,
+    "translation": "عضلة",
+    "word": "muscle"
+  },
+  {
+    "id": 423,
+    "translation": "عصب",
+    "word": "nerve"
+  },
+  {
+    "id": 424,
+    "translation": "شريان",
+    "word": "artery"
+  },
+  {
+    "id": 425,
+    "translation": "وريد",
+    "word": "vein"
+  },
+  {
+    "id": 426,
+    "translation": "كبد",
+    "word": "liver"
+  },
+  {
+    "id": 427,
+    "translation": "كلية",
+    "word": "kidney"
+  },
+  {
+    "id": 428,
+    "translation": "أمعاء",
+    "word": "intestine"
+  },
+  {
+    "id": 429,
+    "translation": "رئتان",
+    "word": "lungs"
+  },
+  {
+    "id": 430,
+    "translation": "عمود فقري",
+    "word": "spine"
+  },
+  {
+    "id": 431,
+    "translation": "خبز",
+    "word": "bread"
+  },
+  {
+    "id": 432,
+    "translation": "أرز",
+    "word": "rice"
+  },
+  {
+    "id": 433,
+    "translation": "ملح",
+    "word": "salt"
+  },
+  {
+    "id": 434,
+    "translation": "سكر",
+    "word": "sugar"
+  },
+  {
+    "id": 435,
+    "translation": "حليب",
+    "word": "milk"
+  },
+  {
+    "id": 436,
+    "translation": "جبن",
+    "word": "cheese"
+  },
+  {
+    "id": 437,
+    "translation": "بيضة",
+    "word": "egg"
+  },
+  {
+    "id": 438,
+    "translation": "لحم",
+    "word": "meat"
+  },
+  {
+    "id": 439,
+    "translation": "قهوة",
+    "word": "coffee"
+  },
+  {
+    "id": 440,
+    "translation": "شاي",
+    "word": "tea"
+  },
+  {
+    "id": 441,
+    "translation": "سوق",
+    "word": "market"
+  },
+  {
+    "id": 442,
+    "translation": "مستشفى",
+    "word": "hospital"
+  },
+  {
+    "id": 443,
+    "translation": "مطار",
+    "word": "airport"
+  },
+  {
+    "id": 444,
+    "translation": "بنك",
+    "word": "bank"
+  },
+  {
+    "id": 445,
+    "translation": "فندق",
+    "word": "hotel"
+  },
+  {
+    "id": 446,
+    "translation": "مطعم",
+    "word": "restaurant"
+  },
+  {
+    "id": 447,
+    "translation": "محطة",
+    "word": "station"
+  },
+  {
+    "id": 448,
+    "translation": "مكتبة",
+    "word": "library"
+  },
+  {
+    "id": 449,
+    "translation": "مكتب",
+    "word": "office"
+  },
+  {
+    "id": 450,
+    "translation": "مصنع",
+    "word": "factory"
+  },
+  {
+    "id": 451,
+    "translation": "قلب",
+    "word": "heart"
+  },
+  {
+    "id": 452,
+    "translation": "دماغ",
+    "word": "brain"
+  },
+  {
+    "id": 453,
+    "translation": "عين",
+    "word": "eye"
+  },
+  {
+    "id": 454,
+    "translation": "أذن",
+    "word": "ear"
+  },
+  {
+    "id": 455,
+    "translation": "أنف",
+    "word": "nose"
+  },
+  {
+    "id": 456,
+    "translation": "فم",
+    "word": "mouth"
+  },
+  {
+    "id": 457,
+    "translation": "سن",
+    "word": "tooth"
+  },
+  {
+    "id": 458,
+    "translation": "يد",
+    "word": "hand"
+  },
+  {
+    "id": 459,
+    "translation": "ساق",
+    "word": "leg"
+  },
+  {
+    "id": 460,
+    "translation": "معدة",
+    "word": "stomach"
+  },
+  {
+    "id": 461,
+    "translation": "شبكة",
+    "word": "network"
+  },
+  {
+    "id": 462,
+    "translation": "بيانات",
+    "word": "data"
+  },
+  {
+    "id": 463,
+    "translation": "برمجيات",
+    "word": "software"
+  },
+  {
+    "id": 464,
+    "translation": "معدات",
+    "word": "hardware"
+  },
+  {
+    "id": 465,
+    "translation": "موقع إلكتروني",
+    "word": "website"
+  },
+  {
+    "id": 466,
+    "translation": "تطبيق",
+    "word": "application"
+  },
+  {
+    "id": 467,
+    "translation": "خادم",
+    "word": "server"
+  },
+  {
+    "id": 468,
+    "translation": "سحابة",
+    "word": "cloud"
+  },
+  {
+    "id": 469,
+    "translation": "نطاق",
+    "word": "domain"
+  },
+  {
+    "id": 470,
+    "translation": "متصفح",
+    "word": "browser"
+  },
+  {
+    "id": 471,
+    "translation": "لوحة مفاتيح",
+    "word": "keyboard"
+  },
+  {
+    "id": 472,
+    "translation": "كلمة مرور",
+    "word": "password"
+  },
+  {
+    "id": 473,
+    "translation": "بريد إلكتروني",
+    "word": "email"
+  },
+  {
+    "id": 474,
+    "translation": "ملف",
+    "word": "file"
+  },
+  {
+    "id": 475,
+    "translation": "مجلد",
+    "word": "folder"
+  },
+  {
+    "id": 476,
+    "translation": "رابط",
+    "word": "link"
+  },
+  {
+    "id": 477,
+    "translation": "تسجيل دخول",
+    "word": "login"
+  },
+  {
+    "id": 478,
+    "translation": "تسجيل خروج",
+    "word": "logout"
+  },
+  {
+    "id": 479,
+    "translation": "تحديث",
+    "word": "update"
+  },
+  {
+    "id": 480,
+    "translation": "تنزيل",
+    "word": "download"
+  },
+  {
+    "id": 481,
+    "translation": "رفع",
+    "word": "upload"
+  },
+  {
+    "id": 482,
+    "translation": "مشاركة",
+    "word": "share"
+  },
+  {
+    "id": 483,
+    "translation": "بحث",
+    "word": "search"
+  },
+  {
+    "id": 484,
+    "translation": "حساب",
+    "word": "account"
+  },
+  {
+    "id": 485,
+    "translation": "ملف شخصي",
+    "word": "profile"
+  },
+  {
+    "id": 486,
+    "translation": "إعداد",
+    "word": "setting"
+  },
+  {
+    "id": 487,
+    "translation": "نظام",
+    "word": "system"
+  },
+  {
+    "id": 488,
+    "translation": "جهاز",
+    "word": "device"
+  },
+  {
+    "id": 489,
+    "translation": "إشارة",
+    "word": "signal"
+  },
+  {
+    "id": 490,
+    "translation": "تخزين",
+    "word": "storage"
+  },
+  {
+    "id": 491,
+    "translation": "لغة",
+    "word": "language"
+  },
+  {
+    "id": 492,
+    "translation": "درس",
+    "word": "lesson"
+  },
+  {
+    "id": 493,
+    "translation": "صف",
+    "word": "class"
+  },
+  {
+    "id": 494,
+    "translation": "امتحان",
+    "word": "exam"
+  },
+  {
+    "id": 495,
+    "translation": "سؤال",
+    "word": "question"
+  },
+  {
+    "id": 496,
+    "translation": "إجابة",
+    "word": "answer"
+  },
+  {
+    "id": 497,
+    "translation": "دراسة",
+    "word": "study"
+  },
+  {
+    "id": 498,
+    "translation": "معرفة",
+    "word": "knowledge"
+  },
+  {
+    "id": 499,
+    "translation": "مهارة",
+    "word": "skill"
+  },
+  {
+    "id": 500,
+    "translation": "تعليم",
+    "word": "education"
+  },
+  {
+    "id": 501,
+    "translation": "جامعة",
+    "word": "university"
+  },
+  {
+    "id": 502,
+    "translation": "كلية",
+    "word": "college"
+  },
+  {
+    "id": 503,
+    "translation": "علم",
+    "word": "science"
+  },
+  {
+    "id": 504,
+    "translation": "رياضيات",
+    "word": "math"
+  },
+  {
+    "id": 505,
+    "translation": "تاريخ",
+    "word": "history"
+  },
+  {
+    "id": 506,
+    "translation": "جغرافيا",
+    "word": "geography"
+  },
+  {
+    "id": 507,
+    "translation": "فيزياء",
+    "word": "physics"
+  },
+  {
+    "id": 508,
+    "translation": "كيمياء",
+    "word": "chemistry"
+  },
+  {
+    "id": 509,
+    "translation": "أحياء",
+    "word": "biology"
+  },
+  {
+    "id": 510,
+    "translation": "أدب",
+    "word": "literature"
+  },
+  {
+    "id": 511,
+    "translation": "طبيب",
+    "word": "doctor"
+  },
+  {
+    "id": 512,
+    "translation": "ممرضة",
+    "word": "nurse"
+  },
+  {
+    "id": 513,
+    "translation": "دواء",
+    "word": "medicine"
+  },
+  {
+    "id": 514,
+    "translation": "مرض",
+    "word": "disease"
+  },
+  {
+    "id": 515,
+    "translation": "فيروس",
+    "word": "virus"
+  },
+  {
+    "id": 516,
+    "translation": "بكتيريا",
+    "word": "bacteria"
+  },
+  {
+    "id": 517,
+    "translation": "علاج",
+    "word": "treatment"
+  },
+  {
+    "id": 518,
+    "translation": "لقاح",
+    "word": "vaccine"
+  },
+  {
+    "id": 519,
+    "translation": "عملية",
+    "word": "operation"
+  },
+  {
+    "id": 520,
+    "translation": "دم",
+    "word": "blood"
+  },
+  {
+    "id": 521,
+    "translation": "جلد",
+    "word": "skin"
+  },
+  {
+    "id": 522,
+    "translation": "عظم",
+    "word": "bone"
+  },
+  {
+    "id": 523,
+    "translation": "عضلة",
+    "word": "muscle"
+  },
+  {
+    "id": 524,
+    "translation": "ظهر",
+    "word": "back"
+  },
+  {
+    "id": 525,
+    "translation": "صدر",
+    "word": "chest"
+  },
+  {
+    "id": 526,
+    "translation": "إصبع",
+    "word": "finger"
+  },
+  {
+    "id": 527,
+    "translation": "قدم",
+    "word": "foot"
+  },
+  {
+    "id": 528,
+    "translation": "ركبة",
+    "word": "knee"
+  },
+  {
+    "id": 529,
+    "translation": "كتف",
+    "word": "shoulder"
+  },
+  {
+    "id": 530,
+    "translation": "رقبة",
+    "word": "neck"
+  },
+  {
+    "id": 531,
+    "translation": "صباح",
+    "word": "morning"
+  },
+  {
+    "id": 532,
+    "translation": "بعد الظهر",
+    "word": "afternoon"
+  },
+  {
+    "id": 533,
+    "translation": "مساء",
+    "word": "evening"
+  },
+  {
+    "id": 534,
+    "translation": "ليل",
+    "word": "night"
+  },
+  {
+    "id": 535,
+    "translation": "أمس",
+    "word": "yesterday"
+  },
+  {
+    "id": 536,
+    "translation": "اليوم",
+    "word": "today"
+  },
+  {
+    "id": 537,
+    "translation": "غدًا",
+    "word": "tomorrow"
+  },
+  {
+    "id": 538,
+    "translation": "أسبوع",
+    "word": "week"
+  },
+  {
+    "id": 539,
+    "translation": "شهر",
+    "word": "month"
+  },
+  {
+    "id": 540,
+    "translation": "سنة",
+    "word": "year"
+  },
+  {
+    "id": 541,
+    "translation": "مدينة",
+    "word": "city"
+  },
+  {
+    "id": 542,
+    "translation": "قرية",
+    "word": "village"
+  },
+  {
+    "id": 543,
+    "translation": "بلد",
+    "word": "country"
+  },
+  {
+    "id": 544,
+    "translation": "شارع",
+    "word": "street"
+  },
+  {
+    "id": 545,
+    "translation": "طريق",
+    "word": "road"
+  },
+  {
+    "id": 546,
+    "translation": "جسر",
+    "word": "bridge"
+  },
+  {
+    "id": 547,
+    "translation": "مبنى",
+    "word": "building"
+  },
+  {
+    "id": 548,
+    "translation": "منزل",
+    "word": "house"
+  },
+  {
+    "id": 549,
+    "translation": "غرفة",
+    "word": "room"
+  },
+  {
+    "id": 550,
+    "translation": "باب",
+    "word": "door"
+  },
+  {
+    "id": 551,
+    "translation": "نافذة",
+    "word": "window"
+  },
+  {
+    "id": 552,
+    "translation": "أرضية",
+    "word": "floor"
+  },
+  {
+    "id": 553,
+    "translation": "جدار",
+    "word": "wall"
+  },
+  {
+    "id": 554,
+    "translation": "سقف",
+    "word": "roof"
+  },
+  {
+    "id": 555,
+    "translation": "مطبخ",
+    "word": "kitchen"
+  },
+  {
+    "id": 556,
+    "translation": "حمام",
+    "word": "bathroom"
+  },
+  {
+    "id": 557,
+    "translation": "غرفة نوم",
+    "word": "bedroom"
+  },
+  {
+    "id": 558,
+    "translation": "طاولة",
+    "word": "table"
+  },
+  {
+    "id": 559,
+    "translation": "كرسي",
+    "word": "chair"
+  },
+  {
+    "id": 560,
+    "translation": "سرير",
+    "word": "bed"
+  },
+  {
+    "id": 561,
+    "translation": "ملابس",
+    "word": "clothes"
+  },
+  {
+    "id": 562,
+    "translation": "قميص",
+    "word": "shirt"
+  },
+  {
+    "id": 563,
+    "translation": "بنطال",
+    "word": "pants"
+  },
+  {
+    "id": 564,
+    "translation": "فستان",
+    "word": "dress"
+  },
+  {
+    "id": 565,
+    "translation": "أحذية",
+    "word": "shoes"
+  },
+  {
+    "id": 566,
+    "translation": "قبعة",
+    "word": "hat"
+  },
+  {
+    "id": 567,
+    "translation": "معطف",
+    "word": "jacket"
+  },
+  {
+    "id": 568,
+    "translation": "معطف طويل",
+    "word": "coat"
+  },
+  {
+    "id": 569,
+    "translation": "جوارب",
+    "word": "socks"
+  },
+  {
+    "id": 570,
+    "translation": "قفازات",
+    "word": "gloves"
+  },
+  {
+    "id": 571,
+    "translation": "مال",
+    "word": "money"
+  },
+  {
+    "id": 572,
+    "translation": "سعر",
+    "word": "price"
+  },
+  {
+    "id": 573,
+    "translation": "متجر",
+    "word": "shop"
+  },
+  {
+    "id": 574,
+    "translation": "شراء",
+    "word": "buy"
+  },
+  {
+    "id": 575,
+    "translation": "بيع",
+    "word": "sell"
+  },
+  {
+    "id": 576,
+    "translation": "تكلفة",
+    "word": "cost"
+  },
+  {
+    "id": 577,
+    "translation": "رخيص",
+    "word": "cheap"
+  },
+  {
+    "id": 578,
+    "translation": "غالي",
+    "word": "expensive"
+  },
+  {
+    "id": 579,
+    "translation": "نقد",
+    "word": "cash"
+  },
+  {
+    "id": 580,
+    "translation": "بطاقة",
+    "word": "card"
+  },
+  {
+    "id": 581,
+    "translation": "لون",
+    "word": "color"
+  },
+  {
+    "id": 582,
+    "translation": "أحمر",
+    "word": "red"
+  },
+  {
+    "id": 583,
+    "translation": "أزرق",
+    "word": "blue"
+  },
+  {
+    "id": 584,
+    "translation": "أخضر",
+    "word": "green"
+  },
+  {
+    "id": 585,
+    "translation": "أصفر",
+    "word": "yellow"
+  },
+  {
+    "id": 586,
+    "translation": "أسود",
+    "word": "black"
+  },
+  {
+    "id": 587,
+    "translation": "أبيض",
+    "word": "white"
+  },
+  {
+    "id": 588,
+    "translation": "بني",
+    "word": "brown"
+  },
+  {
+    "id": 589,
+    "translation": "برتقالي",
+    "word": "orange"
+  },
+  {
+    "id": 590,
+    "translation": "بنفسجي",
+    "word": "purple"
+  },
+  {
+    "id": 591,
+    "translation": "حار",
+    "word": "hot"
+  },
+  {
+    "id": 592,
+    "translation": "بارد",
+    "word": "cold"
+  },
+  {
+    "id": 593,
+    "translation": "كبير",
+    "word": "big"
+  },
+  {
+    "id": 594,
+    "translation": "صغير",
+    "word": "small"
+  },
+  {
+    "id": 595,
+    "translation": "سريع",
+    "word": "fast"
+  },
+  {
+    "id": 596,
+    "translation": "بطيء",
+    "word": "slow"
+  },
+  {
+    "id": 597,
+    "translation": "جديد",
+    "word": "new"
+  },
+  {
+    "id": 598,
+    "translation": "قديم",
+    "word": "old"
+  },
+  {
+    "id": 599,
+    "translation": "جيد",
+    "word": "good"
+  },
+  {
+    "id": 600,
+    "translation": "سيئ",
+    "word": "bad"
+  },
+  {
+    "id": 601,
+    "translation": "يهجر / يتخلى عن",
+    "word": ""
+  },
+  {
+    "id": 602,
+    "translation": "قدرة",
+    "word": "ability"
+  },
+  {
+    "id": 603,
+    "translation": "غير طبيعي",
+    "word": "abnormal"
+  },
+  {
+    "id": 604,
+    "translation": "يلغي",
+    "word": "abolish"
+  },
+  {
+    "id": 605,
+    "translation": "إجهاض",
+    "word": "abortion"
+  },
+  {
+    "id": 606,
+    "translation": "في الخارج",
+    "word": "abroad"
+  },
+  {
+    "id": 607,
+    "translation": "غياب",
+    "word": "absence"
+  },
+  {
+    "id": 608,
+    "translation": "مطلق",
+    "word": "absolute"
+  },
+  {
+    "id": 609,
+    "translation": "يمتص",
+    "word": "absorb"
+  },
+  {
+    "id": 610,
+    "translation": "مجرد",
+    "word": "abstract"
+  },
+  {
+    "id": 611,
+    "translation": "عبثي",
+    "word": "absurd"
+  },
+  {
+    "id": 612,
+    "translation": "وفرة",
+    "word": "abundance"
+  },
+  {
+    "id": 613,
+    "translation": "إساءة",
+    "word": "abuse"
+  },
+  {
+    "id": 614,
+    "translation": "أكاديمية",
+    "word": "academy"
+  },
+  {
+    "id": 615,
+    "translation": "يسرع",
+    "word": "accelerate"
+  },
+  {
+    "id": 616,
+    "translation": "لهجة",
+    "word": "accent"
+  },
+  {
+    "id": 617,
+    "translation": "قبول",
+    "word": "acceptance"
+  },
+  {
+    "id": 618,
+    "translation": "ملحق",
+    "word": "accessory"
+  },
+  {
+    "id": 619,
+    "translation": "حادث",
+    "word": "accident"
+  },
+  {
+    "id": 620,
+    "translation": "يستوعب",
+    "word": "accommodate"
+  },
+  {
+    "id": 621,
+    "translation": "يرافق",
+    "word": "accompany"
+  },
+  {
+    "id": 622,
+    "translation": "ينجز",
+    "word": "accomplish"
+  },
+  {
+    "id": 623,
+    "translation": "وفقًا",
+    "word": "accordance"
+  },
+  {
+    "id": 624,
+    "translation": "مساءلة",
+    "word": "accountability"
+  },
+  {
+    "id": 625,
+    "translation": "يتراكم",
+    "word": "accumulate"
+  },
+  {
+    "id": 626,
+    "translation": "دقة",
+    "word": "accuracy"
+  },
+  {
+    "id": 627,
+    "translation": "يتهم",
+    "word": "accuse"
+  },
+  {
+    "id": 628,
+    "translation": "يحقق",
+    "word": "achieve"
+  },
+  {
+    "id": 629,
+    "translation": "حمض",
+    "word": "acid"
+  },
+  {
+    "id": 630,
+    "translation": "يعترف",
+    "word": "acknowledge"
+  },
+  {
+    "id": 631,
+    "translation": "اكتساب",
+    "word": "acquire"
+  },
+  {
+    "id": 632,
+    "translation": "اكتساب",
+    "word": "acquisition"
+  },
+  {
+    "id": 633,
+    "translation": "فدان",
+    "word": "acre"
+  },
+  {
+    "id": 634,
+    "translation": "تفعيل",
+    "word": "activate"
+  },
+  {
+    "id": 635,
+    "translation": "ناشط",
+    "word": "activist"
+  },
+  {
+    "id": 636,
+    "translation": "حاد",
+    "word": "acute"
+  },
+  {
+    "id": 637,
+    "translation": "تكيف",
+    "word": "adaptation"
+  },
+  {
+    "id": 638,
+    "translation": "إدمان",
+    "word": "addiction"
+  },
+  {
+    "id": 639,
+    "translation": "كاف",
+    "word": "adequate"
+  },
+  {
+    "id": 640,
+    "translation": "مجاور",
+    "word": "adjacent"
+  },
+  {
+    "id": 641,
+    "translation": "تعديل",
+    "word": "adjustment"
+  },
+  {
+    "id": 642,
+    "translation": "إدارة",
+    "word": "administration"
+  },
+  {
+    "id": 643,
+    "translation": "يعجب",
+    "word": "admire"
+  },
+  {
+    "id": 644,
+    "translation": "قبول",
+    "word": "admission"
+  },
+  {
+    "id": 645,
+    "translation": "مراهق",
+    "word": "adolescent"
+  },
+  {
+    "id": 646,
+    "translation": "يتبنى",
+    "word": "adopt"
+  },
+  {
+    "id": 647,
+    "translation": "تقدم",
+    "word": "advancement"
+  },
+  {
+    "id": 648,
+    "translation": "مفيد",
+    "word": "advantageous"
+  },
+  {
+    "id": 649,
+    "translation": "مغامرة",
+    "word": "adventure"
+  },
+  {
+    "id": 650,
+    "translation": "معاكس",
+    "word": "adverse"
+  },
+  {
+    "id": 651,
+    "translation": "يدافع",
+    "word": "advocate"
+  },
+  {
+    "id": 652,
+    "translation": "جمالي",
+    "word": "aesthetic"
+  },
+  {
+    "id": 653,
+    "translation": "مودة",
+    "word": "affection"
+  },
+  {
+    "id": 654,
+    "translation": "تابع",
+    "word": "affiliate"
+  },
+  {
+    "id": 655,
+    "translation": "يؤكد",
+    "word": "affirm"
+  },
+  {
+    "id": 656,
+    "translation": "ثري",
+    "word": "affluent"
+  },
+  {
+    "id": 657,
+    "translation": "يستطيع تحمل التكلفة",
+    "word": "afford"
+  },
+  {
+    "id": 658,
+    "translation": "ما بعد",
+    "word": "aftermath"
+  },
+  {
+    "id": 659,
+    "translation": "وكالة",
+    "word": "agency"
+  },
+  {
+    "id": 660,
+    "translation": "جدول أعمال",
+    "word": "agenda"
+  },
+  {
+    "id": 661,
+    "translation": "عدواني",
+    "word": "aggressive"
+  },
+  {
+    "id": 662,
+    "translation": "عذاب",
+    "word": "agony"
+  },
+  {
+    "id": 663,
+    "translation": "مقبول",
+    "word": "agreeable"
+  },
+  {
+    "id": 664,
+    "translation": "زراعة",
+    "word": "agriculture"
+  },
+  {
+    "id": 665,
+    "translation": "ممر",
+    "word": "aisle"
+  },
+  {
+    "id": 666,
+    "translation": "إنذار",
+    "word": "alarm"
+  },
+  {
+    "id": 667,
+    "translation": "ألبوم",
+    "word": "album"
+  },
+  {
+    "id": 668,
+    "translation": "كحول",
+    "word": "alcohol"
+  },
+  {
+    "id": 669,
+    "translation": "منبه",
+    "word": "alert"
+  },
+  {
+    "id": 670,
+    "translation": "غريب",
+    "word": "alien"
+  },
+  {
+    "id": 671,
+    "translation": "محاذاة",
+    "word": "alignment"
+  },
+  {
+    "id": 672,
+    "translation": "ادعاء",
+    "word": "allegation"
+  },
+  {
+    "id": 673,
+    "translation": "تحالف",
+    "word": "alliance"
+  },
+  {
+    "id": 674,
+    "translation": "يخصص",
+    "word": "allocate"
+  },
+  {
+    "id": 675,
+    "translation": "بدل",
+    "word": "allowance"
+  },
+  {
+    "id": 676,
+    "translation": "حليف",
+    "word": "ally"
+  },
+  {
+    "id": 677,
+    "translation": "بجانب",
+    "word": "alongside"
+  },
+  {
+    "id": 678,
+    "translation": "تعديل",
+    "word": "alteration"
+  },
+  {
+    "id": 679,
+    "translation": "بديل",
+    "word": "alternative"
+  },
+  {
+    "id": 680,
+    "translation": "هواة",
+    "word": "amateur"
+  },
+  {
+    "id": 681,
+    "translation": "سفير",
+    "word": "ambassador"
+  },
+  {
+    "id": 682,
+    "translation": "غامض",
+    "word": "ambiguous"
+  },
+  {
+    "id": 683,
+    "translation": "طموح",
+    "word": "ambition"
+  },
+  {
+    "id": 684,
+    "translation": "يعدل",
+    "word": "amend"
+  },
+  {
+    "id": 685,
+    "translation": "تعديل",
+    "word": "amendment"
+  },
+  {
+    "id": 686,
+    "translation": "وسط",
+    "word": "amid"
+  },
+  {
+    "id": 687,
+    "translation": "تشبيه",
+    "word": "analogy"
+  },
+  {
+    "id": 688,
+    "translation": "تحليل",
+    "word": "analysis"
+  },
+  {
+    "id": 689,
+    "translation": "سلف",
+    "word": "ancestor"
+  },
+  {
+    "id": 690,
+    "translation": "قديم",
+    "word": "ancient"
+  },
+  {
+    "id": 691,
+    "translation": "قصة قصيرة",
+    "word": "anecdote"
+  },
+  {
+    "id": 692,
+    "translation": "ملاك",
+    "word": "angel"
+  },
+  {
+    "id": 693,
+    "translation": "غضب",
+    "word": "anger"
+  },
+  {
+    "id": 694,
+    "translation": "زاوية",
+    "word": "angle"
+  },
+  {
+    "id": 695,
+    "translation": "كرب",
+    "word": "anguish"
+  },
+  {
+    "id": 696,
+    "translation": "رسوم متحركة",
+    "word": "animation"
+  },
+  {
+    "id": 697,
+    "translation": "ذكرى",
+    "word": "anniversary"
+  },
+  {
+    "id": 698,
+    "translation": "إعلان",
+    "word": "announcement"
+  },
+  {
+    "id": 699,
+    "translation": "سنوي",
+    "word": "annual"
+  },
+  {
+    "id": 700,
+    "translation": "مجهول",
+    "word": "anonymous"
+  },
+  {
+    "id": 701,
+    "translation": "تحفة",
+    "word": "antique"
+  },
+  {
+    "id": 702,
+    "translation": "قلق",
+    "word": "anxiety"
+  },
+  {
+    "id": 703,
+    "translation": "اعتذار",
+    "word": "apology"
+  },
+  {
+    "id": 704,
+    "translation": "جهاز",
+    "word": "apparatus"
+  },
+  {
+    "id": 705,
+    "translation": "واضح",
+    "word": "apparent"
+  },
+  {
+    "id": 706,
+    "translation": "استئناف",
+    "word": "appeal"
+  },
+  {
+    "id": 707,
+    "translation": "مظهر",
+    "word": "appearance"
+  },
+  {
+    "id": 708,
+    "translation": "شهية",
+    "word": "appetite"
+  },
+  {
+    "id": 709,
+    "translation": "جهاز",
+    "word": "appliance"
+  },
+  {
+    "id": 710,
+    "translation": "متقدم",
+    "word": "applicant"
+  },
+  {
+    "id": 711,
+    "translation": "تقدير",
+    "word": "appreciation"
+  },
+  {
+    "id": 712,
+    "translation": "يقترب",
+    "word": "approach"
+  },
+  {
+    "id": 713,
+    "translation": "مناسب",
+    "word": "appropriate"
+  },
+  {
+    "id": 714,
+    "translation": "موافقة",
+    "word": "approval"
+  },
+  {
+    "id": 715,
+    "translation": "تقريبي",
+    "word": "approximate"
+  },
+  {
+    "id": 716,
+    "translation": "اعتباطي",
+    "word": "arbitrary"
+  },
+  {
+    "id": 717,
+    "translation": "مهندس معماري",
+    "word": "architect"
+  },
+  {
+    "id": 718,
+    "translation": "أرشيف",
+    "word": "archive"
+  },
+  {
+    "id": 719,
+    "translation": "ساحة",
+    "word": "arena"
+  },
+  {
+    "id": 720,
+    "translation": "جدال",
+    "word": "argument"
+  },
+  {
+    "id": 721,
+    "translation": "ينشأ",
+    "word": "arise"
+  },
+  {
+    "id": 722,
+    "translation": "حساب",
+    "word": "arithmetic"
+  },
+  {
+    "id": 723,
+    "translation": "متكبر",
+    "word": "arrogant"
+  },
+  {
+    "id": 724,
+    "translation": "شريان",
+    "word": "artery"
+  },
+  {
+    "id": 725,
+    "translation": "يفصح",
+    "word": "articulate"
+  },
+  {
+    "id": 726,
+    "translation": "اصطناعي",
+    "word": "artificial"
+  },
+  {
+    "id": 727,
+    "translation": "فني",
+    "word": "artistic"
+  },
+  {
+    "id": 728,
+    "translation": "خجلان",
+    "word": "ashamed"
+  },
+  {
+    "id": 729,
+    "translation": "جانب",
+    "word": "aspect"
+  },
+  {
+    "id": 730,
+    "translation": "طموح",
+    "word": "aspiration"
+  },
+  {
+    "id": 731,
+    "translation": "قاتل",
+    "word": "assassin"
+  },
+  {
+    "id": 732,
+    "translation": "اعتداء",
+    "word": "assault"
+  },
+  {
+    "id": 733,
+    "translation": "مجلس",
+    "word": "assembly"
+  },
+  {
+    "id": 734,
+    "translation": "يؤكد",
+    "word": "assert"
+  },
+  {
+    "id": 735,
+    "translation": "تقييم",
+    "word": "assessment"
+  },
+  {
+    "id": 736,
+    "translation": "أصل",
+    "word": "asset"
+  },
+  {
+    "id": 737,
+    "translation": "مهمة",
+    "word": "assignment"
+  },
+  {
+    "id": 738,
+    "translation": "مساعدة",
+    "word": "assistance"
+  },
+  {
+    "id": 739,
+    "translation": "يربط",
+    "word": "associate"
+  },
+  {
+    "id": 740,
+    "translation": "افتراض",
+    "word": "assumption"
+  },
+  {
+    "id": 741,
+    "translation": "تأكيد",
+    "word": "assurance"
+  },
+  {
+    "id": 742,
+    "translation": "يذهل",
+    "word": "astonish"
+  },
+  {
+    "id": 743,
+    "translation": "رياضي",
+    "word": "athlete"
+  },
+  {
+    "id": 744,
+    "translation": "جو",
+    "word": "atmosphere"
+  },
+  {
+    "id": 745,
+    "translation": "ذرة",
+    "word": "atom"
+  },
+  {
+    "id": 746,
+    "translation": "مرفق",
+    "word": "attachment"
+  },
+  {
+    "id": 747,
+    "translation": "إنجاز",
+    "word": "attainment"
+  },
+  {
+    "id": 748,
+    "translation": "حضور",
+    "word": "attendance"
+  },
+  {
+    "id": 749,
+    "translation": "موقف",
+    "word": "attitude"
+  },
+  {
+    "id": 750,
+    "translation": "محام",
+    "word": "attorney"
+  },
+  {
+    "id": 751,
+    "translation": "جذب",
+    "word": "attraction"
+  },
+  {
+    "id": 752,
+    "translation": "صفة",
+    "word": "attribute"
+  },
+  {
+    "id": 753,
+    "translation": "مزاد",
+    "word": "auction"
+  },
+  {
+    "id": 754,
+    "translation": "جمهور",
+    "word": "audience"
+  },
+  {
+    "id": 755,
+    "translation": "أصلي",
+    "word": "authentic"
+  },
+  {
+    "id": 756,
+    "translation": "سلطة",
+    "word": "authority"
+  },
+  {
+    "id": 757,
+    "translation": "تلقائي",
+    "word": "automatic"
+  },
+  {
+    "id": 758,
+    "translation": "سيارة",
+    "word": "automobile"
+  },
+  {
+    "id": 759,
+    "translation": "حكم ذاتي",
+    "word": "autonomy"
+  },
+  {
+    "id": 760,
+    "translation": "توفر",
+    "word": "availability"
+  },
+  {
+    "id": 761,
+    "translation": "انهيار جليدي",
+    "word": "avalanche"
+  },
+  {
+    "id": 762,
+    "translation": "متوسط",
+    "word": "average"
+  },
+  {
+    "id": 763,
+    "translation": "طيران",
+    "word": "aviation"
+  },
+  {
+    "id": 764,
+    "translation": "تجنب",
+    "word": "avoidance"
+  },
+  {
+    "id": 765,
+    "translation": "جائزة",
+    "word": "award"
+  },
+  {
+    "id": 766,
+    "translation": "وعي",
+    "word": "awareness"
+  },
+  {
+    "id": 767,
+    "translation": "محرج",
+    "word": "awkward"
+  },
+  {
+    "id": 768,
+    "translation": "محور",
+    "word": "axis"
+  },
+  {
+    "id": 769,
+    "translation": "عازب",
+    "word": "bachelor"
+  },
+  {
+    "id": 770,
+    "translation": "بكتيريا",
+    "word": "bacteria"
+  },
+  {
+    "id": 771,
+    "translation": "شارة",
+    "word": "badge"
+  },
+  {
+    "id": 772,
+    "translation": "كفالة",
+    "word": "bail"
+  },
+  {
+    "id": 773,
+    "translation": "توازن",
+    "word": "balance"
+  },
+  {
+    "id": 774,
+    "translation": "شرفة",
+    "word": "balcony"
+  },
+  {
+    "id": 775,
+    "translation": "تصويت",
+    "word": "ballot"
+  },
+  {
+    "id": 776,
+    "translation": "حظر",
+    "word": "ban"
+  },
+  {
+    "id": 777,
+    "translation": "ضمادة",
+    "word": "bandage"
+  },
+  {
+    "id": 778,
+    "translation": "إفلاس",
+    "word": "bankruptcy"
+  },
+  {
+    "id": 779,
+    "translation": "مأدبة",
+    "word": "banquet"
+  },
+  {
+    "id": 780,
+    "translation": "شواء",
+    "word": "barbecue"
+  },
+  {
+    "id": 781,
+    "translation": "صفقة",
+    "word": "bargain"
+  },
+  {
+    "id": 782,
+    "translation": "حظيرة",
+    "word": "barn"
+  },
+  {
+    "id": 783,
+    "translation": "برميل",
+    "word": "barrel"
+  },
+  {
+    "id": 784,
+    "translation": "حاجز",
+    "word": "barrier"
+  },
+  {
+    "id": 785,
+    "translation": "قبو",
+    "word": "basement"
+  },
+  {
+    "id": 786,
+    "translation": "حوض",
+    "word": "basin"
+  },
+  {
+    "id": 787,
+    "translation": "دفعة",
+    "word": "batch"
+  },
+  {
+    "id": 788,
+    "translation": "بطارية",
+    "word": "battery"
+  },
+  {
+    "id": 789,
+    "translation": "ساحة معركة",
+    "word": "battlefield"
+  },
+  {
+    "id": 790,
+    "translation": "شاطئ",
+    "word": "beach"
+  },
+  {
+    "id": 791,
+    "translation": "شعاع",
+    "word": "beam"
+  },
+  {
+    "id": 792,
+    "translation": "فول",
+    "word": "bean"
+  },
+  {
+    "id": 793,
+    "translation": "اتجاه",
+    "word": "bearing"
+  },
+  {
+    "id": 794,
+    "translation": "غرفة نوم",
+    "word": "bedroom"
+  },
+  {
+    "id": 795,
+    "translation": "نيابة",
+    "word": "behalf"
+  },
+  {
+    "id": 796,
+    "translation": "سلوك",
+    "word": "behavior"
+  },
+  {
+    "id": 797,
+    "translation": "محبوب",
+    "word": "beloved"
+  },
+  {
+    "id": 798,
+    "translation": "مقعد",
+    "word": "bench"
+  },
+  {
+    "id": 799,
+    "translation": "مفيد",
+    "word": "beneficial"
+  },
+  {
+    "id": 800,
+    "translation": "فائدة",
+    "word": "benefit"
+  },
+  {
+    "id": 801,
+    "translation": "يخون",
+    "word": "betray"
+  },
+  {
+    "id": 802,
+    "translation": "مشروب",
+    "word": "beverage"
+  },
+  {
+    "id": 803,
+    "translation": "تحيز",
+    "word": "bias"
+  },
+  {
+    "id": 804,
+    "translation": "مراجع",
+    "word": "bibliography"
+  },
+  {
+    "id": 805,
+    "translation": "عطاء",
+    "word": "bid"
+  },
+  {
+    "id": 806,
+    "translation": "سيرة ذاتية",
+    "word": "biography"
+  },
+  {
+    "id": 807,
+    "translation": "علم الأحياء",
+    "word": "biology"
+  },
+  {
+    "id": 808,
+    "translation": "مر",
+    "word": "bitter"
+  },
+  {
+    "id": 809,
+    "translation": "غريب",
+    "word": "bizarre"
+  },
+  {
+    "id": 810,
+    "translation": "شفرة",
+    "word": "blade"
+  },
+  {
+    "id": 811,
+    "translation": "لوم",
+    "word": "blame"
+  },
+  {
+    "id": 812,
+    "translation": "بطانية",
+    "word": "blanket"
+  },
+  {
+    "id": 813,
+    "translation": "انفجار",
+    "word": "blast"
+  },
+  {
+    "id": 814,
+    "translation": "ينزف",
+    "word": "bleed"
+  },
+  {
+    "id": 815,
+    "translation": "مزيج",
+    "word": "blend"
+  },
+  {
+    "id": 816,
+    "translation": "يبارك",
+    "word": "bless"
+  },
+  {
+    "id": 817,
+    "translation": "أعمى",
+    "word": "blind"
+  },
+  {
+    "id": 818,
+    "translation": "يومض",
+    "word": "blink"
+  },
+  {
+    "id": 819,
+    "translation": "عاصفة ثلجية",
+    "word": "blizzard"
+  },
+  {
+    "id": 820,
+    "translation": "حظر",
+    "word": "block"
+  },
+  {
+    "id": 821,
+    "translation": "يزهر",
+    "word": "bloom"
+  },
+  {
+    "id": 822,
+    "translation": "يزهر",
+    "word": "blossom"
+  },
+  {
+    "id": 823,
+    "translation": "ضبابية",
+    "word": "blur"
+  },
+  {
+    "id": 824,
+    "translation": "يتفاخر",
+    "word": "boast"
+  },
+  {
+    "id": 825,
+    "translation": "جريء",
+    "word": "bold"
+  },
+  {
+    "id": 826,
+    "translation": "ترباس",
+    "word": "bolt"
+  },
+  {
+    "id": 827,
+    "translation": "رابطة",
+    "word": "bond"
+  },
+  {
+    "id": 828,
+    "translation": "مكافأة",
+    "word": "bonus"
+  },
+  {
+    "id": 829,
+    "translation": "طفرة",
+    "word": "boom"
+  },
+  {
+    "id": 830,
+    "translation": "يعزز",
+    "word": "boost"
+  },
+  {
+    "id": 831,
+    "translation": "حدود",
+    "word": "border"
+  },
+  {
+    "id": 832,
+    "translation": "يزعج",
+    "word": "bother"
+  },
+  {
+    "id": 833,
+    "translation": "يرتد",
+    "word": "bounce"
+  },
+  {
+    "id": 834,
+    "translation": "حدود",
+    "word": "boundary"
+  },
+  {
+    "id": 835,
+    "translation": "ينحني",
+    "word": "bow"
+  },
+  {
+    "id": 836,
+    "translation": "مقاطعة",
+    "word": "boycott"
+  },
+  {
+    "id": 837,
+    "translation": "دعامة",
+    "word": "brace"
+  },
+  {
+    "id": 838,
+    "translation": "قوس",
+    "word": "bracket"
+  },
+  {
+    "id": 839,
+    "translation": "فرامل",
+    "word": "brake"
+  },
+  {
+    "id": 840,
+    "translation": "فرع",
+    "word": "branch"
+  },
+  {
+    "id": 841,
+    "translation": "علامة تجارية",
+    "word": "brand"
+  },
+  {
+    "id": 842,
+    "translation": "نحاس",
+    "word": "brass"
+  },
+  {
+    "id": 843,
+    "translation": "خرق",
+    "word": "breach"
+  },
+  {
+    "id": 844,
+    "translation": "انهيار",
+    "word": "breakdown"
+  },
+  {
+    "id": 845,
+    "translation": "اختراق",
+    "word": "breakthrough"
+  },
+  {
+    "id": 846,
+    "translation": "نفس",
+    "word": "breath"
+  },
+  {
+    "id": 847,
+    "translation": "سلالة",
+    "word": "breed"
+  },
+  {
+    "id": 848,
+    "translation": "نسيم",
+    "word": "breeze"
+  },
+  {
+    "id": 849,
+    "translation": "رشوة",
+    "word": "bribe"
+  },
+  {
+    "id": 850,
+    "translation": "طوبة",
+    "word": "brick"
+  },
+  {
+    "id": 851,
+    "translation": "عروس",
+    "word": "bride"
+  },
+  {
+    "id": 852,
+    "translation": "جسر",
+    "word": "bridge"
+  },
+  {
+    "id": 853,
+    "translation": "موجز",
+    "word": "brief"
+  },
+  {
+    "id": 854,
+    "translation": "رائع",
+    "word": "brilliant"
+  },
+  {
+    "id": 855,
+    "translation": "حافة",
+    "word": "brink"
+  },
+  {
+    "id": 856,
+    "translation": "نشيط",
+    "word": "brisk"
+  },
+  {
+    "id": 857,
+    "translation": "بث",
+    "word": "broadcast"
+  },
+  {
+    "id": 858,
+    "translation": "كتيب",
+    "word": "brochure"
+  },
+  {
+    "id": 859,
+    "translation": "برونز",
+    "word": "bronze"
+  },
+  {
+    "id": 860,
+    "translation": "حضنة",
+    "word": "brood"
+  },
+  {
+    "id": 861,
+    "translation": "يتصفح",
+    "word": "browse"
+  },
+  {
+    "id": 862,
+    "translation": "كدمة",
+    "word": "bruise"
+  },
+  {
+    "id": 863,
+    "translation": "فرشاة",
+    "word": "brush"
+  },
+  {
+    "id": 864,
+    "translation": "وحشي",
+    "word": "brutal"
+  },
+  {
+    "id": 865,
+    "translation": "فقاعة",
+    "word": "bubble"
+  },
+  {
+    "id": 866,
+    "translation": "دلو",
+    "word": "bucket"
+  },
+  {
+    "id": 868,
+    "translation": "مأدبة",
+    "word": "buffet"
+  },
+  {
+    "id": 869,
+    "translation": "خطأ",
+    "word": "bug"
+  },
+  {
+    "id": 870,
+    "translation": "لمبة",
+    "word": "bulb"
+  },
+  {
+    "id": 871,
+    "translation": "حجم",
+    "word": "bulk"
+  },
+  {
+    "id": 872,
+    "translation": "رصاصة",
+    "word": "bullet"
+  },
+  {
+    "id": 873,
+    "translation": "نشرة",
+    "word": "bulletin"
+  },
+  {
+    "id": 874,
+    "translation": "نتوء",
+    "word": "bump"
+  },
+  {
+    "id": 875,
+    "translation": "حزمة",
+    "word": "bunch"
+  },
+  {
+    "id": 876,
+    "translation": "حزمة",
+    "word": "bundle"
+  },
+  {
+    "id": 877,
+    "translation": "عبء",
+    "word": "burden"
+  },
+  {
+    "id": 878,
+    "translation": "مكتب",
+    "word": "bureau"
+  },
+  {
+    "id": 879,
+    "translation": "دفن",
+    "word": "burial"
+  },
+  {
+    "id": 880,
+    "translation": "انفجار",
+    "word": "burst"
+  },
+  {
+    "id": 881,
+    "translation": "جزار",
+    "word": "butcher"
+  },
+  {
+    "id": 882,
+    "translation": "فراشة",
+    "word": "butterfly"
+  },
+  {
+    "id": 883,
+    "translation": "طنين",
+    "word": "buzz"
+  },
+  {
+    "id": 884,
+    "translation": "يتجاوز",
+    "word": "bypass"
+  },
+  {
+    "id": 885,
+    "translation": "كابينة",
+    "word": "cabin"
+  },
+  {
+    "id": 886,
+    "translation": "خزانة",
+    "word": "cabinet"
+  },
+  {
+    "id": 887,
+    "translation": "كابل",
+    "word": "cable"
+  },
+  {
+    "id": 888,
+    "translation": "كافيتيريا",
+    "word": "cafeteria"
+  },
+  {
+    "id": 889,
+    "translation": "كالسيوم",
+    "word": "calcium"
+  },
+  {
+    "id": 890,
+    "translation": "يحسب",
+    "word": "calculate"
+  },
+  {
+    "id": 891,
+    "translation": "تقويم",
+    "word": "calendar"
+  },
+  {
+    "id": 892,
+    "translation": "هادئ",
+    "word": "calm"
+  },
+  {
+    "id": 893,
+    "translation": "سعرة حرارية",
+    "word": "calorie"
+  },
+  {
+    "id": 894,
+    "translation": "حملة",
+    "word": "campaign"
+  },
+  {
+    "id": 895,
+    "translation": "حرم جامعي",
+    "word": "campus"
+  },
+  {
+    "id": 896,
+    "translation": "قناة",
+    "word": "canal"
+  },
+  {
+    "id": 897,
+    "translation": "يلغي",
+    "word": "cancel"
+  },
+  {
+    "id": 898,
+    "translation": "سرطان",
+    "word": "cancer"
+  },
+  {
+    "id": 899,
+    "translation": "مرشح",
+    "word": "candidate"
+  },
+  {
+    "id": 900,
+    "translation": "شمعة",
+    "word": "candle"
+  },
+  {
+    "id": 901,
+    "translation": "مدفع",
+    "word": "cannon"
+  },
+  {
+    "id": 902,
+    "translation": "قماش",
+    "word": "canvas"
+  },
+  {
+    "id": 903,
+    "translation": "قادر",
+    "word": "capable"
+  },
+  {
+    "id": 904,
+    "translation": "سعة",
+    "word": "capacity"
+  },
+  {
+    "id": 905,
+    "translation": "رأس",
+    "word": "cape"
+  },
+  {
+    "id": 906,
+    "translation": "رأسمالية",
+    "word": "capitalism"
+  },
+  {
+    "id": 907,
+    "translation": "كبسولة",
+    "word": "capsule"
+  },
+  {
+    "id": 908,
+    "translation": "أسير",
+    "word": "captive"
+  },
+  {
+    "id": 909,
+    "translation": "أسر",
+    "word": "capture"
+  },
+  {
+    "id": 910,
+    "translation": "كربون",
+    "word": "carbon"
+  },
+  {
+    "id": 911,
+    "translation": "أساسي",
+    "word": "cardinal"
+  },
+  {
+    "id": 912,
+    "translation": "مهنة",
+    "word": "career"
+  },
+  {
+    "id": 913,
+    "translation": "مداعبة",
+    "word": "caress"
+  },
+  {
+    "id": 914,
+    "translation": "شحنة",
+    "word": "cargo"
+  },
+  {
+    "id": 915,
+    "translation": "ينحت",
+    "word": "carve"
+  },
+  {
+    "id": 916,
+    "translation": "ضحية",
+    "word": "casualty"
+  },
+  {
+    "id": 917,
+    "translation": "فهرس",
+    "word": "catalog"
+  },
+  {
+    "id": 918,
+    "translation": "كارثة",
+    "word": "catastrophe"
+  },
+  {
+    "id": 919,
+    "translation": "فئة",
+    "word": "category"
+  },
+  {
+    "id": 920,
+    "translation": "يوفر",
+    "word": "cater"
+  },
+  {
+    "id": 921,
+    "translation": "كاتدرائية",
+    "word": "cathedral"
+  },
+  {
+    "id": 922,
+    "translation": "ماشية",
+    "word": "cattle"
+  },
+  {
+    "id": 923,
+    "translation": "حذر",
+    "word": "caution"
+  },
+  {
+    "id": 924,
+    "translation": "كهف",
+    "word": "cave"
+  },
+  {
+    "id": 925,
+    "translation": "يتوقف",
+    "word": "cease"
+  },
+  {
+    "id": 926,
+    "translation": "مشهور",
+    "word": "celebrity"
+  },
+  {
+    "id": 927,
+    "translation": "قبو",
+    "word": "cellar"
+  },
+  {
+    "id": 928,
+    "translation": "مقبرة",
+    "word": "cemetery"
+  },
+  {
+    "id": 929,
+    "translation": "تعداد",
+    "word": "census"
+  },
+  {
+    "id": 930,
+    "translation": "قرن",
+    "word": "century"
+  },
+  {
+    "id": 931,
+    "translation": "حفل",
+    "word": "ceremony"
+  },
+  {
+    "id": 932,
+    "translation": "يقين",
+    "word": "certainty"
+  },
+  {
+    "id": 933,
+    "translation": "شهادة",
+    "word": "certificate"
+  },
+  {
+    "id": 934,
+    "translation": "تحدي",
+    "word": "challenge"
+  },
+  {
+    "id": 935,
+    "translation": "غرفة",
+    "word": "chamber"
+  },
+  {
+    "id": 936,
+    "translation": "بطل",
+    "word": "champion"
+  },
+  {
+    "id": 937,
+    "translation": "فوضى",
+    "word": "chaos"
+  },
+  {
+    "id": 938,
+    "translation": "صفة",
+    "word": "characteristic"
+  },
+  {
+    "id": 939,
+    "translation": "صدقة",
+    "word": "charity"
+  },
+  {
+    "id": 940,
+    "translation": "سحر",
+    "word": "charm"
+  },
+  {
+    "id": 941,
+    "translation": "ميثاق",
+    "word": "charter"
+  },
+  {
+    "id": 942,
+    "translation": "مطاردة",
+    "word": "chase"
+  },
+  {
+    "id": 943,
+    "translation": "هتاف",
+    "word": "cheer"
+  },
+  {
+    "id": 944,
+    "translation": "كيميائي",
+    "word": "chemical"
+  },
+  {
+    "id": 945,
+    "translation": "يعتز",
+    "word": "cherish"
+  },
+  {
+    "id": 946,
+    "translation": "يمضغ",
+    "word": "chew"
+  },
+  {
+    "id": 947,
+    "translation": "رئيس",
+    "word": "chief"
+  },
+  {
+    "id": 948,
+    "translation": "قشعريرة",
+    "word": "chill"
+  },
+  {
+    "id": 949,
+    "translation": "مدخنة",
+    "word": "chimney"
+  },
+  {
+    "id": 950,
+    "translation": "ذقن",
+    "word": "chin"
+  },
+  {
+    "id": 951,
+    "translation": "شريحة",
+    "word": "chip"
+  },
+  {
+    "id": 952,
+    "translation": "يخنق",
+    "word": "choke"
+  },
+  {
+    "id": 953,
+    "translation": "يقطع",
+    "word": "chop"
+  },
+  {
+    "id": 954,
+    "translation": "جوقة",
+    "word": "chorus"
+  },
+  {
+    "id": 955,
+    "translation": "مزمن",
+    "word": "chronic"
+  },
+  {
+    "id": 956,
+    "translation": "قطعة",
+    "word": "chunk"
+  },
+  {
+    "id": 957,
+    "translation": "يدور",
+    "word": "circulate"
+  },
+  {
+    "id": 958,
+    "translation": "ظرف",
+    "word": "circumstance"
+  },
+  {
+    "id": 959,
+    "translation": "مواطن",
+    "word": "citizen"
+  },
+  {
+    "id": 960,
+    "translation": "حضارة",
+    "word": "civilization"
+  },
+  {
+    "id": 961,
+    "translation": "يدعي",
+    "word": "claim"
+  },
+  {
+    "id": 962,
+    "translation": "وضوح",
+    "word": "clarity"
+  },
+  {
+    "id": 963,
+    "translation": "مواجهة",
+    "word": "clash"
+  },
+  {
+    "id": 964,
+    "translation": "كلاسيكي",
+    "word": "classic"
+  },
+  {
+    "id": 965,
+    "translation": "بند",
+    "word": "clause"
+  },
+  {
+    "id": 966,
+    "translation": "طين",
+    "word": "clay"
+  },
+  {
+    "id": 967,
+    "translation": "نقرة",
+    "word": "click"
+  },
+  {
+    "id": 968,
+    "translation": "عميل",
+    "word": "client"
+  },
+  {
+    "id": 969,
+    "translation": "جرف",
+    "word": "cliff"
+  },
+  {
+    "id": 970,
+    "translation": "مناخ",
+    "word": "climate"
+  },
+  {
+    "id": 971,
+    "translation": "عيادة",
+    "word": "clinic"
+  },
+  {
+    "id": 972,
+    "translation": "مشبك",
+    "word": "clip"
+  },
+  {
+    "id": 973,
+    "translation": "باتجاه عقارب الساعة",
+    "word": "clockwise"
+  },
+  {
+    "id": 974,
+    "translation": "خزانة",
+    "word": "closet"
+  },
+  {
+    "id": 975,
+    "translation": "إغلاق",
+    "word": "closure"
+  },
+  {
+    "id": 976,
+    "translation": "قماش",
+    "word": "cloth"
+  },
+  {
+    "id": 977,
+    "translation": "غائم",
+    "word": "cloudy"
+  },
+  {
+    "id": 978,
+    "translation": "دليل",
+    "word": "clue"
+  },
+  {
+    "id": 979,
+    "translation": "مجموعة",
+    "word": "cluster"
+  },
+  {
+    "id": 980,
+    "translation": "قابض",
+    "word": "clutch"
+  },
+  {
+    "id": 981,
+    "translation": "مدرب",
+    "word": "coach"
+  },
+  {
+    "id": 982,
+    "translation": "خشن",
+    "word": "coarse"
+  },
+  {
+    "id": 983,
+    "translation": "رمز",
+    "word": "code"
+  },
+  {
+    "id": 984,
+    "translation": "متماسك",
+    "word": "coherent"
+  },
+  {
+    "id": 985,
+    "translation": "ملف",
+    "word": "coil"
+  },
+  {
+    "id": 986,
+    "translation": "صدفة",
+    "word": "coincidence"
+  },
+  {
+    "id": 987,
+    "translation": "يتعاون",
+    "word": "collaborate"
+  },
+  {
+    "id": 988,
+    "translation": "انهيار",
+    "word": "collapse"
+  },
+  {
+    "id": 989,
+    "translation": "زميل",
+    "word": "colleague"
+  },
+  {
+    "id": 990,
+    "translation": "مجموعة",
+    "word": "collection"
+  },
+  {
+    "id": 991,
+    "translation": "يصطدم",
+    "word": "collide"
+  },
+  {
+    "id": 992,
+    "translation": "استعماري",
+    "word": "colonial"
+  },
+  {
+    "id": 993,
+    "translation": "عمود",
+    "word": "column"
+  },
+  {
+    "id": 994,
+    "translation": "قتال",
+    "word": "combat"
+  },
+  {
+    "id": 995,
+    "translation": "مزيج",
+    "word": "combination"
+  },
+  {
+    "id": 996,
+    "translation": "كوميديا",
+    "word": "comedy"
+  },
+  {
+    "id": 997,
+    "translation": "مذنب",
+    "word": "comet"
+  },
+  {
+    "id": 998,
+    "translation": "راحة",
+    "word": "comfort"
+  },
+  {
+    "id": 999,
+    "translation": "كوميدي",
+    "word": "comic"
+  },
+  {
+    "id": 1000,
+    "translation": "أمر",
+    "word": "command"
+  },
+  {
+    "id": 1001,
+    "translation": "ميزانية",
+    "word": "budget"
+  },
+  {
+    "id": 1002,
+    "translation": "يهجر / يتخلى عن",
+    "word": "abandon"
+  },
+  {
+    "id": 1003,
+    "translation": "قدرة",
+    "word": "ability"
+  },
+  {
+    "id": 1004,
+    "translation": "غير طبيعي",
+    "word": "abnormal"
+  },
+  {
+    "id": 1005,
+    "translation": "يلغي",
+    "word": "abolish"
+  },
+  {
+    "id": 1006,
+    "translation": "إجهاض",
+    "word": "abortion"
+  },
+  {
+    "id": 1007,
+    "translation": "في الخارج",
+    "word": "abroad"
+  },
+  {
+    "id": 1008,
+    "translation": "غياب",
+    "word": "absence"
+  },
+  {
+    "id": 1009,
+    "translation": "مطلق",
+    "word": "absolute"
+  },
+  {
+    "id": 1010,
+    "translation": "يمتص",
+    "word": "absorb"
+  },
+  {
+    "id": 1011,
+    "translation": "مجرد",
+    "word": "abstract"
+  },
+  {
+    "id": 1012,
+    "translation": "عبثي",
+    "word": "absurd"
+  },
+  {
+    "id": 1013,
+    "translation": "وفرة",
+    "word": "abundance"
+  },
+  {
+    "id": 1014,
+    "translation": "إساءة",
+    "word": "abuse"
+  },
+  {
+    "id": 1015,
+    "translation": "أكاديمية",
+    "word": "academy"
+  },
+  {
+    "id": 1016,
+    "translation": "يسرع",
+    "word": "accelerate"
+  },
+  {
+    "id": 1017,
+    "translation": "لهجة",
+    "word": "accent"
+  },
+  {
+    "id": 1018,
+    "translation": "قبول",
+    "word": "acceptance"
+  },
+  {
+    "id": 1019,
+    "translation": "ملحق",
+    "word": "accessory"
+  },
+  {
+    "id": 1020,
+    "translation": "حادث",
+    "word": "accident"
+  },
+  {
+    "id": 1021,
+    "translation": "يستوعب",
+    "word": "accommodate"
+  },
+  {
+    "id": 1022,
+    "translation": "يرافق",
+    "word": "accompany"
+  },
+  {
+    "id": 1023,
+    "translation": "ينجز",
+    "word": "accomplish"
+  },
+  {
+    "id": 1024,
+    "translation": "وفقًا",
+    "word": "accordance"
+  },
+  {
+    "id": 1025,
+    "translation": "مساءلة",
+    "word": "accountability"
+  },
+  {
+    "id": 1026,
+    "translation": "يتراكم",
+    "word": "accumulate"
+  },
+  {
+    "id": 1027,
+    "translation": "دقة",
+    "word": "accuracy"
+  },
+  {
+    "id": 1028,
+    "translation": "يتهم",
+    "word": "accuse"
+  },
+  {
+    "id": 1029,
+    "translation": "يحقق",
+    "word": "achieve"
+  },
+  {
+    "id": 1030,
+    "translation": "حمض",
+    "word": "acid"
+  },
+  {
+    "id": 1031,
+    "translation": "يعترف",
+    "word": "acknowledge"
+  },
+  {
+    "id": 1032,
+    "translation": "اكتساب",
+    "word": "acquire"
+  },
+  {
+    "id": 1033,
+    "translation": "اكتساب",
+    "word": "acquisition"
+  },
+  {
+    "id": 1034,
+    "translation": "فدان",
+    "word": "acre"
+  },
+  {
+    "id": 1035,
+    "translation": "تفعيل",
+    "word": "activate"
+  },
+  {
+    "id": 1036,
+    "translation": "ناشط",
+    "word": "activist"
+  },
+  {
+    "id": 1037,
+    "translation": "حاد",
+    "word": "acute"
+  },
+  {
+    "id": 1038,
+    "translation": "تكيف",
+    "word": "adaptation"
+  },
+  {
+    "id": 1039,
+    "translation": "إدمان",
+    "word": "addiction"
+  },
+  {
+    "id": 1040,
+    "translation": "كاف",
+    "word": "adequate"
+  },
+  {
+    "id": 1041,
+    "translation": "مجاور",
+    "word": "adjacent"
+  },
+  {
+    "id": 1042,
+    "translation": "تعديل",
+    "word": "adjustment"
+  },
+  {
+    "id": 1043,
+    "translation": "إدارة",
+    "word": "administration"
+  },
+  {
+    "id": 1044,
+    "translation": "يعجب",
+    "word": "admire"
+  },
+  {
+    "id": 1045,
+    "translation": "قبول",
+    "word": "admission"
+  },
+  {
+    "id": 1046,
+    "translation": "مأدبة",
+    "word": "buffet"
+  },
+  {
+    "id": 1047,
+    "translation": "خطأ",
+    "word": "bug"
+  },
+  {
+    "id": 1048,
+    "translation": "لمبة",
+    "word": "bulb"
+  },
+  {
+    "id": 1049,
+    "translation": "حجم",
+    "word": "bulk"
+  },
+  {
+    "id": 1050,
+    "translation": "رصاصة",
+    "word": "bullet"
+  },
+  {
+    "id": 1051,
+    "translation": "نشرة",
+    "word": "bulletin"
+  },
+  {
+    "id": 1052,
+    "translation": "نتوء",
+    "word": "bump"
+  },
+  {
+    "id": 1053,
+    "translation": "حزمة",
+    "word": "bunch"
+  },
+  {
+    "id": 1054,
+    "translation": "حزمة",
+    "word": "bundle"
+  },
+  {
+    "id": 1055,
+    "translation": "عبء",
+    "word": "burden"
+  },
+  {
+    "id": 1056,
+    "translation": "مكتب",
+    "word": "bureau"
+  },
+  {
+    "id": 1057,
+    "translation": "دفن",
+    "word": "burial"
+  },
+  {
+    "id": 1058,
+    "translation": "انفجار",
+    "word": "burst"
+  },
+  {
+    "id": 1059,
+    "translation": "جزار",
+    "word": "butcher"
+  },
+  {
+    "id": 1060,
+    "translation": "فراشة",
+    "word": "butterfly"
+  },
+  {
+    "id": 1061,
+    "translation": "طنين",
+    "word": "buzz"
+  },
+  {
+    "id": 1062,
+    "translation": "يتجاوز",
+    "word": "bypass"
+  },
+  {
+    "id": 1063,
+    "translation": "كابينة",
+    "word": "cabin"
+  },
+  {
+    "id": 1064,
+    "translation": "خزانة",
+    "word": "cabinet"
+  },
+  {
+    "id": 1065,
+    "translation": "كابل",
+    "word": "cable"
+  },
+  {
+    "id": 1066,
+    "translation": "كافيتيريا",
+    "word": "cafeteria"
+  },
+  {
+    "id": 1067,
+    "translation": "كالسيوم",
+    "word": "calcium"
+  },
+  {
+    "id": 1068,
+    "translation": "يحسب",
+    "word": "calculate"
+  },
+  {
+    "id": 1069,
+    "translation": "تقويم",
+    "word": "calendar"
+  },
+  {
+    "id": 1070,
+    "translation": "هادئ",
+    "word": "calm"
+  },
+  {
+    "id": 1071,
+    "translation": "سعرة حرارية",
+    "word": "calorie"
+  },
+  {
+    "id": 1072,
+    "translation": "حملة",
+    "word": "campaign"
+  },
+  {
+    "id": 1073,
+    "translation": "حرم جامعي",
+    "word": "campus"
+  },
+  {
+    "id": 1074,
+    "translation": "قناة",
+    "word": "canal"
+  },
+  {
+    "id": 1075,
+    "translation": "يلغي",
+    "word": "cancel"
+  },
+  {
+    "id": 1076,
+    "translation": "سرطان",
+    "word": "cancer"
+  },
+  {
+    "id": 1077,
+    "translation": "مرشح",
+    "word": "candidate"
+  },
+  {
+    "id": 1078,
+    "translation": "شمعة",
+    "word": "candle"
+  },
+  {
+    "id": 1079,
+    "translation": "مدفع",
+    "word": "cannon"
+  },
+  {
+    "id": 1080,
+    "translation": "قماش",
+    "word": "canvas"
+  },
+  {
+    "id": 1081,
+    "translation": "قادر",
+    "word": "capable"
+  },
+  {
+    "id": 1082,
+    "translation": "سعة",
+    "word": "capacity"
+  },
+  {
+    "id": 1083,
+    "translation": "رأس",
+    "word": "cape"
+  },
+  {
+    "id": 1084,
+    "translation": "رأسمالية",
+    "word": "capitalism"
+  },
+  {
+    "id": 1085,
+    "translation": "كبسولة",
+    "word": "capsule"
+  },
+  {
+    "id": 1086,
+    "translation": "أسير",
+    "word": "captive"
+  },
+  {
+    "id": 1087,
+    "translation": "أسر",
+    "word": "capture"
+  },
+  {
+    "id": 1088,
+    "translation": "كربون",
+    "word": "carbon"
+  },
+  {
+    "id": 1089,
+    "translation": "أساسي",
+    "word": "cardinal"
+  },
+  {
+    "id": 1090,
+    "translation": "مهنة",
+    "word": "career"
+  },
+  {
+    "id": 1091,
+    "translation": "مداعبة",
+    "word": "caress"
+  },
+  {
+    "id": 1092,
+    "translation": "شحنة",
+    "word": "cargo"
+  },
+  {
+    "id": 1093,
+    "translation": "ينحت",
+    "word": "carve"
+  },
+  {
+    "id": 1094,
+    "translation": "ضحية",
+    "word": "casualty"
+  },
+  {
+    "id": 1095,
+    "translation": "فهرس",
+    "word": "catalog"
+  },
+  {
+    "id": 1096,
+    "translation": "كارثة",
+    "word": "catastrophe"
+  },
+  {
+    "id": 1097,
+    "translation": "فئة",
+    "word": "category"
+  },
+  {
+    "id": 1098,
+    "translation": "يوفر",
+    "word": "cater"
+  }
+]

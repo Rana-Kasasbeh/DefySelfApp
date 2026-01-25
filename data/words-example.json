@@ -1,0 +1,182 @@
+[
+  {
+    "wordId": "word_001",
+    "word": "apple",
+    "translation": "تفاحة",
+    "pronunciation": "ˈæpəl",
+    "category": "basic",
+    "difficulty": 1,
+    "groupNumber": 1,
+    "examples": [
+      {
+        "english": "I eat an apple every day",
+        "arabic": "أنا أأكل تفاحة كل يوم"
+      }
+    ],
+    "synonyms": ["fruit"],
+    "antonyms": [],
+    "isActive": true
+  },
+  {
+    "wordId": "word_002",
+    "word": "book",
+    "translation": "كتاب",
+    "pronunciation": "bʊk",
+    "category": "basic",
+    "difficulty": 1,
+    "groupNumber": 1,
+    "examples": [
+      {
+        "english": "I read a book",
+        "arabic": "أنا أقرأ كتاباً"
+      }
+    ],
+    "synonyms": ["novel", "textbook"],
+    "antonyms": [],
+    "isActive": true
+  },
+  {
+    "wordId": "word_003",
+    "word": "house",
+    "translation": "منزل",
+    "pronunciation": "haʊs",
+    "category": "basic",
+    "difficulty": 1,
+    "groupNumber": 1,
+    "examples": [
+      {
+        "english": "My house is big",
+        "arabic": "منزلي كبير"
+      }
+    ],
+    "synonyms": ["home", "residence"],
+    "antonyms": [],
+    "isActive": true
+  },
+  {
+    "wordId": "word_004",
+    "word": "car",
+    "translation": "سيارة",
+    "pronunciation": "kɑːr",
+    "category": "basic",
+    "difficulty": 1,
+    "groupNumber": 1,
+    "examples": [
+      {
+        "english": "I drive a car",
+        "arabic": "أنا أقود سيارة"
+      }
+    ],
+    "synonyms": ["automobile", "vehicle"],
+    "antonyms": [],
+    "isActive": true
+  },
+  {
+    "wordId": "word_005",
+    "word": "computer",
+    "translation": "حاسوب",
+    "pronunciation": "kəmˈpjuːtər",
+    "category": "basic",
+    "difficulty": 1,
+    "groupNumber": 1,
+    "examples": [
+      {
+        "english": "I use a computer",
+        "arabic": "أنا أستخدم حاسوباً"
+      }
+    ],
+    "synonyms": ["PC", "laptop"],
+    "antonyms": [],
+    "isActive": true
+  },
+  {
+    "wordId": "word_006",
+    "word": "school",
+    "translation": "مدرسة",
+    "pronunciation": "skuːl",
+    "category": "basic",
+    "difficulty": 1,
+    "groupNumber": 1,
+    "examples": [
+      {
+        "english": "Children go to school",
+        "arabic": "الأطفال يذهبون للمدرسة"
+      }
+    ],
+    "synonyms": ["academy", "college"],
+    "antonyms": [],
+    "isActive": true
+  },
+  {
+    "wordId": "word_007",
+    "word": "teacher",
+    "translation": "معلم",
+    "pronunciation": "ˈtiːtʃər",
+    "category": "basic",
+    "difficulty": 1,
+    "groupNumber": 1,
+    "examples": [
+      {
+        "english": "The teacher teaches students",
+        "arabic": "المعلم يعلم الطلاب"
+      }
+    ],
+    "synonyms": ["instructor", "educator"],
+    "antonyms": [],
+    "isActive": true
+  },
+  {
+    "wordId": "word_008",
+    "word": "student",
+    "translation": "طالب",
+    "pronunciation": "ˈstjuːdənt",
+    "category": "basic",
+    "difficulty": 1,
+    "groupNumber": 1,
+    "examples": [
+      {
+        "english": "The student studies hard",
+        "arabic": "الطالب يدرس بجد"
+      }
+    ],
+    "synonyms": ["pupil", "learner"],
+    "antonyms": [],
+    "isActive": true
+  },
+  {
+    "wordId": "word_009",
+    "word": "friend",
+    "translation": "صديق",
+    "pronunciation": "frend",
+    "category": "basic",
+    "difficulty": 1,
+    "groupNumber": 1,
+    "examples": [
+      {
+        "english": "He is my friend",
+        "arabic": "هو صديقي"
+      }
+    ],
+    "synonyms": ["buddy", "pal"],
+    "antonyms": ["enemy"],
+    "isActive": true
+  },
+  {
+    "wordId": "word_010",
+    "word": "family",
+    "translation": "عائلة",
+    "pronunciation": "ˈfæməli",
+    "category": "basic",
+    "difficulty": 1,
+    "groupNumber": 1,
+    "examples": [
+      {
+        "english": "I love my family",
+        "arabic": "أحب عائلتي"
+      }
+    ],
+    "synonyms": ["household", "relatives"],
+    "antonyms": [],
+    "isActive": true
+  }
+]
