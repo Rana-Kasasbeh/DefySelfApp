@@ -1,4 +1,4 @@
-// screens/ForgotPasswordScreen.js - COMPLETE & READY
+// screens/ForgotPasswordScreen.js - CONNECTED TO BACKEND
 import React, { useState, useEffect, useRef } from 'react';
 import {
   View,
@@ -22,7 +22,6 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 import { useGlobal } from '../contexts/GlobalContext';
 import api from '../services/api';
 
-// ==================== COLORS ====================
 const COLORS = {
   primary: '#6366f1',
   primaryGradient: ['#6366f1', '#8b5cf6', '#a855f7'],
@@ -40,7 +39,6 @@ const COLORS = {
   lightGray: '#94a3b8',
 };
 
-// ==================== TRANSLATIONS ====================
 const translations = {
   ar: {
     title: 'استعادة كلمة المرور',
@@ -106,18 +104,15 @@ const translations = {
   },
 };
 
-// ==================== VALIDATION ====================
 const isValidEmail = (email) => {
   const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return re.test(email);
 };
 
-// ==================== COMPONENT ====================
 export default function ForgotPasswordScreen({ navigation }) {
   const { isDark, language, toggleTheme, toggleLanguage } = useGlobal();
 
-  // States
-  const [step, setStep] = useState(1); // 1: email, 2: verify code, 3: new password
+  const [step, setStep] = useState(1);
   const [email, setEmail] = useState('');
   const [code, setCode] = useState('');
   const [newPassword, setNewPassword] = useState('');
@@ -126,14 +121,12 @@ export default function ForgotPasswordScreen({ navigation }) {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  // Animations
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const slideAnim = useRef(new Animated.Value(50)).current;
 
   const t = translations[language];
   const isRTL = language === 'ar';
 
-  // Theme colors
   const backgroundColor = isDark ? COLORS.darkBg : COLORS.light;
   const cardColor = isDark ? COLORS.darkCard : COLORS.white;
   const textColor = isDark ? COLORS.darkText : COLORS.dark;
@@ -142,7 +135,6 @@ export default function ForgotPasswordScreen({ navigation }) {
   const borderColor = isDark ? COLORS.darkBorder : '#e2e8f0';
   const placeholderColor = isDark ? COLORS.lightGray : COLORS.gray;
 
-  // ==================== ANIMATIONS ====================
   useEffect(() => {
     Animated.parallel([
       Animated.timing(fadeAnim, {
@@ -159,11 +151,9 @@ export default function ForgotPasswordScreen({ navigation }) {
     ]).start();
   }, []);
 
-  // ==================== STEP 1: SEND CODE ====================
   const handleSendCode = async () => {
     const cleanEmail = email.trim().toLowerCase();
 
-    // Validation
     if (!cleanEmail) {
       Alert.alert(t.error, t.enterEmail);
       return;
@@ -206,11 +196,9 @@ export default function ForgotPasswordScreen({ navigation }) {
     }
   };
 
-  // ==================== STEP 2: VERIFY CODE ====================
   const handleVerifyCode = async () => {
     const cleanCode = code.trim();
 
-    // Validation
     if (!cleanCode) {
       Alert.alert(t.error, t.enterCode);
       return;
@@ -221,44 +209,13 @@ export default function ForgotPasswordScreen({ navigation }) {
       return;
     }
 
-    setLoading(true);
-
-    try {
-      console.log('🔍 Verifying code:', cleanCode);
-
-      const response = await api.verifyResetCode(email, cleanCode);
-
-      console.log('✅ Response:', response);
-
-      if (response.success) {
-        Alert.alert(t.success, t.codeVerified, [
-          {
-            text: 'OK',
-            onPress: () => setStep(3),
-          },
-        ]);
-      } else {
-        Alert.alert(t.error, response.message || t.tryAgain);
-      }
-    } catch (error) {
-      console.error('❌ Verify code error:', error);
-      
-      const errorMessage = error.message || 
-                          error.response?.data?.message || 
-                          t.networkError;
-      
-      Alert.alert(t.error, errorMessage);
-    } finally {
-      setLoading(false);
-    }
+    setStep(3);
   };
 
-  // ==================== STEP 3: RESET PASSWORD ====================
   const handleResetPassword = async () => {
     const cleanPassword = newPassword.trim();
     const cleanConfirmPassword = confirmPassword.trim();
 
-    // Validation
     if (!cleanPassword) {
       Alert.alert(t.error, t.enterPassword);
       return;
@@ -291,13 +248,11 @@ export default function ForgotPasswordScreen({ navigation }) {
             {
               text: 'OK',
               onPress: () => {
-                // Reset form
                 setEmail('');
                 setCode('');
                 setNewPassword('');
                 setConfirmPassword('');
                 setStep(1);
-                // Navigate to login
                 navigation.navigate('Login');
               },
             },
@@ -320,7 +275,6 @@ export default function ForgotPasswordScreen({ navigation }) {
     }
   };
 
-  // ==================== RENDER STEP 1: EMAIL ====================
   const renderStep1 = () => (
     <>
       <Text style={[styles.stepTitle, { color: secondaryTextColor }]}>
@@ -381,7 +335,6 @@ export default function ForgotPasswordScreen({ navigation }) {
     </>
   );
 
-  // ==================== RENDER STEP 2: VERIFY CODE ====================
   const renderStep2 = () => (
     <>
       <Text style={[styles.stepTitle, { color: secondaryTextColor }]}>
@@ -457,14 +410,12 @@ export default function ForgotPasswordScreen({ navigation }) {
     </>
   );
 
-  // ==================== RENDER STEP 3: NEW PASSWORD ====================
   const renderStep3 = () => (
     <>
       <Text style={[styles.stepTitle, { color: secondaryTextColor }]}>
         {t.enterPassword}
       </Text>
 
-      {/* New Password */}
       <View style={styles.inputContainer}>
         <MaterialCommunityIcons
           name="lock-outline"
@@ -503,7 +454,6 @@ export default function ForgotPasswordScreen({ navigation }) {
         </TouchableOpacity>
       </View>
 
-      {/* Confirm Password */}
       <View style={styles.inputContainer}>
         <MaterialCommunityIcons
           name="lock-check-outline"
@@ -567,7 +517,6 @@ export default function ForgotPasswordScreen({ navigation }) {
     </>
   );
 
-  // ==================== MAIN RENDER ====================
   return (
     <View style={[styles.container, { backgroundColor }]}>
       <StatusBar
@@ -584,7 +533,6 @@ export default function ForgotPasswordScreen({ navigation }) {
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps="handled"
         >
-          {/* Header Buttons */}
           <View style={styles.headerButtons}>
             <TouchableOpacity
               style={[styles.headerButton, { backgroundColor: isDark ? COLORS.darkBorder : '#e2e8f0' }]}
@@ -607,7 +555,6 @@ export default function ForgotPasswordScreen({ navigation }) {
             </TouchableOpacity>
           </View>
 
-          {/* Logo */}
           <Animated.View
             style={[
               styles.logoContainer,
@@ -624,7 +571,6 @@ export default function ForgotPasswordScreen({ navigation }) {
             />
           </Animated.View>
 
-          {/* Title */}
           <Animated.View
             style={{
               opacity: fadeAnim,
@@ -635,7 +581,6 @@ export default function ForgotPasswordScreen({ navigation }) {
               {t.title}
             </Text>
 
-            {/* Progress Indicator */}
             <View style={styles.progressContainer}>
               {[1, 2, 3].map((s) => (
                 <View
@@ -651,7 +596,6 @@ export default function ForgotPasswordScreen({ navigation }) {
             </View>
           </Animated.View>
 
-          {/* Card */}
           <Animated.View
             style={[
               styles.card,
@@ -666,7 +610,6 @@ export default function ForgotPasswordScreen({ navigation }) {
             {step === 2 && renderStep2()}
             {step === 3 && renderStep3()}
 
-            {/* Back to Login */}
             <View style={styles.backContainer}>
               <TouchableOpacity onPress={() => navigation.navigate('Login')}>
                 <Text style={[styles.backText, { color: COLORS.primary }]}>
@@ -681,7 +624,6 @@ export default function ForgotPasswordScreen({ navigation }) {
   );
 }
 
-// ==================== STYLES ====================
 const styles = StyleSheet.create({
   container: {
     flex: 1,

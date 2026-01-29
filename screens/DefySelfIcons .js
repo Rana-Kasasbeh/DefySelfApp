@@ -1,4 +1,4 @@
-// screens/DefySelfIcons.js - 100% JAVASCRIPT - NO TYPESCRIPT
+// screens/DefySelfIcons.js - CONNECTED TO BACKEND
 import React, { useState, useRef, useEffect } from 'react';
 import {
   View,
@@ -134,6 +134,12 @@ export default function DefySelfIcons() {
       if (response.success) {
         setUserEmail(response.user.email);
         setUserName(response.user.name);
+        
+        if (response.user.settings) {
+          setNotificationsEnabled(response.user.settings.notificationsEnabled !== false);
+          setSoundEnabled(response.user.settings.soundEnabled !== false);
+        }
+        
         console.log('✅ User data loaded:', response.user.email);
       }
     } catch (error) {
@@ -144,18 +150,13 @@ export default function DefySelfIcons() {
     }
   };
 
-  useEffect(() => {
-    saveSettings();
-  }, [notificationsEnabled, soundEnabled]);
-
   const loadSettings = async () => {
     try {
       const [savedNotifications, savedSound] = await Promise.all([
         AsyncStorage.getItem('notifications'),
         AsyncStorage.getItem('sound'),
       ]);
-      if (savedNotifications)
-        setNotificationsEnabled(savedNotifications === 'true');
+      if (savedNotifications) setNotificationsEnabled(savedNotifications === 'true');
       if (savedSound) setSoundEnabled(savedSound === 'true');
     } catch (error) {
       console.error('Error loading settings:', error);
@@ -168,6 +169,8 @@ export default function DefySelfIcons() {
         AsyncStorage.setItem('notifications', notificationsEnabled.toString()),
         AsyncStorage.setItem('sound', soundEnabled.toString()),
       ]);
+      
+      await api.updateSettings(soundEnabled, notificationsEnabled);
     } catch (error) {
       console.error('Error saving settings:', error);
     }
@@ -316,6 +319,7 @@ export default function DefySelfIcons() {
     setNotificationsEnabled(v);
     try {
       await AsyncStorage.setItem('notifications', v.toString());
+      await api.updateSettings(soundEnabled, v);
     } catch (e) {
       console.error(e);
     }
@@ -325,6 +329,7 @@ export default function DefySelfIcons() {
     setSoundEnabled(v);
     try {
       await AsyncStorage.setItem('sound', v.toString());
+      await api.updateSettings(v, notificationsEnabled);
     } catch (e) {
       console.error(e);
     }

@@ -19,9 +19,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { LinearGradient } from 'expo-linear-gradient';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import axios from 'axios';
 
 import { useGlobal } from '../contexts/GlobalContext';
-import api from '../services/api';
+
+const API_URL = 'https://defyself-backend-043eac13f465.herokuapp.com/api';
 
 const COLORS = {
   primary: '#6366f1',
@@ -75,7 +77,7 @@ const translations = {
 };
 
 export default function LoginScreen({ navigation }) {
-  const { isDark, language, toggleTheme, toggleLanguage } = useGlobal();
+  const { isDark, language, toggleTheme, toggleLanguage, setUser } = useGlobal();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -98,10 +100,8 @@ export default function LoginScreen({ navigation }) {
   const placeholderColor = isDark ? COLORS.lightGray : COLORS.gray;
 
   useEffect(() => {
-    // Load saved email if exists
     loadSavedEmail();
 
-    // Animations
     Animated.parallel([
       Animated.timing(fadeAnim, {
         toValue: 1,
@@ -133,7 +133,6 @@ export default function LoginScreen({ navigation }) {
     const cleanEmail = email.trim().toLowerCase();
     const cleanPassword = password.trim();
 
-    // Validation
     if (!cleanEmail) {
       Alert.alert(t.error, t.enterEmail);
       return;
@@ -150,26 +149,45 @@ export default function LoginScreen({ navigation }) {
       console.log('🔐 Attempting login...');
       console.log('📧 Email:', cleanEmail);
 
-      // Call API login
-      const response = await api.login(cleanEmail, cleanPassword);
+      const response = await axios.post(`${API_URL}/login`, {
+        email: cleanEmail,
+        password: cleanPassword,
+      });
 
-      if (response.success) {
+      if (response.data.success) {
         console.log('✅ Login successful');
-        console.log('👤 User:', response.user);
+        console.log('👤 User:', response.data.user);
+        console.log('🔑 Token:', response.data.token);
 
-        // Save email if remember me is checked
+        await AsyncStorage.setItem('@auth_token', response.data.token);
+        await AsyncStorage.setItem('@user_data', JSON.stringify(response.data.user));
+
+        if (setUser) {
+          setUser(response.data.user);
+        }
+
         if (rememberMe) {
           await AsyncStorage.setItem('@last_email', cleanEmail);
         } else {
           await AsyncStorage.removeItem('@last_email');
         }
 
-        // Navigate to home
+        Alert.alert(t.success, t.loginSuccess);
         navigation.replace('DefySelfIcons');
       }
     } catch (error) {
       console.error('❌ Login error:', error);
-      Alert.alert(t.error, error.message || t.invalidCredentials);
+      
+      let errorMessage = t.invalidCredentials;
+      if (error.response?.data?.message) {
+        errorMessage = error.response.data.message;
+      } else if (error.response?.data?.errors) {
+        errorMessage = error.response.data.errors.join(', ');
+      } else if (error.message) {
+        errorMessage = error.message;
+      }
+      
+      Alert.alert(t.error, errorMessage);
     } finally {
       setLoading(false);
     }
@@ -191,7 +209,6 @@ export default function LoginScreen({ navigation }) {
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps="handled"
         >
-          {/* Header Buttons */}
           <View style={styles.headerButtons}>
             <TouchableOpacity
               style={[styles.headerButton, { backgroundColor: isDark ? COLORS.darkBorder : '#e2e8f0' }]}
@@ -214,7 +231,6 @@ export default function LoginScreen({ navigation }) {
             </TouchableOpacity>
           </View>
 
-          {/* Logo */}
           <Animated.View
             style={[
               styles.logoContainer,
@@ -231,7 +247,6 @@ export default function LoginScreen({ navigation }) {
             />
           </Animated.View>
 
-          {/* Title */}
           <Animated.View
             style={{
               opacity: fadeAnim,
@@ -246,7 +261,6 @@ export default function LoginScreen({ navigation }) {
             </Text>
           </Animated.View>
 
-          {/* Card */}
           <Animated.View
             style={[
               styles.card,
@@ -257,7 +271,6 @@ export default function LoginScreen({ navigation }) {
               },
             ]}
           >
-            {/* Email Input */}
             <View style={styles.inputContainer}>
               <MaterialCommunityIcons
                 name="at"
@@ -286,7 +299,6 @@ export default function LoginScreen({ navigation }) {
               />
             </View>
 
-            {/* Password Input */}
             <View style={styles.inputContainer}>
               <MaterialCommunityIcons
                 name="lock-outline"
@@ -325,7 +337,6 @@ export default function LoginScreen({ navigation }) {
               </TouchableOpacity>
             </View>
 
-            {/* Remember Me & Forgot Password */}
             <View style={styles.optionsRow}>
               <TouchableOpacity
                 style={styles.rememberMe}
@@ -348,7 +359,6 @@ export default function LoginScreen({ navigation }) {
               </TouchableOpacity>
             </View>
 
-            {/* Login Button */}
             <TouchableOpacity
               onPress={handleLogin}
               disabled={loading}
@@ -376,7 +386,6 @@ export default function LoginScreen({ navigation }) {
               </LinearGradient>
             </TouchableOpacity>
 
-            {/* Signup Link */}
             <View style={styles.signupContainer}>
               <Text style={[styles.signupText, { color: secondaryTextColor }]}>
                 {t.noAccount}{' '}

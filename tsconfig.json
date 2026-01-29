@@ -1,10 +1,4 @@
 {
-  "extends": "expo/tsconfig.base",
-  "compilerOptions": {
-    "strict": false,
-    "skipLibCheck": true,
-    "allowJs": true
-  },
-  "include": ["**/*.js"],
-  "exclude": ["node_modules"]
+  "compilerOptions": {},
+  "extends": "expo/tsconfig.base"
 }

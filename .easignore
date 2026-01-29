@@ -1,11 +1,5 @@
-# .easignore
-.git/
-.expo/
-node_modules/.cache/
-*.log
-.vscode/
-.idea/
-*.apk
-*.aab
+﻿node_modules/
 android/
 ios/
+.expo/
+.git/

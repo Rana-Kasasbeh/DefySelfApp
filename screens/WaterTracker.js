@@ -33,8 +33,8 @@ import AdsController from '../ads/AdsController';
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
 // ============ API CONFIG ============
-const API_URL = 'http://192.168.1.100:5000/api'; // غير هذا إلى IP الخادم الخاص بك
-// أو استخدم: const API_URL = 'http://localhost:5000/api'; للاختبار المحلي
+const API_URL = 'https://defyself-backend-043eac13f465.herokuapp.com/api'; 
+
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({

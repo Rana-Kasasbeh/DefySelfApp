@@ -1,7 +1,12 @@
 // ads/AdConfig.ts
 import { TestIds } from 'react-native-google-mobile-ads';
+import mobileAds from 'react-native-google-mobile-ads';
 
-const IS_TEST_MODE = process.env.EXPO_PUBLIC_ADS_MODE === 'test' || __DEV__;
+//import { InterstitialAd, RewardedAd, ... } from './MockAds';
+
+declare const __DEV__: boolean;
+
+const IS_TEST_MODE = __DEV__;
 
 /**
  * Ad Unit IDs
@@ -35,6 +40,18 @@ export const AdConfig = {
 } as const;
 
 /**
+ * Initialize AdMob
+ */
+export async function initializeAdMob(): Promise<void> {
+  try {
+    await mobileAds().initialize();
+    console.log('✅ AdMob initialized');
+  } catch (error) {
+    console.error('❌ AdMob initialization failed:', error);
+  }
+}
+
+/**
  * Check if ads can be shown
  */
 export function canShowAds(): boolean {
@@ -53,5 +70,6 @@ export function logAdInfo(): void {
   console.log(`  Banner: ${AdUnits.BANNER}`);
   console.log(`  Interstitial: ${AdUnits.INTERSTITIAL}`);
   console.log(`  App Open: ${AdUnits.APP_OPEN}`);
+  console.log(`  Native: ${AdUnits.NATIVE}`);
   console.log(`  Can Show Ads: ${canShowAds()}`);
 }

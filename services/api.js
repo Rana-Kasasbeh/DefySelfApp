@@ -3,17 +3,7 @@ import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Alert } from 'react-native';
 
-// ============ API CONFIGURATION ============
-// For production (Netlify)
-const API_URL = process.env.NODE_ENV === 'production' 
-  ? 'https://your-heroku-app.herokuapp.com/api'
-  : 'http://192.168.1.125:5000/api'; // 🔥 غيّر هذا إلى IP الخادم الخاص بك للتطوير
-
-// For development on same device:
-// const API_URL = 'http://localhost:5000/api';
-
-// For production:
-// const API_URL = 'https://your-heroku-app.herokuapp.com/api';
+const API_URL = 'https://defyself-backend-043eac13f465.herokuapp.com/api';
 
 // ============ STORAGE KEYS ============
 const STORAGE_KEYS = {
