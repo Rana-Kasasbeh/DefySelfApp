@@ -1,8 +1,8 @@
-﻿node_modules/
-.expo/
+﻿
 .git/
-android/
-ios/
+.expo/
+node_modules/
+*.log
+.DS_Store
 .vscode/
 .idea/
-*.log
