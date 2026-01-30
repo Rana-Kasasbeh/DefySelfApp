@@ -6,8 +6,8 @@ import AsyncStorageLib from '@react-native-async-storage/async-storage';
 // ✅ AsyncStorage متوافق مع الويب + تصحيح TypeScript
 const AsyncStorage = Platform.OS === 'web'
   ? {
-      getItem: async (key) => null,
-      setItem: async (key, value) => {},
+      getItem: async (key: string) => null,
+      setItem: async (key: string, value: string) => {},
     }
   : AsyncStorageLib;
 
