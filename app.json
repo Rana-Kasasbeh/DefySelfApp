@@ -40,16 +40,7 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "plugins": [
-      [
-        "react-native-google-mobile-ads",
-        {
-          "androidAppId": "ca-app-pub-4514668400858247~1234567890",
-          "iosAppId": "ca-app-pub-4514668400858247~1234567890",
-          "userTrackingPermission": "يستخدم هذا التطبيق الإعلانات لتوفير محتوى مجاني."
-        }
-      ]
-    ],
+    "plugins": [],
     "extra": {
       "eas": {
         "projectId": "ab6d8f9a-2c6f-4f48-a7f7-f11f9286a94f"
